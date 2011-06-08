@@ -21,7 +21,7 @@ task :tag do
     end
     `git add #{File.expand_path("logirel.gemspec", __FILE__)} Rakefile.rb`
     `git commit -m "Released version #{spec.version}"`
-    `git tag v#{spec.version}`
+    `git tag #{spec.version}`
     `git push --tags`
     `git push`
   else

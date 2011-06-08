@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Henrik Feldt"]
   s.email       = ["henrik@haf.se"]
-  s.homepage    = "https://github.com/haf/Logirel"
+  s.homepage    = "https://github.com/haf/logirel"
   s.summary     = %q{Logirel's a best-shot for scaffolding versioning for a .Net solution.}
   s.description = %q{The gem works by having as its dependencies 
   everything you need to get started with OSS and proprietary .Net coding.
@@ -27,4 +27,9 @@ Gem::Specification.new do |s|
   s.add_dependency "albacore", "~> 0.2.5"
   s.add_dependency "semver", "~> 1.0.1"
   s.add_dependency "bundler", "~> 1.0.14"
+  
+  s.requirements << '.Net or Mono installation'
+  s.requirements << 'xbuild or msbuild for csproj files'
+  s.requirements << 'Access to the internet w/o a proxy! ;)'
+  
 end
