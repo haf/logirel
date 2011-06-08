@@ -1,5 +1,4 @@
 ﻿module Logirel
-  require 'rubygems'
   require 'semver'
 
   class Initer
@@ -14,6 +13,7 @@
 	  cmd ||= []
 	  cmd << "gem update"
 	  cmd << "bundle install"
+	  cmd << "bin\NuGet.exe update"
 	end
 	
 	def nuget_from_codeplex(cp_ver, gem_ver)
@@ -27,20 +27,22 @@
 	    Dir.mkdir path unless Dir.exists? path
 	  end
 	end
-  end
-  
-  class NuGet
-    def remote_ver
-	  ver = Version.new
-	  ver.parse_numeric(`gem query -r -n nuget`)
+	
+	def parse_folders
+	  src = File.join(@root_path, 'src', '*')
+	  Dir.
+	    glob(src).
+	    keep_if{ |i| 
+		  projs = File.join(i, "*.{csproj,vbproj,fsproj}")
+		  File.directory? i and Dir.glob(projs).length > 0
+		}.
+		map{|x| File.basename(x) }
+	end
+	
+	def init_rakefile
+	  File.new(File.join(@root_path, "Rakefile.rb"), "w") do |f|
+	    f.puts "require 'bundler'"
+	  end
 	end
   end
-  
-  class Version < SemVer
-    def parse_numeric(str)
-	  str.scan(/(\d{1,5}).?/).flatten.collect{|x| x.to_i}
-	end
-  end
-  
-  
 end
