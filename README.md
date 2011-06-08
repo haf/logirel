@@ -13,7 +13,7 @@ Some problems I want to solve with this project;
  * ensuring correct versions of build script dependencies
  * (nuget/owrap/symbolserver.org)	ensuring correct versions of source code dependencies
  * (gitflow)						nicely tagging your source trees corresponding to semver
- * `nuget :nuget do |n|; ``git ls-files``.split("\n").each{ |f| n.file f }; end` create a nuget item with just files
+ * `nuget :nuget do |n|; 'git ls-files'.split("\n").each{ |f| n.file f }; end` create a nuget item with just files
 
 TODO list
 =========
