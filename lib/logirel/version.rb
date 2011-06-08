@@ -1,3 +1,4 @@
 module Logirel
-  VERSION = "0.0.1"
+  require 'semver'
+  VERSION = SemVer.find.format "%M.%m.%p"
 end

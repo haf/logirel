@@ -10,7 +10,11 @@ Gem::Specification.new do |s|
   s.email       = ["henrik@haf.se"]
   s.homepage    = "https://github.com/haf/Logirel"
   s.summary     = %q{Logirel's a best-shot for scaffolding versioning for a .Net solution.}
-  s.description = %q{TODO: Write a gem description}
+  s.description = %q{The gem works by having as its dependencies 
+  everything you need to get started with OSS and proprietary .Net coding.
+  The aim of the gem is to allow developers to get up and running quickly
+  and provide a nice way of converting a msbuild/VSS/svn project to github and rake.
+  }
 
   s.rubyforge_project = "logirel"
 
@@ -19,5 +23,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   
-  s.add_development_dependency "rspec", "~> 2.6.0"
+  s.add_development_dependency "rspec", "~> 2.6.0"  
+  s.add_dependency "albacore", "~> 0.2.5"
+  s.add_dependency "semver", "~> 1.0.1"
+  s.add_dependency "bundler", "~> 1.0.14"
 end
