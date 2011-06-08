@@ -24,12 +24,14 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_development_dependency "rspec", "~> 2.6.0"  
+  s.add_development_dependency "memoize"
+  s.add_development_dependency "devver-construct"
   s.add_dependency "albacore", "~> 0.2.5"
   s.add_dependency "semver", "~> 1.0.1"
   s.add_dependency "bundler", "~> 1.0.14"
   
   s.requirements << '.Net or Mono installation'
-  s.requirements << 'xbuild or msbuild for csproj files'
+  s.requirements << 'xbuild (on linux) or msbuild (on windows) for csproj files'
   s.requirements << 'Access to the internet w/o a proxy! ;)'
   
 end
