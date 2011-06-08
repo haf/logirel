@@ -13,15 +13,15 @@ desc 'Tag the repository in git with gem version number'
 task :tag do
   changed_files = `git diff --cached --name-only`.split("\n") + `git diff --name-only`.split("\n")
   v = SemVer.find
-  if changed_files.empty?
+  if changed_files == ['Rakefile.rb'] or changed_files.empty?
     Rake::Task["build"].invoke
   
     if `git tag`.split("\n").include?("#{v.to_s}")
-      raise "Version #{spec.version} has already been released"
+      raise "Version #{v.to_s} has already been released"
     end
     `git add #{File.expand_path("logirel.gemspec", __FILE__)} Rakefile.rb`
-    `git commit -m "Released version #{spec.version}"`
-    `git tag #{spec.version}`
+    `git commit -m "Released version #{v.to_s}"`
+    `git tag #{v.to_s}`
     `git push --tags`
     `git push`
   else
