@@ -14,7 +14,7 @@ task :tag do
   changed_files = `git diff --cached --name-only`.split("\n") + `git diff --name-only`.split("\n")
   v = SemVer.find
   if changed_files.empty?
-    Rake::Task["package"].invoke
+    Rake::Task["build"].invoke
   
     if `git tag`.split("\n").include?("#{v.to_s}")
       raise "Version #{spec.version} has already been released"
