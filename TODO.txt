@@ -1,0 +1,13 @@
+q
+
+Path to search
+Ensure create_stucture
+For each item from path/src, ask if include
+Create Rakefile.rb
+ 
+For each include:
+  concatenate name => { props } to table
+  props := interactive questioning
+  include environment.rb file
+  include paths.rb file
+  include utils.rb in gem's code
