@@ -2,7 +2,7 @@
   require 'semver'
 
   class Initer
-    
+  
 	attr_accessor :root_path
 	
 	def initialize(root = '.')
