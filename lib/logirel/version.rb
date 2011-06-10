@@ -1,6 +1,12 @@
 module Logirel
-  require 'semver'
-  VERSION = SemVer.find.format "%M.%m.%p"
+  begin
+    require 'semver'
+    VERSION = SemVer.find.format "%M.%m.%p"
+  rescue LoadError => e
+    puts 'First time installing, eh? Just run "bundle install", unless this is you running it! :) :) :)'
+	VERSION = "0.0.0"
+  end
+  
   
   class Version < SemVer
     def parse_numeric(str)
