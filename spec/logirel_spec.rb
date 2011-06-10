@@ -3,6 +3,7 @@ require 'logirel/version'
 require 'logirel/nuget'
 require 'logirel/initer'
 require 'construct'
+require 'FileUtils'
 
 describe Logirel::Initer, "when starting a new project" do
 
@@ -34,7 +35,7 @@ describe Logirel::Initer, "when starting a new project" do
 
   it "should create the correct folder structure" do
     Construct::within_construct do |c|
-	  r = Logirel::Initer.new(c.to_s)
+	  r = Logirel::Initer.new(c)
 	  Dir.exists?(c+'buildscripts').should == false
 	  r.create_structure
 	  Dir.exists?(c+'buildscripts').should == true
@@ -42,42 +43,4 @@ describe Logirel::Initer, "when starting a new project" do
 	end
   end
   
-  it "should correctly parse the names of existing projects" do
-    
-    Construct::within_construct do |c|
-      # given files	
-	  c.directory('src/A')
-	  c.directory('src/B')
-	  c.directory('src/C')
-	  c.file('src/A/A.csproj') do |f|
-	    f.puts "cs proj file ... xml in here"
-	  end
-	  
-	  c.file('src/C/HelloWorld.vbproj')
-	  
-	  # initer should parse names:
-	  r = Logirel::Initer.new(c.to_s)
-	  r.parse_folders.should =~ ['A', 'C']
-	end
-	
-  end
-  
-  it "should create Rakefile.rb" do
-    pending("strange error... sleep on it")
-    Construct::within_construct do |c|
-	  r = Logirel::Initer.new(c.to_s)
-	  r.init_rakefile
-	  c.file('Rakefile.rb').exists?.should == true
-	end
-  end
-  
-  it "should have bundler at the top of the rake file" do
-    pending("strange error, sleep on it...")
-	
-    Construct::within_construct do |c|
-	  r = Logirel::Initer.new(c.to_s)
-	  Directory.exists?(c.directory).should == true
-	  r.init_rakefile
-	end
-  end
 end

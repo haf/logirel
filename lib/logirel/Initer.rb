@@ -40,7 +40,7 @@
 	end
 	
 	def init_rakefile
-	  File.new(File.join(@root_path, "Rakefile.rb"), "w") do |f|
+	  File.open(File.join(@root_path, "Rakefile.rb"), "w") do |f|
 	    f.puts "require 'bundler'"
 	  end
 	end

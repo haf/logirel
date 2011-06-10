@@ -7,8 +7,8 @@ module Logirel
 	    str.scan(/(\d{1,5}).?/).flatten.collect{|x| x.to_i}
 	  end
     end
-  rescue LoadError => e
-    puts 'First time installing, eh? Just run "bundle install", unless this is you running it! :) :) :)'
+  rescue LoadError
+    puts 'First time installing, eh? Just run "bundle install"! (unless this is you running it right now!)'
     VERSION = "0.0.0"
   end
 end
