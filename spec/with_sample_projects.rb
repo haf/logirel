@@ -1,6 +1,6 @@
 require 'construct'
 
-def with_sample_projects do |&block|
+def with_sample_projects(&block)
   Construct::within_construct do |c|	
     # given files	
     c.directory('src/A')

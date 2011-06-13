@@ -1,24 +1,41 @@
-require 'logirel/querier'
-require 'logirel/with_sample_projects'
+require 'logirel/q_model'
+require File.dirname(__FILE__) + '/with_sample_projects'
 
 describe Logirel::Querier, "when getting available directories and having querier return the correct data structures" do
-    
+  
   before(:each) do
-    @q = Querier.new
+    @q = Logirel::Querier.new
   end 
   
   it "should create a query for every project folder" do
     with_sample_projects do |construct|
-	  r = Initer.new(construct)  
-	  @q.
+	  r = Logirel::Initer.new(construct)
+	  folders = r.parse_folders
+	  qs = @q.include_package_for(folders)
+	  qs.length.should >= 2
+	  qs.each do |q|
+	    folders.any? do |f|
+		  q.question.include? "'#{f}'"
+		end
+      end
 	end
   end
   
   it "should not create a query for those project folders without *proj files" do
-  
+    with_sample_projects do |construct|
+	  r = Logirel::Initer.new(construct)
+	  folders = r.parse_folders
+	  @q.include_package_for(folders).map{|q| q.question }.
+	    each{ |str| str.include?("'B'").should be_false }      
+	end
   end
   
-  it "should be possible to execute the query in memory and have it return the correct meta data for the to-the-folder corresponding project" do
-  
+  it "should return two strings when two questions are asked" do 
+    with_sample_projects do |construct|
+	  r = Logirel::Initer.new(construct)
+	  folders = r.parse_folders
+	  qs = @q.include_package_for(folders)
+	  qs.length.should eq(2)
+	end
   end
 end
