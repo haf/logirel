@@ -7,6 +7,7 @@ describe Logirel::Initer, "when initilizing project details" do
     @temp = "buildscripts"
 	Dir.mkdir(@temp) unless Dir.exists?(@temp)
 	@r = Logirel::Initer.new(@temp)
+	@r.init_project_details(@temp, ['A', 'B'])
   end
   
   after(:each) do
@@ -14,8 +15,7 @@ describe Logirel::Initer, "when initilizing project details" do
   end
   
   it "should create project_details.rb" do
-    pending("need impl")
-    File.exitist?(File.join(@temp, "project_details.rb")).should be_true
+    File.exists?(File.join(@temp, "project_details.rb")).should be_true
   end
-  
+
 end

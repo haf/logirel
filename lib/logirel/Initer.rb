@@ -44,5 +44,28 @@
 	    f.puts "require 'bundler'"
 	  end
 	end
+	
+	def init_project_details(buildscripts, metadata)
+	  details_path = File.open(File.join(buildscripts, "project_details.rb"), "w") do |f|
+        f.puts %q{ 
+Projects = \{
+}
+	  end
+	  
+	  metadata.each do |m|
+        File.open(details_path, "w") do |f|
+          k = m.ruby_key
+      	  m.remove('ruby_key')
+          f.puts ":#{m.ruby_key} = #{p(m)}"
+      	  f.puts ","
+        end 
+      end
+      
+      File.open(details_path, "w") do |f|
+          f.puts %q{ 
+\}
+      }
+      end
+	end
   end
 end
