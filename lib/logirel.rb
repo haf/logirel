@@ -3,6 +3,7 @@ require 'logirel/version'
 require 'logirel/q_model'
 require 'uuid'
 require 'thor'
+require 'FileUtils'
 
 module Logirel
   class Application < Thor
@@ -11,18 +12,25 @@ module Logirel
 	def convert
       
       puts "Logirel version #{Logirel::VERSION}"
-      dir = Dir.pwd
+	  curr = Dir.pwd
       
       puts ""
       puts "Directories Selection"
       puts "---------------------"
-      puts "Current directory: " + dir
-      q = "Is this the 'src' dir? Contains projects: (#{Initer.new('.').parse_folders.inspect})"
-      if (!BoolQ.new(q, true).exec)
-        dir = StrQ.new("Specify directory.", lambda { |dir| !dir.empty? && Dir.exists?(dir) }).exec
-      end
+	  
+      dir = StrQ.new("Specify src directory (#{Initer.new('./src').parse_folders.inspect})", 
+	    "./src", 
+		lambda { |dir| !dir.empty? && Dir.exists?(dir) }).exec
       
-      buildscripts = StrQ.new("Buildscripts Directory", "../buildscripts").exec
+      buildscripts = StrQ.new("Buildscripts Directory", "./buildscripts").exec
+	  tools = StrQ.new("Tools Directory", "./tools").exec
+	  
+	  puts "initing semver in folder above #{dir}"
+	  Dir.chdir File.join(dir, "..")
+	  sh "semver init" do |ok, err|
+	    ok || raise "failed to initialize semver"
+	  end
+	  Dir.chdir curr
       
       puts ""
       puts "Project Selection"
@@ -30,7 +38,7 @@ module Logirel
       
       selected_projs = Initer.new(dir).parse_folders.
         map { |f| 
-          BoolQ.new(f, File.basename(f)).exec
+          BoolQ.new(f, File.basename(f)).exec # TODO: return bool
         }
       
       puts ""
