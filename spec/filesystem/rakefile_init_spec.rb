@@ -10,7 +10,7 @@ describe Logirel::Initer, "when initilizing rake file" do
   attr_accessor :tmp, :r
 
   before(:each) do
-    @tmp = "test-temp"
+    @tmp = "fs-" + rand().to_s
 	Dir.mkdir(@tmp) unless Dir.exists?(@tmp)	
 	@r = Logirel::Initer.new(@tmp)
   end

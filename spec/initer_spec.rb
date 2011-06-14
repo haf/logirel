@@ -25,15 +25,5 @@ describe Logirel::Initer, "when starting a new project" do
     @i.nuget_from_codeplex([1,3], [1,1]).should == true
 	@i.nuget_from_codeplex([1,3], [1,4]).should == false
   end
-
-  it "should create the correct folder structure" do
-    Construct::within_construct do |c|
-	  r = Logirel::Initer.new(c)
-	  Dir.exists?(c+'buildscripts').should be_false
-	  r.create_structure
-	  Dir.exists?(c+'buildscripts').should be_true
-	  Dir.exists?(c+'src').should be_true
-	end
-  end
   
 end

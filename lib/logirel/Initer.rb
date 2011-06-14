@@ -1,19 +1,21 @@
 ﻿module Logirel
   require 'semver'
+<<<<<<< HEAD
   require 'enumerator'
+=======
+  require 'net/http'
+>>>>>>> 6198599ec89da15594a12554a5acf6b34558958c
 
   class Initer
 	
 	attr_accessor :root_path
 	
-	def initialize(root = '.')
-	  @root_path = root
-	end
+	def initialize(root = '.'); @root_path = root; end
+	def set_root(root); @root_path = root; end
   
     def get_commands
 	  cmd ||= []
 	  cmd << "semver init"
-	  cmd << "bin\NuGet.exe update"
 	end
 	
 	def nuget_from_codeplex(cp_ver, gem_ver)
@@ -25,6 +27,31 @@
 	  ['buildscripts', 'src'].each do |d|
 	    path = File.join(@root_path, d)
 	    Dir.mkdir path unless Dir.exists? path
+	  end
+	end
+	
+	def create_paths_rb
+	  path = File.join(@root_path, "buildscripts", "paths.rb")
+	  File.open(path, "w") do |f|
+	    f.puts "."
+		# TODO: generate from interactive
+	  end
+	end
+	
+	def create_environement_rb
+	  path = File.join(@root_path, "buildscripts", "environment.rb")
+	  File.open(path, "w") do |f|
+	    f.puts Net::HTTP.get(
+		  URI.parse('https://raw.github.com/haf/logirel/master/content/environment.rb'))
+	    # todo: read from raw.gh.com/logirel/master/content/environment.rb and write to this file.
+	  end
+	end
+	
+	def create_project_details_rb
+	  path = File.join(@root_path, "buildscripts", "project_details.rb")
+	  File.open(path, "w") do |f|
+	    f.puts "."
+		# TODO: generate from interactive
 	  end
 	end
 	
