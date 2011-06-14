@@ -1,5 +1,6 @@
 ﻿module Logirel
   require 'semver'
+  require 'net/http'
 
   class Initer
   
@@ -36,6 +37,8 @@
 	def create_environement_rb
 	  path = File.join(@root_path, "buildscripts", "environment.rb")
 	  File.open(path, "w") do |f|
+	    f.puts Net::HTTP.get(
+		  URI.parse('https://raw.github.com/haf/logirel/master/content/environment.rb'))
 	    # todo: read from raw.gh.com/logirel/master/content/environment.rb and write to this file.
 	  end
 	end
