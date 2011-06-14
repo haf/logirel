@@ -1,11 +1,14 @@
 require 'logirel/initer'
 require 'logirel/version'
 require 'logirel/q_model'
-require 'UUID'
+require 'uuid'
+require 'thor'
 
 module Logirel
-  class Application
-    def run(*ARGV)
+  class Application < Thor
+    
+	desc "Convert projects to rake", "Convert the current folder's projects (src) into a rake+albacore build"
+	def convert
       
       puts "Logirel version #{Logirel::VERSION}"
       dir = Dir.pwd

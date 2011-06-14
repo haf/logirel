@@ -29,6 +29,8 @@ Gem::Specification.new do |s|
   s.add_dependency "albacore", "~> 0.2.5"
   s.add_dependency "semver", "~> 1.0.1"
   s.add_dependency "bundler", "~> 1.0.14"
+  s.add_dependency "thor"
+  s.add_dependency "uuid"
   
   s.requirements << '.Net or Mono installation'
   s.requirements << 'xbuild (on linux) or msbuild (on windows) for csproj files'
