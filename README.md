@@ -7,6 +7,12 @@ Getting started
  1. `logirel init`
  1. You should now answer the questions that logirel poses.
 
+ 
+Hacking it
+==========
+ 1. `git clone ...`
+ 1. `bundle install`
+ 1. `bundle exec rspec spec`
 
 My thinking
 ===========
@@ -55,3 +61,6 @@ of managing another build is too large.
 Shoulders of Giants
 ===================
  * http://madduck.net/blog/2007.07.11:creating-a-git-branch-without-ancestry/
+ * http://rubydoc.info/github/wycats/thor/master/file/README.md
+ * https://github.com/radar/guides/blob/master/gem-development.md
+ * http://eggsonbread.com/2010/03/28/my-rspec-best-practices-and-tips/
