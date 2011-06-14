@@ -16,18 +16,11 @@ describe Logirel::Initer, "when starting a new project" do
     Construct.destroy_all!
   end
   
-  it "should start by performing an upgrade" do
-    @i.get_commands[0].should eql("gem update")
+  it "should run the right commands" do
+    cmds = @i.get_commands
+	cmds.include?("semver init").should be_true
   end
   
-  it "should then proceed running bundle install" do
-    @i.get_commands[1].should eql("bundle install")
-  end
-  
-  it "should then update nuget" do
-    @i.get_commands[2].include?('update').should == true
-  end
- 
   it "should be able to know when to download from codeplex" do
     @i.nuget_from_codeplex([1,3], [1,1]).should == true
 	@i.nuget_from_codeplex([1,3], [1,4]).should == false
@@ -36,10 +29,10 @@ describe Logirel::Initer, "when starting a new project" do
   it "should create the correct folder structure" do
     Construct::within_construct do |c|
 	  r = Logirel::Initer.new(c)
-	  Dir.exists?(c+'buildscripts').should == false
+	  Dir.exists?(c+'buildscripts').should be_false
 	  r.create_structure
-	  Dir.exists?(c+'buildscripts').should == true
-	  Dir.exists?(c+'src').should == true
+	  Dir.exists?(c+'buildscripts').should be_true
+	  Dir.exists?(c+'src').should be_true
 	end
   end
   

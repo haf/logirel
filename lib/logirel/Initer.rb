@@ -11,8 +11,7 @@
   
     def get_commands
 	  cmd ||= []
-	  cmd << "gem update"
-	  cmd << "bundle install"
+	  cmd << "semver init"
 	  cmd << "bin\NuGet.exe update"
 	end
 	
