@@ -52,40 +52,19 @@ module Logirel
         
         {
           :dir => p_dir,
-      	:title => StrQ.new("Title", base).exec,
-      	:test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
-      	:description => StrQ.new("Description", "#{base} at commit #{`git log --pretty-format=%H`}").exec,
-      	:copyright => StrQ.new("Copyright").exec,
-      	:authors => StrQ.new("Authors").exec,
-      	:company => StrQ.new("Company").exec,
-      	:nuget_key => StrQ.new("NuGet key", base).exec,
-      	:ruby_key => StrQ.new("Ruby key (e.g. 'autotx')").exec,
-      	:guid => UUID.new
+      	  :title => StrQ.new("Title", base).exec,
+      	  :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
+      	  :description => StrQ.new("Description", "#{base} at commit #{`git log --pretty-format=%H`}").exec,
+      	  :copyright => StrQ.new("Copyright").exec,
+      	  :authors => StrQ.new("Authors").exec,
+      	  :company => StrQ.new("Company").exec,
+      	  :nuget_key => StrQ.new("NuGet key", base).exec,
+      	  :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')").exec,
+      	  :guid => UUID.new
         }
       end
       
-      # TODO: test whether buildscripts/project_details.rb exists
-      details_path = File.join(buildscripts, "project_details.rb")
-      File.new(details_path, "w") do |f|
-        f.puts %q{ 
-  Projects = \{
-      }
-      end
-      
-      metas.each do |m|
-        File.open(details_path, "w") do |f|
-          k = m.ruby_key
-      	m.remove('ruby_key')
-          f.puts ":#{m.ruby_key} = #{p(m)}"
-      	f.puts ","
-        end 
-      end
-      
-      File.open(details_path, "w") do |f|
-          f.puts %q{ 
-        \}
-      }
-      end
+	  Initer.init_project_details(buildscripts, metas)
       
       # TODO: paths
   	

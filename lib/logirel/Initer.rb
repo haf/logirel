@@ -1,8 +1,9 @@
 ﻿module Logirel
   require 'semver'
+  require 'enumerator'
 
   class Initer
-  
+	
 	attr_accessor :root_path
 	
 	def initialize(root = '.')
@@ -45,26 +46,34 @@
 	end
 	
 	def init_project_details(buildscripts, metadata)
-	  details_path = File.open(File.join(buildscripts, "project_details.rb"), "w") do |f|
+	  File.open(File.join(buildscripts, "project_details.rb"), "w") do |f|
         f.puts %q{ 
 Projects = \{
 }
 	  end
 	  
-	  metadata.each do |m|
-        File.open(details_path, "w") do |f|
-          k = m.ruby_key
-      	  m.remove('ruby_key')
-          f.puts ":#{m.ruby_key} = #{p(m)}"
-      	  f.puts ","
-        end 
+	  metadata.keys.each_with_index do |key, index|
+        File.open(File.join(buildscripts, "project_details.rb"), "a+") do |f|
+		  if index == metadata.length-1
+            f.puts ":#{key} = #{p(metadata[key])}"
+		  else 
+		    f.puts ":#{key} = #{p(metadata[key])},"
+		  end
+        end
       end
       
-      File.open(details_path, "w") do |f|
-          f.puts %q{ 
-\}
+      File.open(File.join(buildscripts, "project_details.rb"), "a+") do |f|
+          f.puts %q{\}
       }
       end
+	  
+	  # File.open(File.join(buildscripts, "project_details.rb"), "a+") do |infile|
+        # puts ""
+		# puts ""
+		# while (line = infile.gets)
+          # puts "#{line}"
+        # end
+	  # end
 	end
   end
 end
