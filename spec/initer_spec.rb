@@ -16,8 +16,9 @@ describe Logirel::Initer, "when starting a new project" do
     Construct.destroy_all!
   end
   
-  it "should start by performing an upgrade" do
-    @i.get_commands[0].should eql("gem update")
+  it "should run the right commands" do
+    cmds = @i.get_commands
+	cmds.include?("semver init").should be_true
   end
   
   it "should then proceed running bundle install" do

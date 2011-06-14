@@ -1,5 +1,13 @@
 ﻿Let's try and make a gem to create .Net projects easily.
 
+Getting started
+===============
+ 1. `gem install logirel`
+ 1. Go to the project of your choice
+ 1. `logirel init`
+ 1. You should now answer the questions that logirel poses.
+
+
 My thinking
 ===========
 
