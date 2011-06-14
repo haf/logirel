@@ -5,14 +5,12 @@
   
 	attr_accessor :root_path
 	
-	def initialize(root = '.')
-	  @root_path = root
-	end
+	def initialize(root = '.'); @root_path = root; end
+	def set_root(root); @root_path = root; end
   
     def get_commands
 	  cmd ||= []
 	  cmd << "semver init"
-	  cmd << "bin\NuGet.exe update"
 	end
 	
 	def nuget_from_codeplex(cp_ver, gem_ver)
@@ -24,6 +22,27 @@
 	  ['buildscripts', 'src'].each do |d|
 	    path = File.join(@root_path, d)
 	    Dir.mkdir path unless Dir.exists? path
+	  end
+	end
+	
+	def create_paths_rb
+	  path = File.join(@root_path, "buildscripts", "paths.rb")
+	  File.open(path, "w") do |f|
+	    f.puts "."
+	  end
+	end
+	
+	def create_environement_rb
+	  path = File.join(@root_path, "buildscripts", "environment.rb")
+	  File.open(path, "w") do |f|
+	    f.puts "."
+	  end
+	end
+	
+	def create_project_details_rb
+	  path = File.join(@root_path, "buildscripts", "project_details.rb")
+	  File.open(path, "w") do |f|
+	    f.puts "."
 	  end
 	end
 	
