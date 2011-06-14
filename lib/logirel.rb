@@ -28,7 +28,7 @@ module Logirel
 	  puts "initing semver in folder above #{dir}"
 	  Dir.chdir File.join(dir, "..")
 	  sh "semver init" do |ok, err|
-	    ok || raise "failed to initialize semver"
+	    ok || (raise "failed to initialize semver")
 	  end
 	  Dir.chdir curr
       

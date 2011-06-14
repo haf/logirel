@@ -1,5 +1,5 @@
 require 'logirel/q_model'
-require File.dirname(__FILE__) + '/with_sample_projects'
+require File.dirname(__FILE__) + '/../support/with_sample_projects'
 
 describe Logirel::Querier, "when getting available directories and having querier return the correct data structures" do
   

@@ -20,7 +20,7 @@ task :tag do
       raise "Version #{v.to_s} has already been released"
     end
 	puts 'adding'
-    `git add #{File.expand_path("logirel.gemspec", __FILE__)} Rakefile.rb`
+    `git add #{File.expand_path("logirel.gemspec", __FILE__)}`
     puts 'committing'
 	`git commit -m "Released version #{v.to_s}"`
 	puts 'tagging'
