@@ -1,11 +1,8 @@
-﻿module Logirel
-  require 'semver'
-<<<<<<< HEAD
-  require 'enumerator'
-=======
-  require 'net/http'
->>>>>>> 6198599ec89da15594a12554a5acf6b34558958c
+﻿require 'semver'
+require 'enumerator'
+require 'net/http'
 
+module Logirel
   class Initer
 	
 	attr_accessor :root_path
