@@ -19,9 +19,9 @@ describe Initer, "setting up folder structure" do
   
   subject { @r }
   
-  # after(:each) do
-	# FileUtils.rm_rf(@tmp) while Dir.exists?(@tmp)
-  # end
+  after(:each) do
+	FileUtils.rm_rf(@tmp) while Dir.exists?(@tmp)
+  end
   
   it { should respond_to :root_path }
   
