@@ -23,8 +23,10 @@ describe Logirel::Querier, "when getting available directories and having querie
   
   it "should not create a query for those project folders without *proj files" do
     with_sample_projects do |construct|
+	  # given
 	  r = Logirel::Initer.new(construct)
 	  folders = r.parse_folders
+	  # then
 	  @q.include_package_for(folders).map{|q| q.question }.
 	    each{ |str| str.include?("'B'").should be_false }      
 	end
@@ -32,8 +34,10 @@ describe Logirel::Querier, "when getting available directories and having querie
   
   it "should return two strings when two questions are asked" do 
     with_sample_projects do |construct|
+	  # given
 	  r = Logirel::Initer.new(construct)
 	  folders = r.parse_folders
+	  # then
 	  qs = @q.include_package_for(folders)
 	  qs.length.should eq(2)
 	end
