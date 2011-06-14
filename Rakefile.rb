@@ -19,10 +19,15 @@ task :tag do
     if `git tag`.split("\n").include?("#{v.to_s}")
       raise "Version #{v.to_s} has already been released"
     end
+	puts 'adding'
     `git add #{File.expand_path("logirel.gemspec", __FILE__)} Rakefile.rb`
-    `git commit -m "Released version #{v.to_s}"`
-    `git tag #{v.to_s}`
+    puts 'committing'
+	`git commit -m "Released version #{v.to_s}"`
+	puts 'tagging'
+	`git tag #{v.to_s}`
+	puts 'pushing tags'
     `git push --tags`
+	puts 'pushing'
     `git push`
   else
     raise "Repository contains uncommitted changes; either commit or stash."

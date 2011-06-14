@@ -1,6 +1,7 @@
 module Logirel
   begin
     require 'semver'
+	`SemVer.init`
     VERSION = SemVer.find.format "%M.%m.%p"
 	class Version < SemVer
       def parse_numeric(str)
