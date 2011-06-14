@@ -29,13 +29,14 @@
 	  path = File.join(@root_path, "buildscripts", "paths.rb")
 	  File.open(path, "w") do |f|
 	    f.puts "."
+		# TODO: generate from interactive
 	  end
 	end
 	
 	def create_environement_rb
 	  path = File.join(@root_path, "buildscripts", "environment.rb")
 	  File.open(path, "w") do |f|
-	    f.puts "."
+	    # todo: read from raw.gh.com/logirel/master/content/environment.rb and write to this file.
 	  end
 	end
 	
@@ -43,6 +44,7 @@
 	  path = File.join(@root_path, "buildscripts", "project_details.rb")
 	  File.open(path, "w") do |f|
 	    f.puts "."
+		# TODO: generate from interactive
 	  end
 	end
 	
