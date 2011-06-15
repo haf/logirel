@@ -8,7 +8,7 @@ require 'FileUtils'
 module Logirel
  class CLI < Thor
     
-	desc "Convert projects to rake", "Convert the current folder's projects (src) into a rake+albacore build"
+	desc "init", "Convert the current folder's projects (src) into a rake+albacore build"
 	def init(root_dir = Dir.pwd)
       
       puts "Logirel version #{Logirel::VERSION}"
