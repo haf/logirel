@@ -18,10 +18,11 @@ module Logirel
       puts "Directories Selection"
       puts "---------------------"
 	  
-      dir = StrQ.new("Specify src directory (#{Initer.new('./src').parse_folders.inspect})", 
-	    "./src",
-		lambda { |dir| !dir.empty? && Dir.exists?(dir) }).exec
-      
+	  folders = Initer.new('./src').parse_folders.inspect
+      strQ = StrQ.new("Specify src directory (#{folders})", "./src",
+		lambda { |dir| !dir.empty? && Dir.exists?(dir) })
+      dir = strQ.exec
+	  
       buildscripts = StrQ.new("Buildscripts Directory", "./buildscripts").exec
 	  tools = StrQ.new("Tools Directory", "./tools").exec
 	  

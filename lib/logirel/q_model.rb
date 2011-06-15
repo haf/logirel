@@ -30,12 +30,11 @@ module Logirel
     end
     
     def exec
-      puts @question
-	  @answer = @default
+      puts @question + " [#{@default}]: "
 	  begin
         @answer = @io_source.gets
-	  end while not @validator.call(@answer)
-	  @answer
+	  end while !@answer.empty? && !@validator.call(@answer)
+	  @answer == nil || @answer.empty? ? @default : @answer
     end
   end
 end

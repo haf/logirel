@@ -33,8 +33,24 @@ describe Logirel::StrQ, "when feeding it bad input" do
     @validator.should_receive(:call).exactly(3).times.
       with(an_instance_of(String)).
       and_return(false, false, true)
-      
   end
   subject { StrQ.new("q?", "def", @io, @validator) }
   specify { subject.exec.should == "OKAnswer!" }
+end
+
+describe Logirel::StrQ, "when accepting the defaults" do
+  before(:each) do 
+    @io = StringIO.new "\n"
+	
+    @validator = double('validator')
+    @validator.should_receive(:call).once.
+      with(an_instance_of(String)).
+	# the validator should never be called for empty input if we have a default
+      and_return(false)
+  end
+  subject { StrQ.new("q?", "def", @io, @validator) }
+  specify {
+    subject.exec.should eql("def") and 
+    subject.answer.should eql("def") 
+  }
 end
