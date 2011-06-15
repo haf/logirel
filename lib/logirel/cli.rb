@@ -31,7 +31,7 @@ module Logirel
 	    ok || (raise "failed to initialize semver")
 	  end
 	  Dir.chdir curr
-      
+      raise "no no no"
       puts ""
       puts "Project Selection"
       puts "-----------------"

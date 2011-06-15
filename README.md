@@ -10,7 +10,7 @@ Getting started
  
 Hacking it
 ==========
- 1. `git clone ...`
+ 1. `git clone https://haf@github.com/haf/logirel.git`
  1. `bundle install`
  1. `bundle exec rspec spec`
 
