@@ -8,8 +8,6 @@ module Logirel
     
     def initialize(question, name) 
       @question = question
-  	#@pos_answer lambda { name }
-  	#@neg_answer lambda { }
     end
     
     def exec
@@ -17,10 +15,10 @@ module Logirel
       #a = gets
       #a == 'yes' ? q.pos_answer.call : a == '' ? q.neg_answer.call
     end
-	
-	def answer
-	  nil
-	end
+    
+    def answer
+      nil
+    end
   end
   
   class StrQ < Q
@@ -37,7 +35,7 @@ module Logirel
       puts @question
       @answer = (io_source.gets || @default) while not @validator.call(@answer)
     end
-	
+
     def answer
       @answer || @default
     end

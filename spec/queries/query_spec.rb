@@ -14,10 +14,10 @@ end
 describe Logirel::StrQ, "when feeding it OK input" do
   before(:all) do 
     @io = StringIO.new "My Answer"
-	@validator = double('validator')
-	@validator.should_receive(:call).once
-	  with(an_instance_of(String))
-	  and_return(true)
+    @validator = double('validator')
+    @validator.should_receive(:call).once
+      with(an_instance_of(String))
+      and_return(true)
   end
   subject { StrQ.new("q?", "def", @io, @validator) }
   specify { subject.exec.should eql("My Answer") and subject.answer.should eql("My Answer") }
@@ -26,12 +26,12 @@ end
 describe Logirel::StrQ, "when feeding it bad input" do
   before(:all) do 
     @io = StringIO.new "My Bad Answer\BnAnother Bad Answer\nOKAnswer!"
-	
-	@validator = double('validator')
-	@validator.should_receive(:call).exactly(3).times.
-	  with(an_instance_of(String))
-	  and_return(false, false, true)
-	  
+    
+    @validator = double('validator')
+    @validator.should_receive(:call).exactly(3).times.
+      with(an_instance_of(String))
+      and_return(false, false, true)
+      
   end
   subject { StrQ.new("q?", "def", @io, @validator) }
   specify { subject.exec.should == "OKAnswer!" }
