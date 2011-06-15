@@ -1,5 +1,7 @@
 require 'bundler'
 Bundler::GemHelper.install_tasks
+require 'rspec/core/rake_task'; 
+RSpec::Core::RakeTask.new
 # Requires Bundler and adds the 
 #build, install and release 
 #Rake tasks by way of calling Bundler::GemHelper.install_tasks. 

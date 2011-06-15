@@ -27,7 +27,7 @@ end
 
 describe Logirel::StrQ, "when feeding it bad input" do
   before(:each) do 
-    @io = StringIO.new "My Bad Answer\BnAnother Bad Answer\nOKAnswer!"
+    @io = StringIO.new "My Bad Answer\nAnother Bad Answer\nOKAnswer!"
     
     @validator = double('validator')
     @validator.should_receive(:call).exactly(3).times.
