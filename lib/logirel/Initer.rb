@@ -42,7 +42,6 @@ module Logirel
 	  File.open(path, "w") do |f|
 	    f.puts Net::HTTP.get(
 		  URI.parse('https://raw.github.com/haf/logirel/master/content/environment.rb'))
-	    # todo: read from raw.gh.com/logirel/master/content/environment.rb and write to this file.
 	  end
 	end
 	
@@ -57,9 +56,58 @@ module Logirel
 		map{|x| File.basename(x) }
 	end
 	
-	def init_rakefile
+	def init_gemfile
+	  File.open(File.join(@root_path, "Gemfile"), "w") do |f|
+        f.puts 'source "http://rubygems.org"'
+        f.puts 'gem "albacore"'
+		f.puts 'gem "semver"'
+		f.puts 'gem "bundler"'
+	  end
+	end
+	
+	def init_utils
+	  path = File.join(@root_path, @buildscripts_path, "utils.rb")
+	  File.open(path, "w") do |f|
+	    f.puts Net::HTTP.get(
+		  URI.parse('https://raw.github.com/haf/logirel/master/content/utils.rb'))
+	  end
+	end
+	
+	def build_tasks(metas)
+	  
+	end
+	
+	def assembly_infos(metas)
+	  
+	end
+	# asm info for every nuget
+	def nugets(metas)
+	  
+	end
+	
+	def init_rakefile(metas)
+	  build_keys = metas.map{|m| ":build_"+m.ruby_key}
 	  File.open(File.join(@root_path, "Rakefile.rb"), "w") do |f|
-	    f.puts "require 'bundler'"
+	    f.puts %q{
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+Bundler.require # if rake gets a wee bit too slow, you may remove this
+require 'albacore'
+require 'semver'
+require 'rake/clean'
+require '#{buildscripts_path}/project_details'
+require '#{buildscripts_path}/paths'
+require '#{buildscripts_path}/utils'
+require '#{buildscripts_path}/environment'
+task :default => [:release]
+task :debug => ["env:debug", :build]
+task :release => ["env:release", :build]
+task :ci => ["env:release", :build, :package]
+}
+        f.puts "task :build => #{build_keys.inspect}"
+		
+		f.puts build_tasks(metas)
 	  end
 	end
 	

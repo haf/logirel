@@ -19,7 +19,9 @@ module Logirel
       puts "---------------------"
 	  
 	  folder = lambda { |query, default|
-	    StrQ.new(query, default, STDIN, lambda { |dir| !dir.empty? && Dir.exists?(dir) }, STDOUT)
+	    StrQ.new(query, default, STDIN, lambda { |dir| 
+		  true # perform validation here if you wish
+		}, STDOUT)
 	  }
 	  
 	  src_folders = Initer.new('./src').parse_folders.inspect
@@ -29,22 +31,21 @@ module Logirel
 	  initer = Initer.new(dir)
 	  initer.buildscripts_path = buildscripts
 	  
-	  puts "initing semver in folder above #{dir}"
-	  `semver init`
       puts ""
       puts "Project Selection"
       puts "-----------------"
       
       selected_projs = initer.parse_folders.
-        map { |f| 
-          BoolQ.new(f, File.basename(f)).exec # TODO: return bool
-        }
+        find_all { |f| BoolQ.new(f).exec }
 
-      raise "no no no"
-      
+	  puts "Selected: #{selected_projs.inspect}"
+	  
       puts ""
       puts "Project Meta-Data Definitions"
       puts "-----------------------------"
+	  
+	  puts "initing semver in folder #{dir}"
+	  `semver init`
       
       metas = selected_projs.map do |p|
         
@@ -68,7 +69,9 @@ module Logirel
 	  initer.init_project_details(metas)
       initer.create_paths_rb
       initer.create_environement_rb 
-      initer.init_rakefile
+	  initer.init_gemfile
+	  initer.init_utils
+      initer.init_rakefile(metas)
     end
   end
 end

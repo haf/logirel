@@ -22,11 +22,8 @@ module Logirel
     
     def exec
       @io_target.print @question + " " + default_str
-	  puts "source: #{@io_source}"
 	  a = ""
 	  begin
-	    STDOUT.puts "chomping"
-		
 	    a = @io_source.gets.chomp
 	  end while !a.empty? && !['y', 'n'].include?(a.downcase)
 	  a.empty? ? @default : (a == 'y')	  
