@@ -12,12 +12,13 @@ end
 describe Logirel::StrQ, "when feeding it OK input" do
   before(:each) do 
     @io = StringIO.new "My Answer"
+    @out = StringIO.new
     @validator = double('validator')
     @validator.should_receive(:call).once.
       with(an_instance_of(String)).
       and_return(true)
   end
-  subject { StrQ.new("q?", "def", @io, @validator) }
+  subject { StrQ.new("q?", "def", @io, @validator, @out) }
   specify { 
     subject.exec.should eql("My Answer") and 
     subject.answer.should eql("My Answer") 
@@ -27,19 +28,21 @@ end
 describe Logirel::StrQ, "when feeding it bad input" do
   before(:each) do 
     @io = StringIO.new "My Bad Answer\nAnother Bad Answer\nOKAnswer!"
-    
+    @out = StringIO.new
+	
     @validator = double('validator')
     @validator.should_receive(:call).exactly(3).times.
       with(an_instance_of(String)).
       and_return(false, false, true)
   end
-  subject { StrQ.new("q?", "def", @io, @validator) }
+  subject { StrQ.new("q?", "def", @io, @validator, @out) }
   specify { subject.exec.should == "OKAnswer!" }
 end
 
 describe Logirel::StrQ, "when accepting the defaults" do
   before(:each) do 
     @io = StringIO.new "\n"
+    @out = StringIO.new
 	
     @validator = double('validator')
     @validator.should_receive(:call).never.
@@ -47,7 +50,7 @@ describe Logirel::StrQ, "when accepting the defaults" do
 	# the validator should never be called for empty input if we have a default
       and_return(false)
   end
-  subject { StrQ.new("q?", "def", @io, @validator) }
+  subject { StrQ.new("q?", "def", @io, @validator, @out) }
   specify {
     subject.exec.should eql("def") and 
     subject.answer.should eql("def") 
