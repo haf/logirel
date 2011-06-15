@@ -18,20 +18,19 @@ module Logirel
       puts "Directories Selection"
       puts "---------------------"
 	  
-	  folders = Initer.new('./src').parse_folders.inspect
-      strQ = StrQ.new("Specify src directory (#{folders})", "./src",
-		lambda { |dir| !dir.empty? && Dir.exists?(dir) })
-      dir = strQ.exec
+	  folder = lambda { |query, default|
+	    StrQ.new(query, default, STDIN, lambda { |dir| !dir.empty? && Dir.exists?(dir) }, STDOUT)
+	  }
 	  
-      buildscripts = StrQ.new("Buildscripts Directory", "./buildscripts").exec
-	  tools = StrQ.new("Tools Directory", "./tools").exec
+	  src_folders = Initer.new('./src').parse_folders.inspect
+      dir = folder.call("Source Directory. Default contains (#{src_folders})", "./src").exec
+      buildscripts = folder.call("Buildscripts Directory", "./buildscripts").exec
+	  tools = folder.call("Tools Directory", "./tools").exec
 	  
 	  puts "initing semver in folder above #{dir}"
-	  Dir.chdir File.join(dir, "..")
 	  sh "semver init" do |ok, err|
 	    ok || (raise "failed to initialize semver")
 	  end
-	  Dir.chdir curr
       raise "no no no"
       puts ""
       puts "Project Selection"
