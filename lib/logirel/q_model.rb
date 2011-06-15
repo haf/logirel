@@ -1,9 +1,13 @@
 module Logirel
   class Q
     attr_accessor :question, :answer, :default
+	
+	def initialize
+	  @answer = ""
+	end
     
     def answer
-      @answer || @default
+      @answer.empty? ? @default : @answer
     end
   end
   
@@ -22,19 +26,25 @@ module Logirel
   end
   
   class StrQ < Q
-    def initialize(question, default = nil, io_source = STDIN, validator = nil) 
+    def initialize(question, default = nil, 
+	               io_source = STDIN, 
+				   validator = nil,
+				   io_target = STDOUT)
+      super()
       @question = question
       @default = default    
       @io_source = io_source
       @validator = validator || lambda { |s| true }
+	  @io_target = io_target
     end
     
     def exec
-      puts @question + " [#{@default}]: "
+      @io_target.puts @question + " [#{@default}]: "
 	  begin
-        @answer = @io_source.gets
+        @answer = @io_source.gets.chomp
 	  end while !@answer.empty? && !@validator.call(@answer)
-	  @answer == nil || @answer.empty? ? @default : @answer
+	  @answer = @answer.empty? ? @default : @answer
+	  @answer
     end
   end
 end
