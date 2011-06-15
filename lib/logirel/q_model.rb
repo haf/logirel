@@ -1,27 +1,33 @@
 module Logirel
   class Q
-    attr_accessor :question, :answer, :default
-	
-	def initialize
-	  @answer = ""
-	end
-    
-    def answer
-      @answer.empty? ? @default : @answer
-    end
+    attr_accessor :question, :default
   end
   
   class BoolQ < Q
     attr_accessor :pos_answer, :neg_answer
     
-    def initialize(question, name)
+    def initialize(question, 
+	               default, 
+	               io_source = STDIN, 
+	               io_target = STDOUT)
       @question = question
+	  @default = default
+	  @io_source = io_source
+	  @io_target = io_target
     end
+	
+	def default
+	  @default ? "[Yn]" : "[yN]"
+	end
     
     def exec
-      puts @question
-      #a = gets
-      #a == 'yes' ? q.pos_answer.call : a == '' ? q.neg_answer.call
+      @io_target.print @question + " " + default
+	  puts "source: #{@io_source}"
+	  a = ""
+	  begin
+	    a = @io_source.gets.chomp
+	  end while !a.empty? && !['y', 'n'].include?(a.downcase)
+	  a.empty? ? @default : (a == 'y')	  
     end
   end
   
@@ -31,12 +37,16 @@ module Logirel
 	               io_source = STDIN, 
 				   validator = nil,
 				   io_target = STDOUT)
-      super()
       @question = question
       @default = default    
       @io_source = io_source
       @validator = validator || lambda { |s| true }
 	  @io_target = io_target
+	  @answer = ""
+    end
+    
+    def answer
+      @answer.empty? ? @default : @answer
     end
     
     def exec

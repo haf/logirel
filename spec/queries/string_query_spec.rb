@@ -1,8 +1,7 @@
 require 'logirel/q_model'
-require 'spec_helper'
 
 describe Logirel::StrQ, "in its default mode of operation, when reading props" do
-  before(:all) { @q = StrQ.new "Q??", "def" }
+  before(:each) { @q = StrQ.new "Q??", "def" }
   subject { @q }
   it { should respond_to :question }
   it { should respond_to :default }

@@ -30,10 +30,7 @@ module Logirel
 	  initer.buildscripts_path = buildscripts
 	  
 	  puts "initing semver in folder above #{dir}"
-	  sh "semver init" do |ok, err|
-	    ok || (raise "failed to initialize semver")
-	  end
-      raise "no no no"
+	  `semver init`
       puts ""
       puts "Project Selection"
       puts "-----------------"
@@ -42,6 +39,8 @@ module Logirel
         map { |f| 
           BoolQ.new(f, File.basename(f)).exec # TODO: return bool
         }
+
+      raise "no no no"
       
       puts ""
       puts "Project Meta-Data Definitions"
