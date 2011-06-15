@@ -26,6 +26,8 @@ module Logirel
       dir = folder.call("Source Directory. Default contains (#{src_folders})", "./src").exec
       buildscripts = folder.call("Buildscripts Directory", "./buildscripts").exec
 	  tools = folder.call("Tools Directory", "./tools").exec
+	  initer = Initer.new(dir)
+	  initer.buildscripts_path = buildscripts
 	  
 	  puts "initing semver in folder above #{dir}"
 	  sh "semver init" do |ok, err|
@@ -36,7 +38,7 @@ module Logirel
       puts "Project Selection"
       puts "-----------------"
       
-      selected_projs = Initer.new(dir).parse_folders.
+      selected_projs = initer.parse_folders.
         map { |f| 
           BoolQ.new(f, File.basename(f)).exec # TODO: return bool
         }
@@ -64,13 +66,10 @@ module Logirel
         }
       end
       
-	  Initer.init_project_details(buildscripts, metas)
-      
-      # TODO: paths
-  	
-      # TODO: Create rakefile!
-      
-      # TODO: tasks in rakefile.rb
+	  initer.init_project_details(metas)
+      initer.create_paths_rb
+      initer.create_environement_rb 
+      initer.init_rakefile
     end
   end
 end

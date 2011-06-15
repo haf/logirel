@@ -5,7 +5,7 @@ require 'net/http'
 module Logirel
   class Initer
 	
-	attr_accessor :root_path
+	attr_accessor :root_path, :buildscripts_path
 	
 	def initialize(root = '.'); @root_path = root; end
 	def set_root(root); @root_path = root; end
@@ -28,7 +28,7 @@ module Logirel
 	end
 	
 	def create_paths_rb
-	  path = File.join(@root_path, "buildscripts", "paths.rb")
+	  path = File.join(@root_path, @buildscripts_path, "paths.rb")
 	  File.open(path, "w") do |f|
 	    f.puts "."
 		# TODO: generate from interactive
@@ -36,7 +36,7 @@ module Logirel
 	end
 	
 	def create_environement_rb
-	  path = File.join(@root_path, "buildscripts", "environment.rb")
+	  path = File.join(@root_path, @buildscripts_path, "environment.rb")
 	  File.open(path, "w") do |f|
 	    f.puts Net::HTTP.get(
 		  URI.parse('https://raw.github.com/haf/logirel/master/content/environment.rb'))
@@ -69,35 +69,20 @@ module Logirel
 	  end
 	end
 	
-	def init_project_details(buildscripts, metadata)
-	  File.open(File.join(buildscripts, "project_details.rb"), "w") do |f|
-        f.puts %q{ 
-Projects = \{
-}
-	  end
-	  
-	  metadata.keys.each_with_index do |key, index|
-        File.open(File.join(buildscripts, "project_details.rb"), "a+") do |f|
+	def init_project_details(metadata)
+      File.open(File.join(@buildscripts_path, "project_details.rb"), "w") do |f|
+	    f.puts "Projects = {"
+		# m = ["my key", value]
+		# projects[m[0]] = value
+	    metadata.keys.each_with_index do |key, index|
 		  if index == metadata.length-1
             f.puts ":#{key} = #{p(metadata[key])}"
 		  else 
 		    f.puts ":#{key} = #{p(metadata[key])},"
 		  end
         end
+		f.puts "}"
       end
-      
-      File.open(File.join(buildscripts, "project_details.rb"), "a+") do |f|
-          f.puts %q{\}
-      }
-      end
-	  
-	  # File.open(File.join(buildscripts, "project_details.rb"), "a+") do |infile|
-        # puts ""
-		# puts ""
-		# while (line = infile.gets)
-          # puts "#{line}"
-        # end
-	  # end
 	end
   end
 end
