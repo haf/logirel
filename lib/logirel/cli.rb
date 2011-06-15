@@ -19,7 +19,7 @@ module Logirel
       puts "---------------------"
 	  
       dir = StrQ.new("Specify src directory (#{Initer.new('./src').parse_folders.inspect})", 
-	    "./src", 
+	    "./src",
 		lambda { |dir| !dir.empty? && Dir.exists?(dir) }).exec
       
       buildscripts = StrQ.new("Buildscripts Directory", "./buildscripts").exec

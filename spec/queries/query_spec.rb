@@ -1,45 +1,38 @@
 require 'logirel/q_model'
-require File.dirname(__FILE__) + '/../support/with_sample_projects'
+require 'spec_helper'
+require 'rspec'
 
-describe Logirel::Querier, "when getting available directories and having querier return the correct data structures" do
-  
-  before(:each) do
-    @q = Logirel::Querier.new
-  end 
-  
-  it "should create a query for every project folder" do
-    with_sample_projects do |construct|
-	  r = Logirel::Initer.new(construct)
-	  folders = r.parse_folders
-	  qs = @q.include_package_for(folders)
-	  qs.length.should >= 2
-	  qs.each do |q|
-	    folders.any? do |f|
-		  q.question.include? "'#{f}'"
-		end
-      end
-	end
+describe Logirel::StrQ, "in its default mode of operation, when reading props" do
+  before(:all) { @q = StrQ.new "Q??", "def" }
+  subject { @q }
+  it { should respond_to :question }
+  it { should respond_to :default }
+  specify { @q.answer.should eql("def") }
+  specify { @q.question.should eql("Q??") }
+end
+
+describe Logirel::StrQ, "when feeding it OK input" do
+  before(:all) do 
+    @io = StringIO.new "My Answer"
+	@validator = double('validator')
+	@validator.should_receive(:call).once
+	  with(an_instance_of(String))
+	  and_return(true)
   end
-  
-  it "should not create a query for those project folders without *proj files" do
-    with_sample_projects do |construct|
-	  # given
-	  r = Logirel::Initer.new(construct)
-	  folders = r.parse_folders
-	  # then
-	  @q.include_package_for(folders).map{|q| q.question }.
-	    each{ |str| str.include?("'B'").should be_false }      
-	end
+  subject { StrQ.new("q?", "def", @io, @validator) }
+  specify { subject.exec.should eql("My Answer") and subject.answer.should eql("My Answer") }
+end
+
+describe Logirel::StrQ, "when feeding it bad input" do
+  before(:all) do 
+    @io = StringIO.new "My Bad Answer\BnAnother Bad Answer\nOKAnswer!"
+	
+	@validator = double('validator')
+	@validator.should_receive(:call).exactly(3).times.
+	  with(an_instance_of(String))
+	  and_return(false, false, true)
+	  
   end
-  
-  it "should return two strings when two questions are asked" do 
-    with_sample_projects do |construct|
-	  # given
-	  r = Logirel::Initer.new(construct)
-	  folders = r.parse_folders
-	  # then
-	  qs = @q.include_package_for(folders)
-	  qs.length.should eq(2)
-	end
-  end
+  subject { StrQ.new("q?", "def", @io, @validator) }
+  specify { subject.exec.should == "OKAnswer!" }
 end

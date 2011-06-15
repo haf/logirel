@@ -1,5 +1,4 @@
 module Logirel
-  
   class Q
     attr_accessor :question
   end
@@ -13,31 +12,34 @@ module Logirel
   	#@neg_answer lambda { }
     end
     
-    def exec 
+    def exec
       puts @question
       #a = gets
       #a == 'yes' ? q.pos_answer.call : a == '' ? q.neg_answer.call
     end
+	
+	def answer
+	  nil
+	end
   end
   
   class StrQ < Q
-    attr_accessor :answer, :default
+    attr_accessor :default
     
-    def initialize(question, default = '.') 
+    def initialize(question, default = nil, io_source = STDIN, validator = nil) 
       @question = question
-	  @default = default
+      @default = default    
+      @io_source = io_source
+      @validator = validator || lambda { true }
     end
     
-    def exec 
+    def exec
       puts @question
-  	  @answer = gets.chomp || @default
+      @answer = (io_source.gets || @default) while not @validator.call(@answer)
     end
-  end
-  
-  class Querier
-    def include_package_for(projects)
-      projects.
-  	  map{ |p| BoolQ.new("Would you like to include the '#{p}' project, dear Sir?", p) }
+	
+    def answer
+      @answer || @default
     end
   end
 end
