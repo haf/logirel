@@ -11,10 +11,11 @@ describe Initer, "setting up folder structure" do
   
   before(:each) do
     @tmp = "fs-" + rand().to_s
+	@tmp_bs = "buildscripts"
 	Dir.mkdir(@tmp)	
-	@r = Initer.new(@tmp)
+	@r = Initer.new(@tmp, @tmp_bs)
 	@r.create_structure
-	@bs = File.join(@r.root_path, "buildscripts")
+	@bs = File.join(@r.root_path, @r.buildscripts_path)
   end
   
   subject { @r }
@@ -51,7 +52,10 @@ describe Initer, "setting up folder structure" do
   end
   
   it "should create project_details.rb" do
-    @r.create_project_details_rb
+	@r.init_project_details({
+	    :ruby_key => "p_ruby", 
+		:dir => "p_dir"
+	  })
 	File.exists?(File.join(@bs, "project_details.rb")).should be_true
   end
 end

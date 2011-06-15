@@ -7,7 +7,9 @@ module Logirel
 	
 	attr_accessor :root_path, :buildscripts_path
 	
-	def initialize(root = '.'); @root_path = root; end
+	def initialize(root = '.', buildscripts = 'buildscripts'); 
+	                @root_path = root
+					@buildscripts_path = buildscripts; end
 	def set_root(root); @root_path = root; end
   
     def get_commands
@@ -44,14 +46,6 @@ module Logirel
 	  end
 	end
 	
-	def create_project_details_rb
-	  path = File.join(@root_path, "buildscripts", "project_details.rb")
-	  File.open(path, "w") do |f|
-	    f.puts "."
-		# TODO: generate from interactive
-	  end
-	end
-	
 	def parse_folders
 	  src = File.join(@root_path, 'src', '*')
 	  Dir.
@@ -70,7 +64,7 @@ module Logirel
 	end
 	
 	def init_project_details(metadata)
-      File.open(File.join(@buildscripts_path, "project_details.rb"), "w") do |f|
+      File.open(File.join(@root_path, @buildscripts_path, "project_details.rb"), "w") do |f|
 	    f.puts "Projects = {"
 		# m = ["my key", value]
 		# projects[m[0]] = value
