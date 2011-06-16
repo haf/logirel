@@ -41,13 +41,8 @@ describe Initer, "setting up folder structure" do
 	Dir.exists?(File.join(@tmp, "src")).should be_true
   end
   
-  it "should create paths.rb" do
-	@r.create_paths_rb
-	File.exists?(File.join(@bs, "paths.rb")).should be_true
-  end
-  
   it "should create environment.rb" do
-    @r.create_environement_rb
+    @r.init_environement_rb
 	File.exists?(File.join(@bs, "environment.rb")).should be_true
   end
   

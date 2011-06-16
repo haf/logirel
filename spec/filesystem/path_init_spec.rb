@@ -5,7 +5,7 @@ require 'logirel/initer'
 require 'construct'
 require 'FileUtils'
 
-describe Logirel::Initer, "when initilizing rake file" do
+describe Logirel::Initer, "when initilizing paths file" do
   
   before(:each) do
     @tmp = "fs-" + rand().to_s
@@ -21,12 +21,14 @@ describe Logirel::Initer, "when initilizing rake file" do
   after(:each) do
 	FileUtils.rm_rf(@tmp) while Dir.exists?(@tmp)
   end
-
+  
   it "should be created" do
-	@r.init_rakefile({
-	    :ruby_key => "p_ruby_key", 
-		:test2 => "p_test2"
+	@r.init_paths_rb({
+        :dir => "p_dir",
+		:ruby_key => "p_ruby_key",
+		:id => "p_id"
 	  })
-	File.exists?(File.join(@bs, "Rakefile.rb")).should be_true
+	File.exists?(File.join(@bs, "paths.rb")).should be_true
   end
-end
+  
+end 

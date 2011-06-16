@@ -67,8 +67,8 @@ module Logirel
       end
       
 	  initer.init_project_details(metas)
-      initer.create_paths_rb
-      initer.create_environement_rb 
+      initer.init_path_rb(metas)
+      initer.init_environement_rb
 	  initer.init_gemfile
 	  initer.init_utils
       initer.init_rakefile(metas)

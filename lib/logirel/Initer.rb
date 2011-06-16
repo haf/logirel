@@ -29,15 +29,67 @@ module Logirel
 	  end
 	end
 	
-	def create_paths_rb
-	  path = File.join(@root_path, @buildscripts_path, "paths.rb")
-	  File.open(path, "w") do |f|
-	    f.puts "."
-		# TODO: generate from interactive
-	  end
+	def create_path_folders(metas, f)
+	  	f.puts %q{
+require File.dirname(__FILE__) + '/project_data'
+root_folder = File.expand_path("#{File.dirname(__FILE__)}/..")
+Folders = \{
+}
+		f.puts ":src => " + StrQ.new("src").exec + ","
+		f.puts ":out => " + StrQ.new("build").exec + ","
+		f.puts ":package => " + StrQ.new("packages").exec + ","
+		f.puts ":tools => " + StrQ.new("tools").exec + ","
+		f.puts %q{:tests => File.join("build", "tests"),
+:nuget => File.join("build", "nuget"),
+:root => root_folder,
+:binaries => "placeholder - specify build environment",
+}
+		f.puts ":#{metas[:ruby_key]}" + " => {"
+        f.puts ':nuspec => File.join("build", "nuspec", Projects[' + ":#{metas[:ruby_key]}" + '][' + ":#{metas[:dir]}" + ']),'
+        f.puts %q{:out => 'placeholder - specify build environment',
+:test_out => 'placeholder - specify build environment'
+\},\}}
 	end
 	
-	def create_environement_rb
+	def create_path_files(metas, f)
+	    f.puts "Files = {"
+		f.puts ":sln => " + StrQ.new("sln").exec + ","
+		f.puts ":#{metas[:ruby_key]} => {"
+		f.puts ':nuspec => File.join(Folders[:nuspec], Projects[' + ":#{metas[:ruby_key]}" + '][' + ":#{metas[:id]}" + '].nuspec),'
+		f.puts %q{:nunit => File.join(Folders[:nunit], "nunit-console.exe"),
+:ilmerge => File.join(Folders[:tools], "ILMerge.exe")
+\},\}}
+	end
+	
+	def create_path_commands(metas, f)
+	  	f.puts %q{Commands = \{
+:nuget => File.join(Folders[:tools], "NuGet.exe")
+\}}
+	end
+	
+	def create_path_uris(metas, f)
+	  	f.puts %q{Uris = \{
+:nuget_offical => "http://packages.nuget.org/v1/"
+\}}
+	end
+	
+	def init_paths_rb(metas)
+      File.open(File.join(@root_path, @buildscripts_path, "paths.rb"), "w") do |f|
+        create_path_folders(metas, f)
+		create_path_files(metas, f)
+		create_path_commands(metas, f)
+		create_path_uris(metas, f)
+	  end
+	  # File.open(File.join(@root_path, @buildscripts_path, "paths.rb"), "r") do |infile|
+        # puts ""
+		# puts ""
+		# while (line = infile.gets)
+          # puts "#{line}"
+        # end
+	  # end
+	end
+	
+	def init_environement_rb
 	  path = File.join(@root_path, @buildscripts_path, "environment.rb")
 	  File.open(path, "w") do |f|
 	    f.puts Net::HTTP.get(
@@ -86,8 +138,8 @@ module Logirel
 	end
 	
 	def init_rakefile(metas)
-	  build_keys = metas.map{|m| ":build_"+m.ruby_key}
-	  File.open(File.join(@root_path, "Rakefile.rb"), "w") do |f|
+	  # puts metas.map{|m| ":build_"+m.ruby_key}
+      File.open(File.join(@root_path, @buildscripts_path, "Rakefile.rb"), "w") do |f|
 	    f.puts %q{
 require 'rubygems'
 require 'bundler'
@@ -105,7 +157,7 @@ task :debug => ["env:debug", :build]
 task :release => ["env:release", :build]
 task :ci => ["env:release", :build, :package]
 }
-        f.puts "task :build => #{build_keys.inspect}"
+        f.puts "task :build => #{metas[:ruby_key]}"
 		
 		f.puts build_tasks(metas)
 	  end
