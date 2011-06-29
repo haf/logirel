@@ -22,15 +22,15 @@ task :tag do
       raise "Version #{v.to_s} has already been released"
     end
 	puts 'adding'
-    `git add #{File.expand_path("logirel.gemspec", __FILE__)}`
+    `git add .`
     puts 'committing'
 	`git commit -m "Released version #{v.to_s}"`
 	puts 'tagging'
 	`git tag #{v.to_s}`
 	puts 'pushing tags'
-    `git push --tags`
-	puts 'pushing'
-    `git push`
+    #`git push --tags`
+	#puts 'pushing'
+    #`git push`
   else
     raise "Repository contains uncommitted changes; either commit or stash."
   end
