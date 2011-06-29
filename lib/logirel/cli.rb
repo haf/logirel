@@ -27,7 +27,7 @@ module Logirel
       }
       
       src_folders = Initer.new('.').parse_folders.inspect
-      dir = folder.call("Source Directory. Default contains (#{src_folders})", "src").exec
+      dir = folder.call("Source Directory. Default (src) contains (#{src_folders})", "src").exec
       buildscripts = folder.call("Buildscripts Directory", "buildscripts").exec
       tools = folder.call("Tools Directory", "tools").exec
       initer = Initer.new(".")
@@ -50,32 +50,24 @@ module Logirel
       puts "Project Meta-Data Definitions"
       puts "-----------------------------"
       puts "Let's set up some meta-data!"
-      metas = selected_projs.map do |p|
-        
-        base = File.basename(p)
-        
-        puts "META DATA FOR: '#{base}'"
-        p_dir = File.join(dir, base)
-        
-        {
-          :dir => p_dir,
-          :title => StrQ.new("Title", base).exec,
-          :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
-          :description => StrQ.new("Description", "of #{base}").exec,
-          :copyright => StrQ.new("Copyright").exec,
-          :authors => StrQ.new("Authors").exec,
-          :company => StrQ.new("Company").exec,
-          :nuget_key => StrQ.new("NuGet key", base).exec,
-          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')").exec,
-          :guid => UUID.new
-        }
-      end
+      metas = selected_projs.map{|p| initer.meta_for p, dir }
       
+	  puts "initing project details"
 	  initer.init_project_details(metas)
-      initer.init_path_rb(metas)
-      initer.init_environement_rb
+      
+	  puts "initing paths"
+	  initer.init_path_rb(metas)
+      
+	  puts "initing environment"
+	  initer.init_environement_rb
+	  
+	  puts "initing gemfile"
 	  initer.init_gemfile
+	  
+	  puts "initing utils"
 	  initer.init_utils
+	  
+	  puts "initing meta-datas"
       initer.init_rakefile(metas)
     end
   end

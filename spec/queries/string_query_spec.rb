@@ -45,10 +45,10 @@ describe Logirel::StrQ, "when accepting the defaults" do
     @out = StringIO.new
 	
     @validator = double('validator')
-    @validator.should_receive(:call).never.
+    @validator.should_receive(:call).once.
       with(an_instance_of(String)).
-	# the validator should never be called for empty input if we have a default
-      and_return(false)
+	# the validator should be called for empty input once if we have a default, directly when defaulting with validator{true}
+      and_return(true)
   end
   subject { StrQ.new("q?", "def", @io, @validator, @out) }
   specify {

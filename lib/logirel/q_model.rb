@@ -52,9 +52,11 @@ module Logirel
     
     def exec
       @io_target.print @question + " [#{@default}]: "
+	  valid = false
       begin
         @answer = @io_source.gets.chomp
-      end while !@answer.empty? && !@validator.call(@answer)
+		valid = @validator.call(@answer)
+      end while !valid || (!valid && @answer.empty?)
       @answer = @answer.empty? ? @default : @answer
       @io_target.puts "Chose '#{@answer}'."
       @answer

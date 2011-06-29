@@ -1,6 +1,9 @@
 ﻿require 'semver'
 require 'enumerator'
 require 'net/http'
+require 'logirel/q_model'
+require 'uuid'
+
 
 module Logirel
   class Initer
@@ -168,18 +171,12 @@ task :ci => ["env:release", :build, :package]
 	
     def init_project_details(metadata)
 	  base_path = ensure_path @buildscripts_path
+	  projects = {}
+	  metadata.each{|m|
+	    projects[:"#{m[:ruby_key]}"] = m #.select{|kv| :"#{kv[0]}" != :"ruby_key"}
+	  }
       File.open(File.join(base_path, "project_details.rb"), "w+") do |f|
-        f.puts "Projects = {"
-        # m = ["my key", value]
-        # projects[m[0]] = value
-        metadata.keys.each_with_index do |key, index|
-          if index == metadata.length-1
-              f.puts ":#{key} = #{p(metadata[key])}"
-          else 
-            f.puts ":#{key} = #{p(metadata[key])},"
-          end
-        end
-        f.puts "}"
+        f.puts "Projects = #{p(projects)}"
       end
     end
 	
@@ -187,6 +184,26 @@ task :ci => ["env:release", :build, :package]
       base_path = File.join @root_path, path
       Dir.mkdir base_path unless Dir.exists? base_path
 	  base_path
+	end
+	
+	def meta_for p, dir
+        base = File.basename(p)
+        
+        puts "META DATA FOR: '#{base}'"
+        p_dir = File.join(dir, base)
+        
+        {
+          :title => StrQ.new("Title", base).exec,
+          :dir => p_dir,
+          :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
+          :description => StrQ.new("Description", "Missing description for #{base}").exec,
+          :copyright => StrQ.new("Copyright").exec,
+          :authors => StrQ.new("Authors").exec,
+          :company => StrQ.new("Company").exec,
+          :nuget_key => StrQ.new("NuGet key", base).exec,
+          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
+          :guid => UUID.new.generate
+        }
 	end
   end
 end

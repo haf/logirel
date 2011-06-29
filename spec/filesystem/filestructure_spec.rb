@@ -47,10 +47,10 @@ describe Initer, "setting up folder structure" do
   end
   
   it "should create project_details.rb" do
-	@r.init_project_details({
+	@r.init_project_details([{
 	    :ruby_key => "p_ruby", 
 		:dir => "p_dir"
-	  })
+	  }])
 	File.exists?(File.join(@bs, "project_details.rb")).should be_true
   end
 end
