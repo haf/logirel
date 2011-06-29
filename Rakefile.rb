@@ -45,6 +45,8 @@ task :push => :verify do
 end
 
 desc "run specs, tag, push and release (to rubygems)"
-task :all => [:spec, :push, :verify] do
+task :all => [:verify] do
+  Rake::Task["spec"].invoke
   Rake::Task["release"].invoke
+  Rake::Task["push"].invoke
 end
