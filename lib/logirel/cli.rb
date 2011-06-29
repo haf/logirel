@@ -54,7 +54,7 @@ module Logirel
         
         base = File.basename(p)
         
-        puts "META DATA FOR: '#{BASE}'"
+        puts "META DATA FOR: '#{base}'"
         p_dir = File.join(dir, base)
         
         {
