@@ -22,13 +22,15 @@ task :tag do
       raise "Version #{v.to_s} has already been released"
     end
 	puts 'adding'
-    `git add .`
+    `git add Rakefile.rb`
     puts 'committing'
 	`git commit -m "Released version #{v.to_s}"`
 	puts 'tagging'
 	`git tag #{v.to_s}`
-	puts 'pushing tags'
-    #`git push --tags`
+
+	Rake::Task["install"].invoke
+    #puts 'pushing tags'
+	#`git push --tags`
 	#puts 'pushing'
     #`git push`
   else
