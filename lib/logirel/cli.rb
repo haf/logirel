@@ -40,31 +40,34 @@ module Logirel
       selected_projs = initer.parse_folders.
         find_all { |f| BoolQ.new(f).exec }
 
-	  puts "Selected: #{selected_projs.inspect}"
-	  
+      puts "Selected: #{selected_projs.inspect}"
+      
+      
+      puts "initing semver in folder #{dir}"
+      `semver init`
+      puts "done..."
       puts ""
       puts "Project Meta-Data Definitions"
       puts "-----------------------------"
-	  
-	  puts "initing semver in folder #{dir}"
-	  `semver init`
-      
+      puts "Let's set up some meta-data!"
       metas = selected_projs.map do |p|
         
         base = File.basename(p)
+        
+        puts "META DATA FOR: '#{BASE}'"
         p_dir = File.join(dir, base)
         
         {
           :dir => p_dir,
-      	  :title => StrQ.new("Title", base).exec,
-      	  :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
-      	  :description => StrQ.new("Description", "#{base} at commit #{`git log --pretty-format=%H`}").exec,
-      	  :copyright => StrQ.new("Copyright").exec,
-      	  :authors => StrQ.new("Authors").exec,
-      	  :company => StrQ.new("Company").exec,
-      	  :nuget_key => StrQ.new("NuGet key", base).exec,
-      	  :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')").exec,
-      	  :guid => UUID.new
+          :title => StrQ.new("Title", base).exec,
+          :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
+          :description => StrQ.new("Description", "of #{base}").exec,
+          :copyright => StrQ.new("Copyright").exec,
+          :authors => StrQ.new("Authors").exec,
+          :company => StrQ.new("Company").exec,
+          :nuget_key => StrQ.new("NuGet key", base).exec,
+          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')").exec,
+          :guid => UUID.new
         }
       end
       

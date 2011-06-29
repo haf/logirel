@@ -91,7 +91,8 @@ Folders = \{
 	end
 	
 	def init_environement_rb
-	  path = File.join(@root_path, @buildscripts_path, "environment.rb")
+	  base_path = ensure_path @buildscripts_path
+	  path = File.join base_path, "environment.rb"
 	  File.open(path, "w") do |f|
 	    f.puts Net::HTTP.get(
 		  URI.parse('https://raw.github.com/haf/logirel/master/content/environment.rb'))
@@ -110,7 +111,7 @@ Folders = \{
 	end
 	
 	def init_gemfile
-	  File.open(File.join(@root_path, "Gemfile"), "w") do |f|
+	  File.open(File.join(@root_path, "Gemfile"), "w+") do |f|
         f.puts 'source "http://rubygems.org"'
         f.puts 'gem "albacore"'
 		f.puts 'gem "semver"'
@@ -119,7 +120,8 @@ Folders = \{
 	end
 	
 	def init_utils
-	  path = File.join(@root_path, @buildscripts_path, "utils.rb")
+	  base_path = ensure_path @buildscripts_path
+	  path = File.join base_path, "utils.rb"
 	  File.open(path, "w") do |f|
 	    f.puts Net::HTTP.get(
 		  URI.parse('https://raw.github.com/haf/logirel/master/content/utils.rb'))
@@ -139,8 +141,8 @@ Folders = \{
 	end
 	
 	def init_rakefile(metas)
-	  # puts metas.map{|m| ":build_"+m.ruby_key}
-      File.open(File.join(@root_path, @buildscripts_path, "Rakefile.rb"), "w") do |f|
+	  base_path = ensure_path @buildscripts_path
+      File.open File.join(base_path, "Rakefile.rb"), "w" do |f|
 	    f.puts %q{
 require 'rubygems'
 require 'bundler'
@@ -164,20 +166,27 @@ task :ci => ["env:release", :build, :package]
 	  end
 	end
 	
-	def init_project_details(metadata)
-      File.open(File.join(@root_path, @buildscripts_path, "project_details.rb"), "w") do |f|
-	    f.puts "Projects = {"
-		# m = ["my key", value]
-		# projects[m[0]] = value
-	    metadata.keys.each_with_index do |key, index|
-		  if index == metadata.length-1
-            f.puts ":#{key} = #{p(metadata[key])}"
-		  else 
-		    f.puts ":#{key} = #{p(metadata[key])},"
-		  end
+    def init_project_details(metadata)
+	  base_path = ensure_path @buildscripts_path
+      File.open(File.join(base_path, "project_details.rb"), "w+") do |f|
+        f.puts "Projects = {"
+        # m = ["my key", value]
+        # projects[m[0]] = value
+        metadata.keys.each_with_index do |key, index|
+          if index == metadata.length-1
+              f.puts ":#{key} = #{p(metadata[key])}"
+          else 
+            f.puts ":#{key} = #{p(metadata[key])},"
+          end
         end
-		f.puts "}"
+        f.puts "}"
       end
+    end
+	
+	def ensure_path path
+      base_path = File.join @root_path, path
+      Dir.mkdir base_path unless Dir.exists? base_path
+	  base_path
 	end
   end
 end
