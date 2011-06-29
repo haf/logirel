@@ -7,7 +7,7 @@ module Logirel
     attr_accessor :pos_answer, :neg_answer
     
     def initialize(question,
-                   default, 
+                   default = true,
                    io_source = STDIN, 
                    io_target = STDOUT)
       @question = question
