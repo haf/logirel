@@ -4,33 +4,34 @@ require 'net/http'
 
 module Logirel
   class Initer
-	
-	attr_accessor :root_path, :buildscripts_path
-	
-	def initialize(root = '.', buildscripts = 'buildscripts'); 
-	                @root_path = root
-					@buildscripts_path = buildscripts; end
-	def set_root(root); @root_path = root; end
-  
+    
+    attr_accessor :root_path, :buildscripts_path
+    
+    def initialize(root = '.', buildscripts = 'buildscripts'); 
+      @root_path = root
+      @buildscripts_path = buildscripts
+    end
+    def set_root(root); @root_path = root; end
+    
     def get_commands
-	  cmd ||= []
-	  cmd << "semver init"
-	end
-	
-	def nuget_from_codeplex(cp_ver, gem_ver)
-	  (cp_ver <=> gem_ver) > 0
-	end
-	
-	def create_structure
-	  # puts "making dir #{@root_path}"
-	  ['buildscripts', 'src'].each do |d|
-	    path = File.join(@root_path, d)
-	    Dir.mkdir path unless Dir.exists? path
-	  end
-	end
-	
-	def create_path_folders(metas, f)
-	  	f.puts %q{
+      cmd ||= []
+      cmd << "semver init"
+    end
+    
+    def nuget_from_codeplex(cp_ver, gem_ver)
+      (cp_ver <=> gem_ver) > 0
+    end
+    
+    def create_structure
+      # puts "making dir #{@root_path}"
+      ['buildscripts', 'src'].each do |d|
+        path = File.join(@root_path, d)
+        Dir.mkdir path unless Dir.exists? path
+      end
+    end
+    
+    def create_path_folders(metas, f)
+      	f.puts %q{
 require File.dirname(__FILE__) + '/project_data'
 root_folder = File.expand_path("#{File.dirname(__FILE__)}/..")
 Folders = \{

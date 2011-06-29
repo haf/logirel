@@ -11,26 +11,28 @@ module Logirel
 	desc "init", "Convert the current folder's projects (src) into a rake+albacore build"
 	def init(root_dir = Dir.pwd)
       
-      puts "Logirel version #{Logirel::VERSION}"
-	  curr = Dir.pwd
-      
+      puts "logirel"
+      puts "======="
+      curr = Dir.pwd
+      puts "Current dir: #{curr}"
+
       puts ""
       puts "Directories Selection"
       puts "---------------------"
-	  
-	  folder = lambda { |query, default|
-	    StrQ.new(query, default, STDIN, lambda { |dir| 
-		  true # perform validation here if you wish
-		}, STDOUT)
-	  }
-	  
-	  src_folders = Initer.new('./src').parse_folders.inspect
-      dir = folder.call("Source Directory. Default contains (#{src_folders})", "./src").exec
-      buildscripts = folder.call("Buildscripts Directory", "./buildscripts").exec
-	  tools = folder.call("Tools Directory", "./tools").exec
-	  initer = Initer.new(dir)
-	  initer.buildscripts_path = buildscripts
-	  
+      
+      folder = lambda { |query, default|
+        StrQ.new(query, default, STDIN, lambda { |dir| 
+          true # perform validation here if you wish
+        }, STDOUT)
+      }
+      
+      src_folders = Initer.new('.').parse_folders.inspect
+      dir = folder.call("Source Directory. Default contains (#{src_folders})", "src").exec
+      buildscripts = folder.call("Buildscripts Directory", "buildscripts").exec
+      tools = folder.call("Tools Directory", "tools").exec
+      initer = Initer.new(".")
+      initer.buildscripts_path = buildscripts
+      
       puts ""
       puts "Project Selection"
       puts "-----------------"
