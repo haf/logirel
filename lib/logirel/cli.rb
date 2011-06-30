@@ -21,7 +21,7 @@ module Logirel
       puts "---------------------"
       
       folder = lambda { |query, default|
-        StrQ.new(query, default, STDIN, lambda { |dir| 
+        StrQ.new(query, default, STDIN, lambda { |_|
           true # perform validation here if you wish
         }, STDOUT)
       }

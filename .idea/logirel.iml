@@ -28,6 +28,8 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] semver (v1.0.6, C:/Ruby192/lib/ruby/gems/1.9.1/gems/semver-1.0.6)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] albacore (v0.2.5, C:/Ruby192/lib/ruby/gems/1.9.1/gems/albacore-0.2.5)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rubyzip (v0.9.4, C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubyzip-0.9.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] albacore (v0.2.6, C:/Ruby192/lib/ruby/gems/1.9.1/gems/albacore-0.2.6)" level="application" />
   </component>
+  <component name="RModuleSettingsStorage" number="1" string0="$MODULE_DIR$/../albathor/lib" />
 </module>
 

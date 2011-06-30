@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "logirel/version"
+require 'semver'
 
 Gem::Specification.new do |s|
   s.name        = "logirel"
-  s.version     = Logirel::VERSION
+  s.version     = SemVer.find.format "%M.%m.%p"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Henrik Feldt"]
   s.email       = ["henrik@haf.se"]
@@ -26,11 +25,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", "~> 2.6.0"  
   s.add_development_dependency "memoize"
   s.add_development_dependency "devver-construct"
-  s.add_dependency "albacore", "~> 0.2.5"
+  s.add_dependency "albacore", "~> 0.2.6"
   s.add_dependency "semver", "~> 1.0.6"
   s.add_dependency "bundler", "~> 1.0.14"
-  s.add_dependency "thor"
-  s.add_dependency "uuid"
+  s.add_dependency "thor", "~> 0.14.6"
+  s.add_dependency "uuid", "~> 2.3.2"
+  s.add_dependency "nokogiri",   "~>1.4.4"
   
   s.requirements << '.Net or Mono installation'
   s.requirements << 'xbuild (on linux) or msbuild (on windows) for csproj files'
