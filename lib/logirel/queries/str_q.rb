@@ -1,6 +1,8 @@
+require 'logirel/queries/query'
+
 module Logirel
   module Queries
-    class StrQ < ::Logirel::Query
+    class StrQ < Query
       def initialize(question,
           default = nil,
           io_source = STDIN,

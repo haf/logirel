@@ -1,6 +1,8 @@
+require 'logirel/queries/query'
+
 module Logirel
   module Queries
-    class BoolQ < ::Logirel::Query
+    class BoolQ < Query
       attr_accessor :pos_answer, :neg_answer
 
       def initialize(question,

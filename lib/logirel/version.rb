@@ -10,5 +10,4 @@ module Logirel
   rescue LoadError
     puts 'First time installing, eh? Just run "bundle install"! (unless this is you running it right now!)'
   end
-
 end

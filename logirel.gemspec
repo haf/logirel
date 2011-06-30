@@ -1,5 +1,8 @@
 # -*- encoding: utf-8 -*-
-require 'semver'
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
+require "logirel/version"
 
 Gem::Specification.new do |s|
   s.name        = "logirel"

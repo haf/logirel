@@ -1,6 +1,7 @@
 require 'logirel/version'
 require 'logirel/initer'
-require 'logirel/query'
+require 'logirel/queries/bool_q'
+require 'logirel/queries/str_q'
 require 'logirel/vs/solution'
 require 'logirel/vs/environment'
 require 'logirel/tasks/albacore_tasks'

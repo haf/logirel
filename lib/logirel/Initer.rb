@@ -1,4 +1,5 @@
-﻿require 'logirel/query'
+﻿require 'logirel/queries/bool_q'
+require 'logirel/queries/str_q'
 require 'semver'
 require 'enumerator'
 require 'net/http'
@@ -18,7 +19,7 @@ module Logirel
     end
 
     def set_root(root)
-      ; @root_path = root;
+      @root_path = root;
     end
 
     def get_commands
