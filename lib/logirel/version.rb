@@ -4,7 +4,7 @@ module Logirel
     require 'semver'
     class Version < SemVer
       def parse_numeric(str)
-        str.scan(/(\d{1,5}).?/).flatten.collect{|x| x.to_i}
+        str.scan(/(\d{1,5}).?/).flatten.collect { |x| x.to_i }
       end
     end
   rescue LoadError

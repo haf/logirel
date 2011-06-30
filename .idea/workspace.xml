@@ -2,22 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cfe4d983-a8f9-42a8-b166-808938490c32" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/xyz.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" />
-      <change type="DELETED" beforePath="F:\code\oss\logirel\vendor\cache\albacore-0.2.5.gem" afterPath="" />
-      <change type="DELETED" beforePath="F:\code\oss\logirel\vendor\cache\rubyzip-0.9.4.gem" afterPath="" />
-      <change type="DELETED" beforePath="F:\code\oss\logirel\vendor\cache\semver-1.0.5.gem" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/logirel.iml" afterPath="$PROJECT_DIR$/.idea/logirel.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel.rb" afterPath="$PROJECT_DIR$/lib/logirel.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/cli.rb" afterPath="$PROJECT_DIR$/lib/logirel/cli.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/q_model.rb" afterPath="$PROJECT_DIR$/lib/logirel/q_model.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/querier.rb" afterPath="$PROJECT_DIR$/lib/logirel/querier.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" afterPath="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" afterPath="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/version.rb" afterPath="$PROJECT_DIR$/lib/logirel/version.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logirel.gemspec" afterPath="$PROJECT_DIR$/logirel.gemspec" />
-      <change type="MOVED" beforePath="F:\code\oss\logirel\lib\logirel\NuGet.rb" afterPath="$PROJECT_DIR$/lib/logirel/nuget.rb" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\lib\logirel\Initer.rb" afterPath="$PROJECT_DIR$/lib/logirel/initer.rb" />
     </list>
     <ignored path="logirel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,20 +43,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="version.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/logirel/version.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="42" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logirel.gemspec" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="logirel.gemspec" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logirel.gemspec">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="70" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.58414465">
-              <folding />
+            <state line="19" column="45" selection-start="787" selection-end="787" vertical-scroll-proportion="-11.4">
+              <folding>
+                <marker date="1309437974979" expanded="true" signature="67:1564" placeholder="do ... end" />
+                <marker date="1309437974979" expanded="true" signature="921:945" placeholder="{ ... }" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,7 +58,7 @@
       <file leaf-file-name="querier.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/logirel/querier.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
+            <state line="7" column="3" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -80,8 +67,10 @@
       <file leaf-file-name="q_model.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/logirel/q_model.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="4" column="36" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1309438204221" expanded="true" signature="14:72" placeholder=" ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,8 +78,10 @@
       <file leaf-file-name="str_q.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/logirel/queries/str_q.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="53" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="4" column="21" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1309438516214" expanded="true" signature="23:770" placeholder=" ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,16 +89,18 @@
       <file leaf-file-name="bool_q.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/logirel/queries/bool_q.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="34" column="0" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1309438516228" expanded="true" signature="31:677" placeholder=" ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cli.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="cli.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="34" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+            <state line="12" column="56" selection-start="337" selection-end="337" vertical-scroll-proportion="0.24193548">
               <folding />
             </state>
           </provider>
@@ -116,7 +109,16 @@
       <file leaf-file-name="nuget.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/logirel/nuget.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="42" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
+            <state line="7" column="25" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initer.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/logirel/initer.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="18" selection-start="61" selection-end="61" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -136,14 +138,15 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/lib/logirel/cli.rb" />
         <option value="$PROJECT_DIR$/lib/logirel/nuget.rb" />
         <option value="$PROJECT_DIR$/lib/logirel.rb" />
         <option value="$PROJECT_DIR$/lib/logirel/version.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/q_model.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" />
         <option value="$PROJECT_DIR$/logirel.gemspec" />
+        <option value="$PROJECT_DIR$/lib/logirel/q_model.rb" />
+        <option value="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" />
+        <option value="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" />
+        <option value="$PROJECT_DIR$/lib/logirel/initer.rb" />
+        <option value="$PROJECT_DIR$/lib/logirel/cli.rb" />
       </list>
     </option>
   </component>
@@ -277,7 +280,7 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyLoadPathConfigurable" />
+    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -369,15 +372,15 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19857143" sideWeight="0.8158236" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22571428" sideWeight="0.8158236" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1841764" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -417,51 +420,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/logirel/nuget.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="42" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="34" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/logirel/version.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="42" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+        <state line="8" column="7" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/logirel/querier.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/queries/bool_q.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/q_model.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/queries/str_q.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="53" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0">
+        <state line="7" column="3" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -475,7 +443,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logirel.gemspec">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="70" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.58414465">
+        <state line="19" column="45" selection-start="787" selection-end="787" vertical-scroll-proportion="-11.4">
+          <folding>
+            <marker date="1309437974979" expanded="true" signature="67:1564" placeholder="do ... end" />
+            <marker date="1309437974979" expanded="true" signature="921:945" placeholder="{ ... }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/q_model.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="36" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1309438204221" expanded="true" signature="14:72" placeholder=" ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/queries/bool_q.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1309438516228" expanded="true" signature="31:677" placeholder=" ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/queries/str_q.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="21" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1309438516214" expanded="true" signature="23:770" placeholder=" ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="123" selection-end="123" vertical-scroll-proportion="0.10080645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/nuget.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="25" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/details_emitter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/initer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="18" selection-start="61" selection-end="61" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="56" selection-start="337" selection-end="337" vertical-scroll-proportion="0.24193548">
           <folding />
         </state>
       </provider>

@@ -15,9 +15,27 @@
     </requirement>
     <requirement>
       <requirement>
+        <dependency name="macaddr" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
+    </requirement>
+    <requirement>
+      <requirement>
         <dependency name="semver" version="1.0.6" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="thor" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="uuid" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
     </requirement>
   </component>
   <component name="NewModuleRootManager">
@@ -29,6 +47,9 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] albacore (v0.2.5, C:/Ruby192/lib/ruby/gems/1.9.1/gems/albacore-0.2.5)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rubyzip (v0.9.4, C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubyzip-0.9.4)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] albacore (v0.2.6, C:/Ruby192/lib/ruby/gems/1.9.1/gems/albacore-0.2.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] thor (v0.14.6, C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] macaddr (v1.0.0, C:/Ruby192/lib/ruby/gems/1.9.1/gems/macaddr-1.0.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] uuid (v2.3.2, C:/Ruby192/lib/ruby/gems/1.9.1/gems/uuid-2.3.2)" level="application" />
   </component>
   <component name="RModuleSettingsStorage" number="1" string0="$MODULE_DIR$/../albathor/lib" />
 </module>
