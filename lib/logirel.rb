@@ -1,6 +1,3 @@
 require 'thor'
 require 'uuid'
-require 'logirel/initer'
-require 'logirel/version'
-require 'logirel/q_model'
-require 'FileUtils'
+require 'logirel/cli'

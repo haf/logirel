@@ -1,6 +1,9 @@
-require 'logirel/initer'
 require 'logirel/version'
-require 'logirel/q_model'
+require 'logirel/initer'
+require 'logirel/query'
+require 'logirel/vs/solution'
+require 'logirel/vs/environment'
+require 'logirel/tasks/albacore_tasks'
 require 'uuid'
 require 'thor/group'
 require 'fileutils'
@@ -12,8 +15,8 @@ module Logirel
     desc "init [dir]", "Initialize albacore et al in the given directory. Defaults to the current directory."
     def init(root_dir = Dir.pwd)
 
-      puts "logirel"
-      puts "======="
+      puts "logirel v#{Logirel::VERSION}"
+      puts "==============="
       puts "Current dir: #{root_dir}"
 
       puts ""
@@ -30,8 +33,7 @@ module Logirel
       dir = folder.call("Source Directory. Default (src) contains (#{src_folders})", "src").exec
       buildscripts = folder.call("Buildscripts Directory", "buildscripts").exec
       tools = folder.call("Tools Directory", "tools").exec
-      initer = Initer.new(root_dir)
-      initer.buildscripts_path = buildscripts
+      initer = Initer.new(root_dir, buildscripts, tools)
 
       puts ""
       puts "Project Selection"
@@ -56,18 +58,20 @@ module Logirel
       initer.init_project_details(metas)
 
       puts "initing paths"
-      initer.init_path_rb(metas)
+      initer.init_paths_rb(metas)
 
       puts "initing environment"
       initer.init_environement_rb
 
       puts "initing gemfile"
+      template 'Gemfile'
       initer.init_gemfile
 
       puts "initing utils"
       initer.init_utils
 
-      puts "initing meta-datas"
+      puts "initing rake file"
+      template 'Rakefile.rb'
       initer.init_rakefile(metas)
     end
   end

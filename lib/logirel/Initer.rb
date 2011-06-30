@@ -1,4 +1,4 @@
-﻿require 'logirel/q_model'
+﻿require 'logirel/query'
 require 'semver'
 require 'enumerator'
 require 'net/http'
@@ -7,11 +7,14 @@ require 'uuid'
 module Logirel
   class Initer
 
-    attr_accessor :root_path, :buildscripts_path
+    attr_reader :root_path, :buildscripts_path, :tools_path
 
-    def initialize(root = '.', buildscripts = 'buildscripts')
+    def initialize(root = '.',
+        buildscripts = 'buildscripts',
+        tools = 'tools')
       @root_path = root
       @buildscripts_path = buildscripts
+      @tools_path = tools
     end
 
     def set_root(root)
@@ -79,20 +82,13 @@ Folders = \{
 \}}
     end
 
-    def init_paths_rb(metas)
+    def init_paths_rb metas
       File.open(File.join(@root_path, @buildscripts_path, "paths.rb"), "w") do |f|
         create_path_folders(metas, f)
         create_path_files(metas, f)
         create_path_commands(metas, f)
         create_path_uris(metas, f)
       end
-      # File.open(File.join(@root_path, @buildscripts_path, "paths.rb"), "r") do |infile|
-      # puts ""
-      # puts ""
-      # while (line = infile.gets)
-      # puts "#{line}"
-      # end
-      # end
     end
 
     def init_environement_rb
@@ -133,16 +129,15 @@ Folders = \{
       end
     end
 
-    def build_tasks(metas)
+    def build_tasks metas
 
     end
 
-    def assembly_infos(metas)
+    def assembly_infos metas
 
     end
 
-    # asm info for every nuget
-    def nugets(metas)
+    def nugets metas
 
     end
 
@@ -196,16 +191,16 @@ task :ci => ["env:release", :build, :package]
       p_dir = File.join(dir, base)
 
       {
-        :title => StrQ.new("Title", base).exec,
-        :dir => p_dir,
-        :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
-        :description => StrQ.new("Description", "Missing description for #{base}").exec,
-        :copyright => StrQ.new("Copyright").exec,
-        :authors => StrQ.new("Authors").exec,
-        :company => StrQ.new("Company").exec,
-        :nuget_key => StrQ.new("NuGet key", base).exec,
-        :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
-        :guid => UUID.new.generate
+          :title => StrQ.new("Title", base).exec,
+          :dir => p_dir,
+          :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
+          :description => StrQ.new("Description", "Missing description for #{base}").exec,
+          :copyright => StrQ.new("Copyright").exec,
+          :authors => StrQ.new("Authors").exec,
+          :company => StrQ.new("Company").exec,
+          :nuget_key => StrQ.new("NuGet key", base).exec,
+          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
+          :guid => UUID.new.generate
       }
     end
   end

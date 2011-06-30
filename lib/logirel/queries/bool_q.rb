@@ -1,6 +1,6 @@
 module Logirel
   module Queries
-    class BoolQ < Q
+    class BoolQ < ::Logirel::Query
       attr_accessor :pos_answer, :neg_answer
 
       def initialize(question,
@@ -28,7 +28,5 @@ module Logirel
         a.empty? ? @default : (a == 'y')
       end
     end
-
   end
 end
-

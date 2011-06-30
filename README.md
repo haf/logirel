@@ -6,6 +6,7 @@ Getting started
  1. Go to the project of your choice
  1. `logirel init`
  1. You should now answer the questions that logirel poses.
+ 1. after it's done, run `rake`.
 
  
 Hacking it
@@ -64,3 +65,5 @@ Shoulders of Giants
  * http://rubydoc.info/github/wycats/thor/master/file/README.md
  * https://github.com/radar/guides/blob/master/gem-development.md
  * http://eggsonbread.com/2010/03/28/my-rspec-best-practices-and-tips/
+ * https://github.com/jondot/albathor (I actually started work on this one, before I saw this project; none the less
+   I've integrated pieces of its functionality into logirel, mostly its actions module and vs proj parsing.)

@@ -3,7 +3,7 @@
   <component name="GemRequirementsHolder" version="3">
     <requirement>
       <requirement>
-        <dependency name="albacore" version="0.2.5" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
+        <dependency name="albacore" version="0.2.6" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
@@ -15,7 +15,37 @@
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="macaddr" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="diff-lcs" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="nokogiri" version="1.4.4" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rspec" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rspec-core" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rspec-expectations" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rspec-mocks" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source manual="true" />
     </requirement>
@@ -27,19 +57,21 @@
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="thor" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="thor" version="0.14.6" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="uuid" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="uuid" version="2.3.2" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] bundler (v1.0.15, C:/Ruby192/lib/ruby/gems/1.9.1/gems/bundler-1.0.15)" level="application" />
@@ -50,7 +82,13 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] thor (v0.14.6, C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] macaddr (v1.0.0, C:/Ruby192/lib/ruby/gems/1.9.1/gems/macaddr-1.0.0)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] uuid (v2.3.2, C:/Ruby192/lib/ruby/gems/1.9.1/gems/uuid-2.3.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] nokogiri (v1.4.6, C:/Ruby192/lib/ruby/gems/1.9.1/gems/nokogiri-1.4.6-x86-mingw32)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] diff-lcs (v1.1.2, C:/Ruby192/lib/ruby/gems/1.9.1/gems/diff-lcs-1.1.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec (v2.6.0, C:/Ruby192/lib/ruby/gems/1.9.1/gems/rspec-2.6.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-core (v2.6.4, C:/Ruby192/lib/ruby/gems/1.9.1/gems/rspec-core-2.6.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-expectations (v2.6.0, C:/Ruby192/lib/ruby/gems/1.9.1/gems/rspec-expectations-2.6.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-mocks (v2.6.0, C:/Ruby192/lib/ruby/gems/1.9.1/gems/rspec-mocks-2.6.0)" level="application" />
   </component>
-  <component name="RModuleSettingsStorage" number="1" string0="$MODULE_DIR$/../albathor/lib" />
+  <component name="RModuleSettingsStorage" number="1" string0="$MODULE_DIR$/lib" />
 </module>
 
