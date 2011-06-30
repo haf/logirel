@@ -2,28 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cfe4d983-a8f9-42a8-b166-808938490c32" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/logirel/queries.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/logirel/queries/query.rb" />
-      <change type="DELETED" beforePath="F:\code\oss\logirel\lib\logirel\NuGet.rb" afterPath="" />
-      <change type="DELETED" beforePath="F:\code\oss\logirel\lib\logirel\query.rb" afterPath="" />
-      <change type="DELETED" beforePath="F:\code\oss\logirel\spec\dependencies\nuget_spec.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/logirel.iml" afterPath="$PROJECT_DIR$/.idea/logirel.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/paths.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/project_details.rb" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\lib\logirel\querier.rb" afterPath="" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\spec\queries\querier_spec.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/cli.rb" afterPath="$PROJECT_DIR$/lib/logirel/cli.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/querier.rb" afterPath="$PROJECT_DIR$/lib/logirel/querier.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" afterPath="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" afterPath="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/version.rb" afterPath="$PROJECT_DIR$/lib/logirel/version.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logirel.gemspec" afterPath="$PROJECT_DIR$/logirel.gemspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/filesystem/filestructure_spec.rb" afterPath="$PROJECT_DIR$/spec/filesystem/filestructure_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/filesystem/path_init_spec.rb" afterPath="$PROJECT_DIR$/spec/filesystem/path_init_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/filesystem/rakefile_init_spec.rb" afterPath="$PROJECT_DIR$/spec/filesystem/rakefile_init_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/initer_spec.rb" afterPath="$PROJECT_DIR$/spec/initer_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/queries/bool_query_spec.rb" afterPath="$PROJECT_DIR$/spec/queries/bool_query_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/queries/querier_spec.rb" afterPath="$PROJECT_DIR$/spec/queries/querier_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/queries/string_query_spec.rb" afterPath="$PROJECT_DIR$/spec/queries/string_query_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/support/with_sample_projects.rb" afterPath="$PROJECT_DIR$/spec/support/with_sample_projects.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/version_spec.rb" afterPath="$PROJECT_DIR$/spec/version_spec.rb" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\content\environment.rb" afterPath="$PROJECT_DIR$/templates/environment.rb" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\content\utils.rb" afterPath="$PROJECT_DIR$/templates/utils.rb" />
       <change type="MOVED" beforePath="F:\code\oss\logirel\lib\logirel\Initer.rb" afterPath="$PROJECT_DIR$/lib/logirel/initer.rb" />
     </list>
     <ignored path="logirel.iws" />
@@ -48,73 +34,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="bool_query_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/queries/bool_query_spec.rb">
+      <file leaf-file-name="cli.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="querier.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/logirel/querier.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="38" selection-start="241" selection-end="241" vertical-scroll-proportion="0.13446215">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bool_q.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/logirel/queries/bool_q.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="72" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="string_query_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/queries/string_query_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="58" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="subject.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/rspec-core-2.6.4/lib/rspec/core/subject.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="53" selection-start="1826" selection-end="1826" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="querier_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/queries/querier_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="helpers.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/helpers.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="with_sample_projects.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/support/with_sample_projects.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="106" column="43" selection-start="2949" selection-end="2949" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -123,16 +46,43 @@
       <file leaf-file-name="initer_spec.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/initer_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="22" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
+            <state line="15" column="66" selection-start="312" selection-end="312" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filestructure_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/filesystem/filestructure_spec.rb">
+      <file leaf-file-name="utils.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/utils.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="18" selection-start="223" selection-end="223" vertical-scroll-proportion="0.0">
+            <state line="29" column="72" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="environment.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/environment.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="5" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project_details.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/project_details.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paths.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/paths.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="62" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -155,22 +105,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/lib/logirel/q_model.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/cli.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/queries/bool_q.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/queries/str_q.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/queries/query.rb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/logirel.gemspec" />
         <option value="$PROJECT_DIR$/lib/logirel/version.rb" />
         <option value="$PROJECT_DIR$/lib/logirel/queries.rb" />
-        <option value="$PROJECT_DIR$/lib/logirel/initer.rb" />
         <option value="$PROJECT_DIR$/spec/filesystem/filestructure_spec.rb" />
         <option value="$PROJECT_DIR$/spec/filesystem/rakefile_init_spec.rb" />
         <option value="$PROJECT_DIR$/spec/initer_spec.rb" />
         <option value="$PROJECT_DIR$/spec/queries/string_query_spec.rb" />
         <option value="$PROJECT_DIR$/spec/queries/bool_query_spec.rb" />
         <option value="$PROJECT_DIR$/lib/logirel/querier.rb" />
+        <option value="$PROJECT_DIR$/lib/logirel/initer.rb" />
+        <option value="$PROJECT_DIR$/content/utils.rb" />
+        <option value="$PROJECT_DIR$/templates/utils.rb" />
+        <option value="$PROJECT_DIR$/content/environment.rb" />
+        <option value="$PROJECT_DIR$/lib/logirel/cli.rb" />
+        <option value="$PROJECT_DIR$/templates/environment.rb" />
+        <option value="$PROJECT_DIR$/templates/paths.rb" />
       </list>
     </option>
   </component>
@@ -576,10 +526,10 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297769" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3297769" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13679545" sideWeight="0.6265761" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13679545" sideWeight="0.67022306" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37342387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -624,83 +574,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/logirel/queries/query.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="31" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/queries.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="34" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/version.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="48" selection-start="34" selection-end="34" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/initer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="30" selection-start="199" selection-end="199" vertical-scroll-proportion="-6.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/utils.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="48" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/filesystem/rakefile_init_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="22" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/initer_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="22" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/queries/querier_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/helpers.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/support/with_sample_projects.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/filesystem/filestructure_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="18" selection-start="223" selection-end="223" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/rspec-core-2.6.4/lib/rspec/core/subject.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="53" selection-start="1826" selection-end="1826" vertical-scroll-proportion="0.0">
@@ -724,14 +597,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/queries/bool_query_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.0">
+        <state line="18" column="49" selection-start="537" selection-end="537" vertical-scroll-proportion="0.4066265">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/querier.rb">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="241" selection-end="241" vertical-scroll-proportion="0.13446215">
+        <state line="21" column="73" selection-start="470" selection-end="470" vertical-scroll-proportion="0.48913044">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/initer_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="66" selection-start="312" selection-end="312" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="83" selection-end="83" vertical-scroll-proportion="0.13554217">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="43" selection-start="2949" selection-end="2949" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/environment.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="5" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Rakefile.rb.sample">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Rakefile.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="26" selection-start="136" selection-end="136" vertical-scroll-proportion="0.18072289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/tasks/core.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="68" selection-start="229" selection-end="229" vertical-scroll-proportion="0.27108434">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logirel/initer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="66" selection-start="907" selection-end="907" vertical-scroll-proportion="0.20331325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/utils.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="72" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/paths.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="62" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/project_details.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>

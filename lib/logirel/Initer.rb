@@ -185,11 +185,11 @@ task :ci => ["env:release", :build, :package]
       base_path
     end
 
-    def meta_for p, dir
+    def meta_for p
       base = File.basename(p)
 
       puts "META DATA FOR: '#{base}'"
-      p_dir = File.join(dir, base)
+      p_dir = File.join(@root_path, base)
 
       {
           :title => StrQ.new("Title", base).exec,
