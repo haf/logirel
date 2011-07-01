@@ -24,7 +24,7 @@ Some problems I want to solve with this project;
  * (logirel) 						easily adding structure to a solution folder created with Visual Studio `logirel init`
  * (gitflow)						using ["a successful branching model"](http://nvie.com/posts/a-successful-git-branching-model/)
  * (logirel/teamcity)				continuous integration friendly with 'environments' and transform files for e.g. config files
- * (logirel)						easily updating buildscripts from a git repository 'logirel update', which runs `git pull -s subtree logirel master`.
+ * (logirel)						easily updating buildscripts from a git repository `gem update ; logirel update`
  * ensuring correct versions of build script dependencies
  * (nuget/owrap/symbolserver.org)	ensuring correct versions of source code dependencies
  * (gitflow)						nicely tagging your source trees corresponding to semver
@@ -33,10 +33,7 @@ Some problems I want to solve with this project;
 TODO list
 =========
 
- 1. create gemspec for releases
- 1. learn how to unit test ruby and put some fences around my 'release' f-n
- 1. build a small interactive prompt; it should set project properties when invoked
- 1. specify dependencies with bundler: bundler + bundle, semver, albacore, ruby, rake, nuget
+ 1. make the core functionality solid
  1. sample configuration settings for team city to build from github
  1. build rake tasks invoking semver with ruby that integrate with teamcity
  1. try the gem out on the transactions, auto tx and nhibernate facility projects
