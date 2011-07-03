@@ -18,25 +18,8 @@ module Logirel
       @tools_path = tools
     end
 
-    def set_root(root)
-      @root_path = root;
-    end
-
-    def get_commands
-      cmd ||= []
-      cmd << "semver init"
-    end
-
     def nuget_from_codeplex(cp_ver, gem_ver)
       (cp_ver <=> gem_ver) > 0
-    end
-
-    def create_structure
-      # puts "making dir #{@root_path}"
-      ['buildscripts', 'src'].each do |d|
-        path = File.join(@root_path, d)
-        Dir.mkdir path unless Dir.exists? path
-      end
     end
 
     def create_path_folders(metas, f)
@@ -101,16 +84,6 @@ Folders = \{
       end
     end
 
-    def parse_folders
-      src = File.join(@root_path, 'src', '*')
-      Dir.
-          glob(src).
-          keep_if { |i|
-        projs = File.join(i, "*.{csproj,vbproj,fsproj}")
-        File.directory? i and Dir.glob(projs).length > 0
-      }.
-          map { |x| File.basename(x) }
-    end
 
     def init_gemfile
       File.open(File.join(@root_path, "Gemfile"), "w+") do |f|
