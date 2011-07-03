@@ -11,27 +11,41 @@ RSpec::Core::RakeTask.new(:spec)
 #gem install'd it) and release will push the gem to Rubygems for 
 #consumption by the public.
 
-desc 'Tag the repository in git with gem version number'
-task :tag do
+task :verify do
   changed_files = `git diff --cached --name-only`.split("\n") + `git diff --name-only`.split("\n")
-  v = SemVer.find
-  if changed_files == ['Rakefile.rb'] or changed_files.empty?
-    Rake::Task["build"].invoke
-  
-    if `git tag`.split("\n").include?("#{v.to_s}")
-      raise "Version #{v.to_s} has already been released"
-    end
-	puts 'adding'
-    `git add #{File.expand_path("logirel.gemspec", __FILE__)}`
-    puts 'committing'
-	`git commit -m "Released version #{v.to_s}"`
-	puts 'tagging'
-	`git tag #{v.to_s}`
-	puts 'pushing tags'
-    `git push --tags`
-	puts 'pushing'
-    `git push`
-  else
+  if !(changed_files == ['Rakefile.rb'] or changed_files.empty?)
     raise "Repository contains uncommitted changes; either commit or stash."
   end
+end
+
+desc 'Tag the repository in git with gem version number'
+task :tag => :verify do
+  v = SemVer.find
+  Rake::Task["build"].invoke
+  
+  if `git tag`.split("\n").include?("#{v.to_s}")
+    raise "Version #{v.to_s} has already been released! You cannot release it twice."
+  end
+  puts 'adding'
+  `git add Rakefile.rb`
+  puts 'committing'
+  `git commit -m "Released version #{v.to_s}"`
+  puts 'tagging'
+  `git tag #{v.to_s}`
+  puts 'locally installing'
+  Rake::Task["install"].invoke
+end
+
+desc "push data and tags"
+task :push => :verify do
+  puts 'pushing tags'
+  `git push --tags`
+  puts 'pushing'
+  `git push`
+end
+
+desc "run specs, tag, push and release (to rubygems)"
+task :all => [:verify] do
+  Rake::Task["spec"].invoke
+  Rake::Task["release"].invoke
 end
