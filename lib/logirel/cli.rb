@@ -5,7 +5,7 @@ require 'logirel/vs/solution'
 require 'logirel/vs/environment'
 require 'logirel/tasks/albacore_tasks'
 require 'uuid'
-require 'thor/group'
+require 'thor'
 require 'fileutils'
 
 module Logirel
