@@ -1,4 +1,4 @@
-require "#{folders[:buildscripts]}/paths"
+require "<%=folders[:buildscripts]%>/paths"
 require 'semver'
 
 namespace :env do
@@ -74,7 +74,6 @@ namespace :env do
     arg_num = args[:number].to_i
     num = arg_num != 0 ? arg_num : 1
 
-    ENV['BUILD_VERSION_INFORMAL'] = BUILD_VERSION_INFORMAL =
     ENV['OFFICIAL_RELEASE'] = OFFICIAL_RELEASE = "#{1000 + num}"
   end
 end

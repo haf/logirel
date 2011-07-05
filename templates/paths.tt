@@ -1,0 +1,39 @@
+root_folder = File.expand_path("#{File.dirname(__FILE__)}/..")
+require "<%=folders[:buildscripts]%>/project_details"
+
+# The folders array denoting where to place build artifacts
+
+FOLDERS = {
+  :root => root_folder,
+  :src => "<%= folders[:src] %>",
+  :out => "<%= folders[:build] %>",
+  :binaries => "placeholder - environment.rb sets this depending on target",
+  :tests => "<%= folders[:tests] %>",
+  :tools => "<%= folders[:tools] %>",
+  :nuget => "<%= folders[:nuget] %>",
+  <%- metas.each do |m| -%>
+    :<%=m[:ruby_key]%> => {
+      :out => 'placeholder - environment.rb will sets this',
+      :test_out => 'placeholder - environment.rb sets this'
+  },
+  <%- end -%>
+}
+
+FILES = {
+  :sln => "<%= files[:sln] %>",
+  <%- metas.each do |m| -%>
+  :<%= m[:ruby_key] %> => {
+    :nuspec => File.join(FOLDERS[:<%= m[:ruby_key] %>], "#{PROJECTS[:<%= m[:ruby_key] %>][:id]}.nuspec")
+  },
+  <%- end -%>
+}
+
+COMMANDS = {
+  :nunit => File.join(FOLDERS[:nunit], "nunit-console.exe"),
+  :nuget => File.join(FOLDERS[:tools], "NuGet.exe"),
+  :ilmerge => File.join(FOLDERS[:tools], "ILMerge.exe")
+}
+
+URIS = {
+  :nuget_offical => "http://packages.nuget.org/v1/"
+}

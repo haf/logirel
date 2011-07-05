@@ -27,10 +27,10 @@ module Logirel
       existing infrastructure, should such infrastructure exist.
     D
     method_option "root", :type => :string, :banner => "Perform the initialization in the given root directory"
-    method_option "template", :type => :string, :banner => "Specify the initialization template to use"
-    def init
+    method_option "raketempl", :type => :string, :banner => "Specify the initialization template to use"
+    def init(root = Dir.pwd, raketempl = 'Rakefile.tt')
       opts = options.dup
-      helper = CliHelper.new opts.fetch("root", Dir.pwd)
+      helper = CliHelper.new opts.fetch("root", root)
 
       puts "logirel v#{Logirel::VERSION}"
       @folders = helper.folders_selection
@@ -45,14 +45,15 @@ module Logirel
       puts "initing main environment"
       run 'semver init'
       template 'Gemfile'
+      template 'gitignore.tt', '.gitignore'
       inside folders[:buildscripts] do |bs|
-        template 'project_details.rb'
-        template 'paths.rb.tt'
-        template 'environment.rb'
-        template 'utils.rb'
+        template 'project_details.tt',  'project_details.rb'
+        template 'paths.tt',            'paths.rb'
+        template 'environment.tt',      'environment.rb'
+        template 'utils.tt',            'utils.rb'
       end
 
-      template 'Rakefile.rb'
+      template raketempl, 'Rakefile.rb'
       helper.say_goodbye
     end
 

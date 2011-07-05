@@ -1,0 +1,5 @@
+<%- metas.each do |m| -%>
+
+
+
+<%- end -%>

@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfe4d983-a8f9-42a8-b166-808938490c32" name="Default" comment="">
-      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\Rakefile.rb.sample" afterPath="" />
-      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\paths.rb" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/gitignore.tt" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\Gemfile" afterPath="" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\Rakefile.rb" afterPath="" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\environment.rb" afterPath="" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\paths.rb.tt" afterPath="" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\project_details.rb" afterPath="" />
+      <change type="DELETED" beforePath="F:\code\oss\logirel\templates\utils.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/cli.rb" afterPath="$PROJECT_DIR$/lib/logirel/cli.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/cli_helper.rb" afterPath="$PROJECT_DIR$/lib/logirel/cli_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/environment.rb" afterPath="$PROJECT_DIR$/templates/environment.rb" />
     </list>
     <ignored path="logirel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +40,7 @@
             <file leaf-file-name="paths.rb.tt" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/templates/paths.rb.tt">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="23" column="34" selection-start="829" selection-end="829" vertical-scroll-proportion="0.3436255">
+                  <state line="19" column="33" selection-start="579" selection-end="579" vertical-scroll-proportion="0.57">
                     <folding />
                   </state>
                 </provider>
@@ -53,10 +56,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="cli.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="cli.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="84" selection-start="1395" selection-end="1395" vertical-scroll-proportion="0.3565737">
+            <state line="54" column="56" selection-start="2197" selection-end="2197" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file_manipulation.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6/lib/thor/actions/file_manipulation.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="104" column="70" selection-start="3500" selection-end="3500" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="environment.tt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/environment.tt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="10" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile.tt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Gemfile.tt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gitignore.tt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/gitignore.tt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="5" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paths.tt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/paths.tt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="51" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project_details.tt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/project_details.tt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.017103763">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actions.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6/lib/thor/actions.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="160" column="8" selection-start="5148" selection-end="5148" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -75,69 +141,6 @@
         <entry file="file://$PROJECT_DIR$/lib/logirel/queries/str_q.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="5" column="10" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rakefile.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Rakefile.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="126" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="environment.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/environment.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="40" selection-start="40" selection-end="40" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="123" selection-end="123" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rakefile.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Rakefile.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="45" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="core.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/logirel/tasks/core.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="32" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nuget.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/logirel/tasks/nuget.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="656" selection-end="656" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -165,10 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/spec/filesystem/rakefile_init_spec.rb" />
-        <option value="$PROJECT_DIR$/spec/initer_spec.rb" />
-        <option value="$PROJECT_DIR$/spec/queries/string_query_spec.rb" />
-        <option value="$PROJECT_DIR$/spec/queries/bool_query_spec.rb" />
         <option value="$PROJECT_DIR$/lib/logirel/querier.rb" />
         <option value="$PROJECT_DIR$/content/utils.rb" />
         <option value="$PROJECT_DIR$/templates/utils.rb" />
@@ -178,9 +177,13 @@
         <option value="$PROJECT_DIR$/lib/logirel/initer.rb" />
         <option value="$PROJECT_DIR$/templates/environment.rb" />
         <option value="$PROJECT_DIR$/templates/paths.rb" />
-        <option value="$PROJECT_DIR$/templates/paths.rb.tt" />
         <option value="$PROJECT_DIR$/lib/logirel/cli_helper.rb" />
+        <option value="$PROJECT_DIR$/templates/paths.rb.tt" />
+        <option value="$PROJECT_DIR$/templates/environment.tt" />
+        <option value="$PROJECT_DIR$/templates/gitignore.tt" />
         <option value="$PROJECT_DIR$/lib/logirel/cli.rb" />
+        <option value="$PROJECT_DIR$/templates/paths.tt" />
+        <option value="$PROJECT_DIR$/templates/project_details.tt" />
       </list>
     </option>
   </component>
@@ -561,15 +564,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="37" y="0" width="1617" height="1160" extended-state="0" />
+    <frame x="447" y="81" width="1617" height="1033" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295129" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295129" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21012416" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13679545" sideWeight="0.2085354" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13679545" sideWeight="0.2079646" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13679545" sideWeight="0.7837051" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13679545" sideWeight="0.78318584" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44794652" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -614,30 +617,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/logirel/queries/query.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="88" selection-start="105" selection-end="105" vertical-scroll-proportion="0.13432837">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/logirel/queries/bool_q.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="10" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Ruby192/lib/ruby/1.9.1/rake.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="985" column="6" selection-start="27931" selection-end="27931" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6/lib/thor/actions/file_manipulation.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="8" selection-start="3375" selection-end="3375" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -670,41 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Rakefile.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="126" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/utils.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="46" selection-start="562" selection-end="562" vertical-scroll-proportion="0.31374502">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/environment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="40" selection-start="40" selection-end="40" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/paths.rb.tt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="34" selection-start="829" selection-end="829" vertical-scroll-proportion="0.3436255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/logirel/queries/str_q.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="10" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
@@ -719,9 +666,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6/lib/thor/core_ext/ordered_hash.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="79" selection-start="680" selection-end="680" vertical-scroll-proportion="0.40338644">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6/lib/thor/actions.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="8" selection-start="5148" selection-end="5148" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/thor-0.14.6/lib/thor/actions/file_manipulation.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="70" selection-start="3500" selection-end="3500" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="84" selection-start="1395" selection-end="1395" vertical-scroll-proportion="0.3565737">
+        <state line="54" column="56" selection-start="2197" selection-end="2197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/environment.tt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="10" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Gemfile.tt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/gitignore.tt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="5" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/paths.tt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="51" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/project_details.tt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.017103763">
           <folding />
         </state>
       </provider>
