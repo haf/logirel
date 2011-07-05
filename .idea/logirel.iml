@@ -3,39 +3,39 @@
   <component name="GemRequirementsHolder" version="3">
     <requirement>
       <requirement>
-        <dependency name="construct" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="albacore" version="0.2.6" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="diff-lcs" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="bundler" version="1.0.14" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rspec" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="nokogiri" version="1.4.4" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rspec-core" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="semver" version="1.0.6" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rspec-expectations" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="thor" version="0.14.6" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rspec-mocks" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="uuid" version="2.3.2" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
-      <source manual="true" />
+      <source from="Gemfile" />
     </requirement>
   </component>
   <component name="NewModuleRootManager">

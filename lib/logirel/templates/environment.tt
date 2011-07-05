@@ -1,4 +1,5 @@
-require File.expand_path('../buildscripts/utils', __FILE__)
+require "<%=folders[:buildscripts]%>/paths"
+require "<%=folders[:buildscripts]%>/project_details"
 require 'semver'
 
 namespace :env do
@@ -20,19 +21,24 @@ namespace :env do
   # configure the output directories
   task :configure, [:str] do |_, args|
     ENV['CONFIGURATION'] = CONFIGURATION = args[:str]
-    FOLDERS[:binaries] = File.join(FOLDERS[:out], FRAMEWORK, args[:str].downcase)
+    FOLDERS[:binaries] = File.join(FOLDERS[:build], FRAMEWORK, args[:str].downcase)
     CLEAN.include(File.join(FOLDERS[:binaries], "*"))
   end
 
   task :set_dirs do
-    FOLDERS[:proj_out] = File.join(FOLDERS[:src], Projects[:proj][:dir], 'bin', CONFIGURATION)
-    CLEAN.include(FOLDERS[:proj_out])
+<% metas.each do |m| %>
+<%  k = m[:ruby_key] %>
+    FOLDERS[:<%=k%>][:out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:dir], 'bin', CONFIGURATION)
+    CLEAN.include(FOLDERS[:<%=k%>][:out])
 
     # for tests
-    FOLDERS[:proj] = File.join(FOLDERS[:src], Projects[:proj][:test_dir], 'bin', CONFIGURATION)
-    FILES[:proj][:test] = File.join(FOLDERS[:proj_test_out], "#{Projects[:proj][:test_dir]}.dll")
-    CLEAN.include(FOLDERS[:proj_test_out])
+    FOLDERS[:<%=k%>] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
+    FILES[:<%=k%>][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{PROJECTS[:<%=k%>][:test_dir]}.dll")
+    CLEAN.include(FOLDERS[:test_out])
+<% end %>
   end
+
+  # DEBUG/RELEASE
 
   desc "set debug environment variables"
   task :debug => [:common] do
@@ -45,6 +51,35 @@ namespace :env do
     Rake::Task["env:configure"].invoke('Release')
     Rake::Task["env:set_dirs"].invoke
   end
+
+  # FRAMEWORKS
+
+  desc "set net40 framework"
+  task :net40 do
+    ENV['FRAMEWORK'] = 'net40'
+  end
+
+  desc "set net35 framework"
+  task :net35 do
+    ENV['FRAMEWORK'] = 'net35'
+  end
+
+  desc "set net20 framework"
+  task :net20 do
+    ENV['FRAMEWORK'] = 'net20'
+  end
+
+  desc "set mono28 framework"
+  task :mono28 do
+    ENV['FRAMEWORK'] = 'mono28'
+  end
+
+  desc "set mono30 framework"
+  task :net30 do
+    ENV['FRAMEWORK'] = 'mono30'
+  end
+
+  # ENVIRONMENT VARS FOR PRODUCT RELEASES
 
   desc "set GA envionment variables"
   task :ga do
@@ -74,7 +109,6 @@ namespace :env do
     arg_num = args[:number].to_i
     num = arg_num != 0 ? arg_num : 1
 
-    ENV['BUILD_VERSION_INFORMAL'] = BUILD_VERSION_INFORMAL =
     ENV['OFFICIAL_RELEASE'] = OFFICIAL_RELEASE = "#{1000 + num}"
   end
 end

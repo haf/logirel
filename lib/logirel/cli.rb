@@ -1,127 +1,75 @@
 require 'logirel/version'
-require 'logirel/initer'
-require 'logirel/queries/bool_q'
-require 'logirel/queries/str_q'
+require 'logirel/queries'
 require 'logirel/vs/solution'
 require 'logirel/vs/environment'
 require 'logirel/tasks/albacore_tasks'
+require 'logirel/cli_helper'
 require 'uuid'
-require 'thor/group'
+require 'thor'
 require 'fileutils'
 
 module Logirel
   class CLI < Thor
     include Thor::Actions
     include Logirel::Tasks
+    include Logirel::Queries
 
-    source_paths << File.expand_path("../../../templates", __FILE__)
+    source_paths << File.expand_path("../templates", __FILE__)
     source_paths << Dir.pwd
 
-    def project_selection(initer)
-      puts "Project Selection"
-      puts "-----------------"
+    default_task :init
+    class_option "verbose",  :type => :boolean, :banner => "Enable verbose output mode", :aliases => "-v"
 
-      selected_projs = initer.parse_folders.
-          find_all { |f| BoolQ.new(f).exec }
+    desc "init [[--root=]ROOT-DIR] [[--template=]FILENAME]", "Initialize rakefile w/ albacore. Defaults to the current directory"
+    long_desc <<-D
+      Init scaffolds a directory structure for building the .Net project with albacore/rake. It takes as parameters
+      the root directory, which contains a 'src' folder, which should contain the projects. It aims not to overwrite
+      existing infrastructure, should such infrastructure exist.
+    D
+    method_option "root", :type => :string, :banner => "Perform the initialization in the given root directory"
+    method_option "raketempl", :type => :string, :banner => "Specify the initialization template to use"
+    def init(root = Dir.pwd, raketempl = 'Rakefile.tt')
+      opts = options.dup
+      helper = CliHelper.new opts.fetch("root", root)
 
-      puts "selected: #{selected_projs.inspect}"
-      puts ""
-      selected_projs
-    end
-
-    def print_header
       puts "logirel v#{Logirel::VERSION}"
-      puts "==============="
+      @folders = helper.folders_selection
+      @files = helper.files_selection folders
+
+      puts "Choose what projects to include:"
+      selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
+
+      puts ""
+      @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs)
+
+      puts "initing main environment"
+      run 'semver init'
+
+      template 'Gemfile',             File.join(root, 'Gemfile')
+      template 'gitignore.tt',        File.join(root, '.gitignore')
+      template 'project_details.tt',  File.join(root, folders[:buildscripts], 'project_details.rb')
+      template 'paths.tt',            File.join(root, folders[:buildscripts], 'paths.rb')
+      template 'environment.tt',      File.join(root, folders[:buildscripts], 'environment.rb')
+      template 'utils.tt',            File.join(root, folders[:buildscripts], 'utils.rb')
+      template raketempl,             File.join(root, 'Rakefile.rb')
+      run 'git init'
+      run 'git add .'
+      # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
+
+      helper.say_goodbye
     end
 
-    def src_selection(root_dir)
-      puts "Directories Selection"
-      puts "---------------------"
-      puts "Current dir: #{root_dir}"
-      puts ""
-
-      folder = lambda { |query, default|
-        StrQ.new(query, default, STDIN, lambda { |_|
-          true # perform validation here if you wish
-        }, STDOUT)
-      }
-
-      src_folders = Initer.new(root_dir).parse_folders.inspect
-
-      folders = {
-          :src => folder.call("Source Directory. Default (src) contains (#{src_folders})", "src").exec,
-          :buildscripts => folder.call("Buildscripts Directory", "buildscripts").exec,
-          :build => folder.call("Build Output Directory", "build").exec,
-          :tools => folder.call("Tools Directory", "tools").exec
-      }
-
-      initer = Initer.new(src, folders[:buildscripts], folders[:tools])
-      puts ""
-
-      return folders, initer
+    protected
+    def metas
+      @metas ||= {}
     end
 
-    def init_semver(dir)
-      puts "initing semver in folder #{dir}"
-      `semver init`
-      puts ""
+    def folders
+      @folders ||= {}
     end
 
-    def metadata_interactive(initer, selected_projs)
-      puts "Project Meta-Data Definitions"
-      puts "-----------------------------"
-      puts "Let's set up some meta-data!"
-      puts ""
-
-      metas = selected_projs.map { |p| initer.meta_for p }
-      metas
-    end
-
-    desc "init [root-dir] [template-file]", "Initialize rakefile w/ albacore. Defaults to the current directory."
-    def init(root_dir = Dir.pwd)
-
-      print_header()
-
-      folders, initer = src_selection(root_dir)
-      init_semver(root_dir)
-
-      selected_projs = project_selection(initer)
-      metas = metadata_interactive(initer, selected_projs)
-
-      puts "initing gemfile"
-      template 'Gemfile'
-      #initer.init_gemfile
-
-      inside folders[:buildscripts] do |bs|
-
-        puts "initing project details"
-        template 'project_details.rb', File.join(bs, "project_details.rb")
-        #initer.init_project_details(metas)
-
-        puts "initing paths"
-        template 'paths.rb'
-        #initer.init_paths_rb(metas)
-
-        puts "initing environment"
-        template 'environment.rb'
-        #initer.init_environement_rb
-
-        puts "initing utils"
-        template 'utils.rb'
-        #initer.init_utils
-
-      end
-
-      puts "initing rake file"
-      template 'Rakefile.rb', 'Rakefile.rb', metas
-      # initer.init_rakefile(metas)
-
-      puts ""
-      puts "Scaffolding done, now run 'bundle install' to install any dependencies for your albacore rakefile."
-      puts ""
-      puts "Footnote:"
-      puts "If you hack a nice task or deployment script - feel free to send some code to henrik@haf.se to"
-      puts "make it available for everyone and get support on it through the community for free!"
+    def files
+      @files ||= {}
     end
   end
 end

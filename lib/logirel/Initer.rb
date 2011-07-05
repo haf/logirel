@@ -18,25 +18,8 @@ module Logirel
       @tools_path = tools
     end
 
-    def set_root(root)
-      @root_path = root;
-    end
-
-    def get_commands
-      cmd ||= []
-      cmd << "semver init"
-    end
-
     def nuget_from_codeplex(cp_ver, gem_ver)
       (cp_ver <=> gem_ver) > 0
-    end
-
-    def create_structure
-      # puts "making dir #{@root_path}"
-      ['buildscripts', 'src'].each do |d|
-        path = File.join(@root_path, d)
-        Dir.mkdir path unless Dir.exists? path
-      end
     end
 
     def create_path_folders(metas, f)
@@ -101,16 +84,6 @@ Folders = \{
       end
     end
 
-    def parse_folders
-      src = File.join(@root_path, 'src', '*')
-      Dir.
-          glob(src).
-          keep_if { |i|
-        projs = File.join(i, "*.{csproj,vbproj,fsproj}")
-        File.directory? i and Dir.glob(projs).length > 0
-      }.
-          map { |x| File.basename(x) }
-    end
 
     def init_gemfile
       File.open(File.join(@root_path, "Gemfile"), "w+") do |f|
@@ -185,24 +158,5 @@ task :ci => ["env:release", :build, :package]
       base_path
     end
 
-    def meta_for p
-      base = File.basename(p)
-
-      puts "META DATA FOR: '#{base}'"
-      p_dir = File.join(@root_path, base)
-
-      {
-          :title => StrQ.new("Title", base).exec,
-          :dir => p_dir,
-          :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
-          :description => StrQ.new("Description", "Missing description for #{base}").exec,
-          :copyright => StrQ.new("Copyright").exec,
-          :authors => StrQ.new("Authors").exec,
-          :company => StrQ.new("Company").exec,
-          :nuget_key => StrQ.new("NuGet key", base).exec,
-          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
-          :guid => UUID.new.generate
-      }
-    end
   end
 end
