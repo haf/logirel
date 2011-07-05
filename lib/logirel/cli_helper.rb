@@ -8,6 +8,7 @@ module Logirel
       @root_dir = root_dir
     end
 
+    # src: relative path!
     def parse_folders src
       src = File.join(@root_dir, src, '*')
       Dir.
@@ -21,20 +22,25 @@ module Logirel
     def folders_selection
       puts "Directories Selection"
       puts "---------------------"
-      puts "Current dir: #{@root_dir}"
+      puts "Current dir: #{@root_dir}, #{Dir.entries(@root_dir).keep_if{|x|
+        x != '.' && x != '..' && File.directory?(File.join(@root_dir, x))
+      }.
+          empty? ? 'which is empty.' : 'which contains folders.'}"
       puts ""
 
       {
-          :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders(@root_dir).inspect})", "src").exec,
+          :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders('src').inspect})", 'src').exec,
           :buildscripts => StrQ.new("Buildscripts Directory", "buildscripts").exec,
           :build => StrQ.new("Build Output Directory", "build").exec,
           :tools => StrQ.new("Tools Directory", "tools").exec
       }
     end
 
+    # folders: hash (as defined above), of folder paths
     def files_selection folders
+      puts "Looking at src folder: '#{folders[:src]}'."
       {
-          :sln => StrQ.new("sln file", Dir.glob(folders[:src] + "/*.sln").first).exec
+          :sln => StrQ.new("sln file", Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first).exec
       }
     end
 
@@ -60,7 +66,7 @@ module Logirel
       base = File.basename(p)
 
       puts "META DATA FOR: '#{base}'"
-      p_dir = File.join(@root_path, base)
+      p_dir = File.join(@root_dir, base)
 
       {
           :title => StrQ.new("Title", base).exec,

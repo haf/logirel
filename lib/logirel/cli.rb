@@ -1,6 +1,5 @@
 require 'logirel/version'
-require 'logirel/queries/bool_q'
-require 'logirel/queries/str_q'
+require 'logirel/queries'
 require 'logirel/vs/solution'
 require 'logirel/vs/environment'
 require 'logirel/tasks/albacore_tasks'
@@ -13,6 +12,7 @@ module Logirel
   class CLI < Thor
     include Thor::Actions
     include Logirel::Tasks
+    include Logirel::Queries
 
     source_paths << File.expand_path("../../../templates", __FILE__)
     source_paths << Dir.pwd
@@ -39,21 +39,24 @@ module Logirel
       puts "Choose what projects to include:"
       selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
 
-      puts "Give project meta-data:" unless selected_projs.empty?
-      @metas = helper.metadata_interactive selected_projs
+      puts ""
+      @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs)
 
       puts "initing main environment"
       run 'semver init'
-      template 'Gemfile'
-      template 'gitignore.tt', '.gitignore'
-      inside folders[:buildscripts] do |bs|
+      template 'Gemfile', File.join(root, 'Gemfile')
+      template 'gitignore.tt', File.join(root, '.gitignore')
+      inside File.join(root, folders[:buildscripts]) do |bs|
         template 'project_details.tt',  'project_details.rb'
         template 'paths.tt',            'paths.rb'
         template 'environment.tt',      'environment.rb'
         template 'utils.tt',            'utils.rb'
       end
 
-      template raketempl, 'Rakefile.rb'
+      template raketempl, File.join(root, 'Rakefile.rb')
+
+      # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
+
       helper.say_goodbye
     end
 
