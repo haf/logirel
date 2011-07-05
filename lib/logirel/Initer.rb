@@ -158,24 +158,5 @@ task :ci => ["env:release", :build, :package]
       base_path
     end
 
-    def meta_for p
-      base = File.basename(p)
-
-      puts "META DATA FOR: '#{base}'"
-      p_dir = File.join(@root_path, base)
-
-      {
-          :title => StrQ.new("Title", base).exec,
-          :dir => p_dir,
-          :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
-          :description => StrQ.new("Description", "Missing description for #{base}").exec,
-          :copyright => StrQ.new("Copyright").exec,
-          :authors => StrQ.new("Authors").exec,
-          :company => StrQ.new("Company").exec,
-          :nuget_key => StrQ.new("NuGet key", base).exec,
-          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
-          :guid => UUID.new.generate
-      }
-    end
   end
 end
