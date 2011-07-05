@@ -4,6 +4,7 @@ require 'logirel/queries/str_q'
 require 'logirel/vs/solution'
 require 'logirel/vs/environment'
 require 'logirel/tasks/albacore_tasks'
+require 'logirel/cli_helper'
 require 'uuid'
 require 'thor'
 require 'fileutils'
@@ -32,30 +33,40 @@ module Logirel
       helper = CliHelper.new opts.fetch("root", Dir.pwd)
 
       puts "logirel v#{Logirel::VERSION}"
-      folders = helper.folders_selection
-
-      sh %{semver init} do |ok, res|
-        if !ok
-          puts "could not init semver: #{res.exitstatus} - ensure you have the gem installed"
-        end
-      end
+      @folders = helper.folders_selection
+      @files = helper.files_selection folders
 
       puts "Choose what projects to include:"
       selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
 
-      puts "Give project meta-data:"
-      metas = helper.metadata_interactive selected_projs
+      puts "Give project meta-data:" unless selected_projs.empty?
+      @metas = helper.metadata_interactive selected_projs
 
+      puts "initing main environment"
+      run 'semver init'
       template 'Gemfile'
       inside folders[:buildscripts] do |bs|
-        template 'project_details.rb', File.join(bs, "project_details.rb")
-        template 'paths.rb'
+        template 'project_details.rb'
+        template 'paths.rb.tt'
         template 'environment.rb'
         template 'utils.rb'
       end
 
-      template 'Rakefile.rb', 'Rakefile.rb', metas
+      template 'Rakefile.rb'
       helper.say_goodbye
+    end
+
+    protected
+    def metas
+      @metas ||= {}
+    end
+
+    def folders
+      @folders ||= {}
+    end
+
+    def files
+      @files ||= {}
     end
   end
 end

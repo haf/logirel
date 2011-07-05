@@ -1,4 +1,4 @@
-require File.expand_path('../buildscripts/utils', __FILE__)
+require "#{folders[:buildscripts]}/paths"
 require 'semver'
 
 namespace :env do

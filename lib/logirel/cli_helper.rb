@@ -1,5 +1,8 @@
+require 'logirel/queries'
+
 module Logirel
   class CliHelper
+    include Logirel::Queries
 
     def initialize root_dir
       @root_dir = root_dir
@@ -21,15 +24,17 @@ module Logirel
       puts "Current dir: #{@root_dir}"
       puts ""
 
-      folder = lambda { |query, default|
-        StrQ.new(query, default, STDIN, lambda { |_| true }, STDOUT)
-      }
-
       {
-          :src => folder.call("Source Directory. Default (src) contains (#{parse_folders.inspect})", "src").exec,
-          :buildscripts => folder.call("Buildscripts Directory", "buildscripts").exec,
-          :build => folder.call("Build Output Directory", "build").exec,
-          :tools => folder.call("Tools Directory", "tools").exec
+          :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders(@root_dir).inspect})", "src").exec,
+          :buildscripts => StrQ.new("Buildscripts Directory", "buildscripts").exec,
+          :build => StrQ.new("Build Output Directory", "build").exec,
+          :tools => StrQ.new("Tools Directory", "tools").exec
+      }
+    end
+
+    def files_selection folders
+      {
+          :sln => StrQ.new("sln file", Dir.glob(folders[:src] + "/*.sln").first).exec
       }
     end
 
