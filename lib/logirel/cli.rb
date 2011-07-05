@@ -14,7 +14,7 @@ module Logirel
     include Logirel::Tasks
     include Logirel::Queries
 
-    source_paths << File.expand_path("templates", __FILE__)
+    source_paths << File.expand_path("../templates", __FILE__)
     source_paths << Dir.pwd
 
     default_task :init
@@ -47,12 +47,13 @@ module Logirel
 
       template 'Gemfile',             File.join(root, 'Gemfile')
       template 'gitignore.tt',        File.join(root, '.gitignore')
-      template 'project_details.tt',  File.join(root, folders[:buildscripts],'project_details.rb')
+      template 'project_details.tt',  File.join(root, folders[:buildscripts], 'project_details.rb')
       template 'paths.tt',            File.join(root, folders[:buildscripts], 'paths.rb')
       template 'environment.tt',      File.join(root, folders[:buildscripts], 'environment.rb')
       template 'utils.tt',            File.join(root, folders[:buildscripts], 'utils.rb')
       template raketempl,             File.join(root, 'Rakefile.rb')
-
+      run 'git init'
+      run 'git add .'
       # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
 
       helper.say_goodbye

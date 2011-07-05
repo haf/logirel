@@ -54,7 +54,8 @@ module Logirel
 
     def say_goodbye
       puts ""
-      puts "Scaffolding done, now run 'bundle install' to install any dependencies for your albacore rakefile."
+      puts "SCAFFOLDING DONE! Now run 'bundle install' to install any dependencies for your albacore rakefile,"
+      puts " and git commit to commit changes!"
       puts ""
       puts "Footnote:"
       puts "If you hack a nice task or deployment script - feel free to send some code to henrik@haf.se to"

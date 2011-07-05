@@ -1,4 +1,5 @@
 require "<%=folders[:buildscripts]%>/paths"
+require "<%=folders[:buildscripts]%>/project_details"
 require 'semver'
 
 namespace :env do
@@ -25,18 +26,19 @@ namespace :env do
   end
 
   task :set_dirs do
-<%-
-metas.each do |m|
-  k = m[:ruby_key] -%>
-    FOLDERS[:<%=k%>][out] = File.join(FOLDERS[:src], Projects[:<%=k%>][:dir], 'bin', CONFIGURATION)
-    CLEAN.include(FOLDERS[<%=k%>][:out])
+<% metas.each do |m| %>
+<%  k = m[:ruby_key] %>
+    FOLDERS[:<%=k%>][:out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:dir], 'bin', CONFIGURATION)
+    CLEAN.include(FOLDERS[:<%=k%>][:out])
 
     # for tests
-    FOLDERS[:proj] = File.join(FOLDERS[:src], Projects[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
-    FILES[:proj][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{Projects[:<%=k%>][:test_dir]}.dll")
+    FOLDERS[:<%=k%>] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
+    FILES[:<%=k%>][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{PROJECTS[:<%=k%>][:test_dir]}.dll")
     CLEAN.include(FOLDERS[:test_out])
-<%- end ->
+<% end %>
   end
+
+  # DEBUG/RELEASE
 
   desc "set debug environment variables"
   task :debug => [:common] do
@@ -49,6 +51,35 @@ metas.each do |m|
     Rake::Task["env:configure"].invoke('Release')
     Rake::Task["env:set_dirs"].invoke
   end
+
+  # FRAMEWORKS
+
+  desc "set net40 framework"
+  task :net40 do
+    ENV['FRAMEWORK'] = 'net40'
+  end
+
+  desc "set net35 framework"
+  task :net35 do
+    ENV['FRAMEWORK'] = 'net35'
+  end
+
+  desc "set net20 framework"
+  task :net20 do
+    ENV['FRAMEWORK'] = 'net20'
+  end
+
+  desc "set mono28 framework"
+  task :mono28 do
+    ENV['FRAMEWORK'] = 'mono28'
+  end
+
+  desc "set mono30 framework"
+  task :net30 do
+    ENV['FRAMEWORK'] = 'mono30'
+  end
+
+  # ENVIRONMENT VARS FOR PRODUCT RELEASES
 
   desc "set GA envionment variables"
   task :ga do
