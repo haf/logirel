@@ -45,7 +45,7 @@ module Logirel
       puts "initing main environment"
       run 'semver init'
 
-      template 'Gemfile',             File.join(root, 'Gemfile')
+      template 'Gemfile.tt',          File.join(root, 'Gemfile')
       template 'gitignore.tt',        File.join(root, '.gitignore')
       template 'project_details.tt',  File.join(root, folders[:buildscripts], 'project_details.rb')
       template 'paths.tt',            File.join(root, folders[:buildscripts], 'paths.rb')
