@@ -1,5 +1,5 @@
+PROJECTS = {
 <%- metas.each do |m| -%>
-
-
-
+    :<%= m[:ruby_key] %> => <%= p(m) %>,
 <%- end -%>
+}

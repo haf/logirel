@@ -6,13 +6,14 @@ require "<%=folders[:buildscripts]%>/project_details"
 FOLDERS = {
   :root => root_folder,
   :src => "<%= folders[:src] %>",
-  :out => "<%= folders[:build] %>",
+  :build => "<%= folders[:build] %>",
   :binaries => "placeholder - environment.rb sets this depending on target",
   :tests => "<%= folders[:tests] %>",
   :tools => "<%= folders[:tools] %>",
   :nuget => "<%= folders[:nuget] %>",
   <%- metas.each do |m| -%>
-    :<%=m[:ruby_key]%> => {
+  :<%=m[:ruby_key]%> => {
+      :test_dir => '<%= m[:test_dir] %>',
       :out => 'placeholder - environment.rb will sets this',
       :test_out => 'placeholder - environment.rb sets this'
   },

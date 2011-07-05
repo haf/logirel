@@ -20,18 +20,22 @@ namespace :env do
   # configure the output directories
   task :configure, [:str] do |_, args|
     ENV['CONFIGURATION'] = CONFIGURATION = args[:str]
-    FOLDERS[:binaries] = File.join(FOLDERS[:out], FRAMEWORK, args[:str].downcase)
+    FOLDERS[:binaries] = File.join(FOLDERS[:build], FRAMEWORK, args[:str].downcase)
     CLEAN.include(File.join(FOLDERS[:binaries], "*"))
   end
 
   task :set_dirs do
-    FOLDERS[:proj_out] = File.join(FOLDERS[:src], Projects[:proj][:dir], 'bin', CONFIGURATION)
-    CLEAN.include(FOLDERS[:proj_out])
+<%-
+metas.each do |m|
+  k = m[:ruby_key] -%>
+    FOLDERS[:<%=k%>][out] = File.join(FOLDERS[:src], Projects[:<%=k%>][:dir], 'bin', CONFIGURATION)
+    CLEAN.include(FOLDERS[<%=k%>][:out])
 
     # for tests
-    FOLDERS[:proj] = File.join(FOLDERS[:src], Projects[:proj][:test_dir], 'bin', CONFIGURATION)
-    FILES[:proj][:test] = File.join(FOLDERS[:proj_test_out], "#{Projects[:proj][:test_dir]}.dll")
-    CLEAN.include(FOLDERS[:proj_test_out])
+    FOLDERS[:proj] = File.join(FOLDERS[:src], Projects[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
+    FILES[:proj][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{Projects[:<%=k%>][:test_dir]}.dll")
+    CLEAN.include(FOLDERS[:test_out])
+<%- end ->
   end
 
   desc "set debug environment variables"
