@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="cfe4d983-a8f9-42a8-b166-808938490c32" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/cli.rb" afterPath="$PROJECT_DIR$/lib/logirel/cli.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logirel/cli_helper.rb" afterPath="$PROJECT_DIR$/lib/logirel/cli_helper.rb" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\templates\Gemfile.tt" afterPath="$PROJECT_DIR$/lib/logirel/templates/Gemfile.tt" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\templates\Rakefile.tt" afterPath="$PROJECT_DIR$/lib/logirel/templates/Rakefile.tt" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\templates\environment.tt" afterPath="$PROJECT_DIR$/lib/logirel/templates/environment.tt" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\templates\gitignore.tt" afterPath="$PROJECT_DIR$/lib/logirel/templates/gitignore.tt" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\templates\paths.tt" afterPath="$PROJECT_DIR$/lib/logirel/templates/paths.tt" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\templates\project_details.tt" afterPath="$PROJECT_DIR$/lib/logirel/templates/project_details.tt" />
+      <change type="MOVED" beforePath="F:\code\oss\logirel\templates\utils.tt" afterPath="$PROJECT_DIR$/lib/logirel/templates/utils.tt" />
     </list>
     <ignored path="logirel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +37,7 @@
         <state>
           <leaf>
             <file leaf-file-name="paths.rb.tt" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/templates/paths.rb.tt">
+              <entry file="file://$PROJECT_DIR$/lib/logirel/templates/paths.rb.tt">
                 <provider selected="true" editor-type-id="text-editor">
                   <state line="19" column="33" selection-start="579" selection-end="579" vertical-scroll-proportion="0.57">
                     <folding />
@@ -52,7 +58,7 @@
       <file leaf-file-name="cli.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="61" selection-start="1515" selection-end="1515" vertical-scroll-proportion="0.28050172">
+            <state line="53" column="82" selection-start="2390" selection-end="2390" vertical-scroll-proportion="0.5427594">
               <folding />
             </state>
           </provider>
@@ -94,8 +100,8 @@
         <option value="$PROJECT_DIR$/templates/paths.tt" />
         <option value="$PROJECT_DIR$/templates/project_details.tt" />
         <option value="$PROJECT_DIR$/templates/environment.tt" />
-        <option value="$PROJECT_DIR$/lib/logirel/cli.rb" />
         <option value="$PROJECT_DIR$/lib/logirel/cli_helper.rb" />
+        <option value="$PROJECT_DIR$/lib/logirel/cli.rb" />
       </list>
     </option>
   </component>
@@ -173,20 +179,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logirel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logirel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="spec" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -242,6 +234,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logirel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logirel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logirel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -557,21 +571,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/project_details.tt">
+    <entry file="file://$PROJECT_DIR$/lib/logirel/templates/project_details.tt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="1" selection-start="93" selection-end="93" vertical-scroll-proportion="0.06841505">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/gitignore.tt">
+    <entry file="file://$PROJECT_DIR$/lib/logirel/templates/gitignore.tt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="4" selection-start="9" selection-end="9" vertical-scroll-proportion="0.017103763">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Gemfile.tt">
+    <entry file="file://$PROJECT_DIR$/lib/logirel/templates/Gemfile.tt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="83" selection-end="83" vertical-scroll-proportion="0.102622576">
           <folding />
@@ -606,7 +620,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/paths.tt">
+    <entry file="file://$PROJECT_DIR$/lib/logirel/templates/paths.tt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="25" selection-start="716" selection-end="716" vertical-scroll-proportion="0.35917902">
           <folding />
@@ -627,7 +641,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/environment.tt">
+    <entry file="file://$PROJECT_DIR$/lib/logirel/templates/environment.tt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="84" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.5131129">
           <folding />
@@ -636,7 +650,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/logirel/cli.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="61" selection-start="1515" selection-end="1515" vertical-scroll-proportion="0.28050172">
+        <state line="53" column="82" selection-start="2390" selection-end="2390" vertical-scroll-proportion="0.5427594">
           <folding />
         </state>
       </provider>

@@ -14,7 +14,7 @@ module Logirel
     include Logirel::Tasks
     include Logirel::Queries
 
-    source_paths << File.expand_path("../../../templates", __FILE__)
+    source_paths << File.expand_path("templates", __FILE__)
     source_paths << Dir.pwd
 
     default_task :init
@@ -44,16 +44,14 @@ module Logirel
 
       puts "initing main environment"
       run 'semver init'
-      template 'Gemfile', File.join(root, 'Gemfile')
-      template 'gitignore.tt', File.join(root, '.gitignore')
-      inside File.join(root, folders[:buildscripts]) do |bs|
-        template 'project_details.tt',  'project_details.rb'
-        template 'paths.tt',            'paths.rb'
-        template 'environment.tt',      'environment.rb'
-        template 'utils.tt',            'utils.rb'
-      end
 
-      template raketempl, File.join(root, 'Rakefile.rb')
+      template 'Gemfile',             File.join(root, 'Gemfile')
+      template 'gitignore.tt',        File.join(root, '.gitignore')
+      template 'project_details.tt',  File.join(root, folders[:buildscripts],'project_details.rb')
+      template 'paths.tt',            File.join(root, folders[:buildscripts], 'paths.rb')
+      template 'environment.tt',      File.join(root, folders[:buildscripts], 'environment.rb')
+      template 'utils.tt',            File.join(root, folders[:buildscripts], 'utils.rb')
+      template raketempl,             File.join(root, 'Rakefile.rb')
 
       # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
 
