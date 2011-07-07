@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "memoize"
   s.add_development_dependency "devver-construct"
   s.add_dependency "albacore", "~> 0.2.6"
-  s.add_dependency "semver", "~> 1.0.6"
+  s.add_dependency "semver2", "~> 2.0.0"
   s.add_dependency "bundler", "~> 1.0.14"
   s.add_dependency "thor", "~> 0.14.6"
   s.add_dependency "uuid", "~> 2.3.2"
