@@ -8,23 +8,28 @@ FOLDERS = {
   :src => "<%= folders[:src] %>",
   :build => "<%= folders[:build] %>",
   :binaries => "placeholder - environment.rb sets this depending on target",
-  :tests => "<%= folders[:tests] %>",
   :tools => "<%= folders[:tools] %>",
+  :tests => "<%= folders[:tests] %>",
   :nuget => "<%= folders[:nuget] %>",
-  <% metas.each do |m| %>
+  :nuspec => "<%= folders[:nuspec] %>"
+}
+
+FOLDERS.merge({
+<% metas.each do |m| %>
   :<%=m[:ruby_key]%> => {
       :test_dir => '<%= m[:test_dir] %>',
+      :nuspec => '#{FOLDERS[:nuspec]}/#{PROJECTS[<%= m[:ruby_key] %>][:nuget_key]}',
       :out => 'placeholder - environment.rb will sets this',
       :test_out => 'placeholder - environment.rb sets this'
   },
   <% end %>
-}
+})
 
 FILES = {
   :sln => "<%= files[:sln] %>",
   <% metas.each do |m| %>
   :<%= m[:ruby_key] %> => {
-    :nuspec => File.join(FOLDERS[:<%= m[:ruby_key] %>], "#{PROJECTS[:<%= m[:ruby_key] %>][:id]}.nuspec")
+    :nuspec => File.join(FOLDERS[:<%= m[:ruby_key] %>][:nuspec], "#{PROJECTS[:<%= m[:ruby_key] %>][:nuget_key]}.nuspec")
   },
   <% end %>
 }

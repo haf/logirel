@@ -3,6 +3,7 @@ require 'logirel/tasks/core'
   aspnet
   assembly_info
   aspnet
+  msbuild
   ncover
   nuget
   nuspec
