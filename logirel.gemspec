@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
-
+require 'yaml'
+require 'psych'
+YAML::ENGINE.yamler = 'syck'
 require "logirel/version"
 
 Gem::Specification.new do |s|
