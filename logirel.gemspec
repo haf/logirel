@@ -32,7 +32,8 @@ Gem::Specification.new do |s|
   s.add_dependency "bundler", "~> 1.0.14"
   s.add_dependency "thor", "~> 0.14.6"
   s.add_dependency "uuid", "~> 2.3.2"
-  s.add_dependency "nokogiri",   "~>1.4.4"
+  s.add_dependency "nokogiri", "~>1.4.4"
+  s.add_dependency "rubyzip", "~>0.9.4"
   
   s.requirements << '.Net or Mono installation'
   s.requirements << 'xbuild (on linux) or msbuild (on windows) for csproj files'

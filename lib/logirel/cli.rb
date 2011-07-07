@@ -29,7 +29,7 @@ module Logirel
     method_option "root", :type => :string, :banner => "Perform the initialization in the given root directory"
     method_option "raketempl", :type => :string, :banner => "Specify the initialization template to use"
     def init(root = Dir.pwd, raketempl = 'Rakefile.tt')
-      opts = options.dup
+      #opts = options.dup
       helper = CliHelper.new root
       @root = root
 
@@ -58,7 +58,8 @@ module Logirel
       run 'git add .'
 
       # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
-      msbuild_task @files[:sln] if BoolQ.new("add msbuild task for sln file?", true).exec
+      build_sln = BoolQ.new("add msbuild task for sln file?", true).exec
+      msbuild_task @files[:sln], BoolQ.new("Set this task up as rake default task?", true).exec if build_sln
 
       helper.say_goodbye
     end
