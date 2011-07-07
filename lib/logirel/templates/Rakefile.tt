@@ -13,5 +13,3 @@ require '<%= folders[:buildscripts] %>/project_details'
 require '<%= folders[:buildscripts] %>/environment'
 
 # to get the current version of the project, type 'SemVer.find.to_s' in this rake file.
-
-# task :default => :msbuild
