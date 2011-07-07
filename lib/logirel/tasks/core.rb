@@ -4,7 +4,7 @@ require 'fileutils'
 module Logirel::Tasks
   include FileUtils
 
-  BUILD_FILE = 'Rakefile'
+  BUILD_FILE = 'Rakefile.rb'
 
 
   def unzip(zipfile, opts)

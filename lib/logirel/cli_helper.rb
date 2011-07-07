@@ -28,28 +28,33 @@ module Logirel
           empty? ? 'which is empty.' : 'which contains folders.'}"
       puts ""
 
+      build_dir =   StrQ.new("Build Output Directory", "build").exec
       {
           :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders('src').inspect})", 'src').exec,
           :buildscripts => StrQ.new("Buildscripts Directory", "buildscripts").exec,
-          :build => StrQ.new("Build Output Directory", "build").exec,
-          :tools => StrQ.new("Tools Directory", "tools").exec
+          :build => build_dir,
+          :tools => StrQ.new("Tools Directory", "tools").exec,
+          :tests => StrQ.new("Test Output Directory", "#{build_dir}/tests").exec,
+          :nuget => StrQ.new("NuGet Directory", "#{build_dir}/nuget").exec,
+          :nuspec => StrQ.new("NuSpec Directory", "#{build_dir}/nuspec").exec
       }
     end
 
     # folders: hash (as defined above), of folder paths
     def files_selection folders
       puts "Looking at src folder: '#{folders[:src]}'."
+      first_sln = Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first
       {
-          :sln => StrQ.new("sln file", Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first).exec
+          :sln => StrQ.new("sln file", File.join(folders[:src], File.basename(first_sln))).exec
       }
     end
 
-    def metadata_interactive selected_projs
+    def metadata_interactive selected_projs, selected_folders
       puts "Project Meta-Data Definitions"
       puts "-----------------------------"
       puts "Let's set up some meta-data!"
       puts ""
-      selected_projs.map { |p| meta_for p }
+      selected_projs.map { |p| meta_for p, selected_folders[:src] }
     end
 
     def say_goodbye
@@ -63,16 +68,17 @@ module Logirel
     end
 
     private
-    def meta_for p
+    def meta_for p, src_dir
       base = File.basename(p)
 
-      puts "META DATA FOR: '#{base}'"
-      p_dir = File.join(@root_dir, base)
+      puts "META DATA FOR DIRECTORY: '#{src_dir}/#{base}'"
+      title = StrQ.new("Title", base).exec
 
       {
-          :title => StrQ.new("Title", base).exec,
-          :dir => p_dir,
-          :test_dir => StrQ.new("Test Directory", base + ".Tests").exec,
+          :title => title,
+          :id => base,
+          :dir => File.join(src_dir, base),
+          :test_dir => StrQ.new("Test Directory", title + ".Tests").exec,
           :description => StrQ.new("Description", "Missing description for #{base}").exec,
           :copyright => StrQ.new("Copyright").exec,
           :authors => StrQ.new("Authors").exec,

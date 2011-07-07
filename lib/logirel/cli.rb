@@ -30,9 +30,11 @@ module Logirel
     method_option "raketempl", :type => :string, :banner => "Specify the initialization template to use"
     def init(root = Dir.pwd, raketempl = 'Rakefile.tt')
       opts = options.dup
-      helper = CliHelper.new opts.fetch("root", root)
+      helper = CliHelper.new root
+      @root = root
 
       puts "logirel v#{Logirel::VERSION}"
+      puts ""
       @folders = helper.folders_selection
       @files = helper.files_selection folders
 
@@ -40,7 +42,7 @@ module Logirel
       selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
 
       puts ""
-      @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs)
+      @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs, @folders)
 
       puts "initing main environment"
       run 'semver init'
@@ -51,11 +53,12 @@ module Logirel
       template 'paths.tt',            File.join(root, folders[:buildscripts], 'paths.rb')
       template 'environment.tt',      File.join(root, folders[:buildscripts], 'environment.rb')
       template 'utils.tt',            File.join(root, folders[:buildscripts], 'utils.rb')
-      template raketempl,             File.join(root, 'Rakefile.rb')
+      template raketempl,             File.join(root, BUILD_FILE)
       run 'git init'
       run 'git add .'
-      # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
 
+      # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
+      msbuild_task @files[:sln] if BoolQ.new("add msbuild task for sln file?", true).exec
 
       helper.say_goodbye
     end
