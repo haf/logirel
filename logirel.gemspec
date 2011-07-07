@@ -1,9 +1,6 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
-require 'yaml'
-require 'psych'
-YAML::ENGINE.yamler = 'syck'
 require "logirel/version"
 
 Gem::Specification.new do |s|
@@ -30,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", "~> 2.6.0"  
   s.add_development_dependency "memoize"
   s.add_development_dependency "devver-construct"
-  s.add_dependency "albacore", "= 0.2.5"
+  s.add_dependency "albacore", "~> 0.2.5"
   s.add_dependency "semver2", "~> 2.0.0"
   s.add_dependency "bundler", "~> 1.0.14"
   s.add_dependency "thor", "~> 0.14.6"
