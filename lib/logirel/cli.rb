@@ -56,6 +56,7 @@ module Logirel
       run 'git add .'
       # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
 
+
       helper.say_goodbye
     end
 
