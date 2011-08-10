@@ -59,7 +59,7 @@ module Logirel
 
       # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
       build_sln = BoolQ.new("add msbuild task for sln file?", true).exec
-      msbuild_task @files[:sln], BoolQ.new("Set this task up as rake default task?", true).exec if build_sln
+      msbuild_task BoolQ.new("Set this task up as rake default task?", true).exec if build_sln
 
       helper.say_goodbye
     end

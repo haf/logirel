@@ -9,7 +9,7 @@ namespace :env do
     fv = version SemVer.find.to_s
     revision = (!fv[3] || fv[3] == 0) ? (ENV['BUILD_NUMBER'] || Time.now.strftime('%j%H')) : fv[3] #  (day of year 0-265)(hour 00-24)
 
-    ENV['BUILD_VERSION'] = BUILD_VERSION = SemVer.new(fv[0], fv[1], fv[2], revision).to_s
+    ENV['BUILD_VERSION'] = BUILD_VERSION = "#{SemVer.new(fv[0], fv[1], fv[2]).to_s}.#{revision}"
     puts "Assembly Version: #{BUILD_VERSION}."
     puts "##teamcity[buildNumber '#{BUILD_VERSION}']" # tell teamcity our decision
 
@@ -32,7 +32,7 @@ namespace :env do
     CLEAN.include(FOLDERS[:<%=k%>][:out])
 
     # for tests
-    FOLDERS[:<%=k%>] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
+    FOLDERS[:<%=k%>][:test_out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
     FILES[:<%=k%>][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{PROJECTS[:<%=k%>][:test_dir]}.dll")
     CLEAN.include(FOLDERS[:test_out])
 <% end %>
