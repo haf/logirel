@@ -37,7 +37,6 @@ module Logirel
       @folders = helper.folders_selection
       @files = helper.files_selection folders
 
-      puts "Choose what projects to include:"
       selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
 
       puts ""

@@ -1,7 +1,7 @@
 module Logirel::Tasks
   def nuspec_task proj_meta, opts={}
 
-    k = proj_meta.ruby_key
+    k = proj_meta[:ruby_key]
 
     append_to_file BUILD_FILE, <<-EOF, :verbose => false
 nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nuspec|
@@ -16,7 +16,7 @@ nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nu
   nuspec.requireLicenseAcceptance = "false"
   #{proj_meta.
     dependencies.
-    collect{|dep| "  nuspec.dependency '#{dep.nuget_key}', '#{dep.version}'" }.
+    collect{|dep| "  nuspec.dependency '#{dep[:nuget_key]}', '#{dep[:version]}'" }.
     join("\n") unless proj_meta.dependencies.empty?
   }
 

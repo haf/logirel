@@ -11,6 +11,11 @@ module Logirel
 
     # src: relative path!
     def parse_folders src
+
+      puts "Projects Selection"
+      puts "---------------------"
+      puts "Choose what projects to include:"
+
       src = File.join(@root_dir, src, '*')
       Dir.
           glob(src).
@@ -30,6 +35,7 @@ module Logirel
       puts ""
 
       build_dir =   StrQ.new("Build Output Directory", "build").exec
+
       {
           :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders('src').inspect})", 'src').exec,
           :buildscripts => StrQ.new("Buildscripts Directory", "buildscripts").exec,
@@ -76,7 +82,6 @@ module Logirel
       title = StrQ.new("Title", base).exec
       create_package = BoolQ.new("Package with package manager?").exec
       has_unit_tests = BoolQ.new("Has unit-tests?").exec
-
 
       {
           :title => title,
