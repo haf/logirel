@@ -4,7 +4,6 @@ require 'logirel/vs/solution'
 require 'logirel/vs/environment'
 require 'logirel/tasks/albacore_tasks'
 require 'logirel/cli_helper'
-require 'uuid'
 require 'thor'
 require 'fileutils'
 

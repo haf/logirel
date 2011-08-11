@@ -1,4 +1,5 @@
 require 'logirel/queries'
+require 'uuidtools'
 
 module Logirel
   class CliHelper
@@ -88,7 +89,7 @@ module Logirel
           :company => StrQ.new("Company").exec,
           :nuget_key => if create_package then StrQ.new("NuGet key", base).exec else "" end,
           :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
-          :guid => UUID.new.generate,
+          :guid => UUIDTools::UUID.random_create.to_s,
           :depdendencies => [],
           :create_package => create_package
       }
