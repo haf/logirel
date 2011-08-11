@@ -1,17 +1,18 @@
 module Logirel::Tasks
-  def nuget_task(nuget_exe_folder = nil, nuget_input_folder = nil, opts={})
-    nuget_exe_folder = tuck_and_get :nuget_exe_folder, nuget_exe_folder
-    nuget_input_folder = tuck_and_get :nuget_input_folder, nuget_input_folder
+  def nuget_task(proj_meta, opts={})
+
+    k = proj_meta[:ruby_key]
 
     append_to_file BUILD_FILE, <<-EOF, :verbose => false
 
-desc "create a nuget package"
-nugetpack #{ inject_task_name opts, 'nuget' }#{ inject_dependency opts } do |nuget|
-   nuget.command     = "#{nuget_exe_folder || 'tools/nuget'}/nuget.exe"
-   nuget.nuspec      = "#{vars[:solution].name}.nuspec"
-   nuget.base_folder = "#{nuget_input_folder || 'out'}"
-   nuget.output      = "pkg"
+desc "nuget pack '#{proj_meta[:title]}'"
+nugetpack #{ inject_task_name opts, k + "_nuget" }#{ inject_dependency opts } do |nuget|
+   nuget.command     = "\#{COMMANDS[:nuget]}"
+   nuget.nuspec      = "\#{FILES[:#{k}][:nuspec]}"
+   # nuget.base_folder = "."
+   nuget.output      = "\#{FOLDERS[:nuget]}"
 end
+
     EOF
   end
 end

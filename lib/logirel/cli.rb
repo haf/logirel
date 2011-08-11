@@ -4,7 +4,6 @@ require 'logirel/vs/solution'
 require 'logirel/vs/environment'
 require 'logirel/tasks/albacore_tasks'
 require 'logirel/cli_helper'
-require 'uuid'
 require 'thor'
 require 'fileutils'
 
@@ -34,15 +33,12 @@ module Logirel
       @root = root
 
       puts "logirel v#{Logirel::VERSION}"
-      puts ""
+
       @folders = helper.folders_selection
       @files = helper.files_selection folders
-
-      puts "Choose what projects to include:"
       selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
-
-      puts ""
       @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs, @folders)
+      to_package = @metas.find_all{|p| p[:create_package] }
 
       puts "initing main environment"
       run 'semver init'
@@ -57,9 +53,45 @@ module Logirel
       run 'git init'
       run 'git add .'
 
+      generate_asm_info = BoolQ.new("Create common assembly info file?").exec
+      build_sln = BoolQ.new("Add msbuild task for sln file?").exec
+
+      build_dep = ["env:release"]
+
+      if generate_asm_info then
+        assembly_info_task @metas.first(), { :depends => build_dep }
+        build_dep.push 'assemblyinfo'
+      end
+
+      if build_sln then
+        msbuild_task
+        build_dep.push "msbuild" if build_sln
+
+        outputs = { :depends => @metas.collect { |m| :"#{m[:ruby_key]}_output" } }
+        @metas.each { |p| output_task p, {:depends=>[:msbuild]} }
+        append_file BUILD_FILE, "task :output#{ inject_dependency outputs }\n"
+
+        build_dep.push "output"
+      end
+
+      if not to_package.empty? then
+        nuspecs = { :depends => to_package.collect{|p| :"#{p[:ruby_key]}_nuspec" } }
+        append_to_file BUILD_FILE, "task :nuspecs#{ inject_dependency nuspecs }\n"
+        to_package.each{ |p| nuspec_task p }
+
+        nugets = { :depends => [:"env:release", :nuspecs].concat(to_package.collect{|p| :"#{p[:ruby_key]}_nuget" }) }
+        append_to_file BUILD_FILE, "task :nugets#{inject_dependency nugets}\n"
+        to_package.each{ |p| nuget_task p }
+
+        build_dep.push "nugets"
+      end
+
+      if BoolQ.new("Setup default task?") then
+        opts = { :depends => build_dep }
+        append_to_file File.join(@root, BUILD_FILE), "task :default #{ inject_dependency opts }"
+      end
+
       # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
-      build_sln = BoolQ.new("add msbuild task for sln file?", true).exec
-      msbuild_task BoolQ.new("Set this task up as rake default task?", true).exec if build_sln
 
       helper.say_goodbye
     end

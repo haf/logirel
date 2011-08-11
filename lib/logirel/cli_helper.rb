@@ -1,4 +1,5 @@
 require 'logirel/queries'
+require 'uuidtools'
 
 module Logirel
   class CliHelper
@@ -10,6 +11,14 @@ module Logirel
 
     # src: relative path!
     def parse_folders src
+      puts ""
+      puts "Projects Selection"
+      puts "---------------------"
+      puts "Choose what projects to include (don't include test-projects):"
+      parse_folders_inner src
+    end
+
+    def parse_folders_inner src
       src = File.join(@root_dir, src, '*')
       Dir.
           glob(src).
@@ -20,6 +29,7 @@ module Logirel
     end
 
     def folders_selection
+      puts ""
       puts "Directories Selection"
       puts "---------------------"
       puts "Current dir: #{@root_dir}, #{Dir.entries(@root_dir).keep_if{|x|
@@ -29,8 +39,9 @@ module Logirel
       puts ""
 
       build_dir =   StrQ.new("Build Output Directory", "build").exec
+
       {
-          :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders('src').inspect})", 'src').exec,
+          :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders_inner('src').inspect})", 'src').exec,
           :buildscripts => StrQ.new("Buildscripts Directory", "buildscripts").exec,
           :build => build_dir,
           :tools => StrQ.new("Tools Directory", "tools").exec,
@@ -43,13 +54,14 @@ module Logirel
     # folders: hash (as defined above), of folder paths
     def files_selection folders
       puts "Looking at src folder: '#{folders[:src]}'."
-      first_sln = Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first
+      first_sln = Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first || ""
       {
           :sln => StrQ.new("sln file", File.join(folders[:src], File.basename(first_sln))).exec
       }
     end
 
     def metadata_interactive selected_projs, selected_folders
+      puts ""
       puts "Project Meta-Data Definitions"
       puts "-----------------------------"
       puts "Let's set up some meta-data!"
@@ -60,11 +72,13 @@ module Logirel
     def say_goodbye
       puts ""
       puts "SCAFFOLDING DONE! Now run 'bundle install' to install any dependencies for your albacore rakefile,"
-      puts " and git commit to commit changes!"
+      puts " and git commit to commit changes! *** REMEMBER THAT YOU NEED NuGet at: '[tools]/nuget.exe' ***"
+      puts " to build nugets."
       puts ""
       puts "Footnote:"
-      puts "If you hack a nice task or deployment script - feel free to send some code to henrik@haf.se to"
-      puts "make it available for everyone and get support on it through the community for free!"
+      puts "If you hack a nice task or deployment script - feel free to send a pull request to https://github.com/haf/logirel,"
+      puts "to make it available for everyone and get support on it through the community for free!"
+      puts ""
     end
 
     private
@@ -73,19 +87,23 @@ module Logirel
 
       puts "META DATA FOR DIRECTORY: '#{src_dir}/#{base}'"
       title = StrQ.new("Title", base).exec
+      create_package = BoolQ.new("Package with package manager?").exec
+      has_unit_tests = BoolQ.new("Has unit-tests?").exec
 
       {
           :title => title,
           :id => base,
-          :dir => File.join(src_dir, base),
-          :test_dir => StrQ.new("Test Directory", title + ".Tests").exec,
+          :dir => base,
+          :test_dir => if has_unit_tests then StrQ.new("Test Directory", title + ".Tests").exec else "" end,
           :description => StrQ.new("Description", "Missing description for #{base}").exec,
-          :copyright => StrQ.new("Copyright").exec,
           :authors => StrQ.new("Authors").exec,
           :company => StrQ.new("Company").exec,
-          :nuget_key => StrQ.new("NuGet key", base).exec,
-          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
-          :guid => UUID.new.generate
+          :copyright => StrQ.new("Copyright", "Copyright (c)").exec,
+          :nuget_key => if create_package then StrQ.new("NuGet key", base).exec else "" end,
+          :ruby_key => StrQ.new("Ruby key (compulsory: e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
+          :guid => UUIDTools::UUID.random_create.to_s,
+          :dependencies => [],
+          :create_package => create_package
       }
     end
   end

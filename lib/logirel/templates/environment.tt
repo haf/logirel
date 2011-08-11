@@ -9,7 +9,7 @@ namespace :env do
     fv = version SemVer.find.to_s
     revision = (!fv[3] || fv[3] == 0) ? (ENV['BUILD_NUMBER'] || Time.now.strftime('%j%H')) : fv[3] #  (day of year 0-265)(hour 00-24)
 
-    ENV['BUILD_VERSION'] = BUILD_VERSION = "#{SemVer.new(fv[0], fv[1], fv[2]).to_s}.#{revision}"
+    ENV['BUILD_VERSION'] = BUILD_VERSION = "#{ SemVer.new(fv[0], fv[1], fv[2]).format "%M.%m.%p" }.#{revision}"
     puts "Assembly Version: #{BUILD_VERSION}."
     puts "##teamcity[buildNumber '#{BUILD_VERSION}']" # tell teamcity our decision
 
@@ -38,18 +38,40 @@ namespace :env do
 <% end %>
   end
 
+  task :dir_tasks do
+    all_dirs = []
+
+    [:build, :tools, :tests, :nuget, :nuspec].each do |dir|
+      directory FOLDERS[dir]
+      all_dirs <<  FOLDERS[dir]
+    end
+
+    [:out, :nuspec, :test_out].each do |dir|
+      <%= metas.collect{ |m| :"#{m[:ruby_key]}" }.inspect.to_s %>.each{ |k|
+        directory FOLDERS[k][dir]
+        all_dirs << FOLDERS[k][dir]
+      }
+    end
+
+    all_dirs.each do |d|
+      Rake::Task[d].invoke
+    end
+  end
+
   # DEBUG/RELEASE
 
   desc "set debug environment variables"
   task :debug => [:common] do
     Rake::Task["env:configure"].invoke('Debug')
     Rake::Task["env:set_dirs"].invoke
+    Rake::Task["env:dir_tasks"].invoke
   end
 
   desc "set release environment variables"
   task :release => [:common] do
     Rake::Task["env:configure"].invoke('Release')
     Rake::Task["env:set_dirs"].invoke
+    Rake::Task["env:dir_tasks"].invoke
   end
 
   # FRAMEWORKS
