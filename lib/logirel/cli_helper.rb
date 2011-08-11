@@ -92,7 +92,7 @@ module Logirel
       {
           :title => title,
           :id => base,
-          :dir => File.join(src_dir, base),
+          :dir => base,
           :test_dir => if has_unit_tests then StrQ.new("Test Directory", title + ".Tests").exec else "" end,
           :description => StrQ.new("Description", "Missing description for #{base}").exec,
           :authors => StrQ.new("Authors").exec,

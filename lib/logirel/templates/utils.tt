@@ -25,10 +25,11 @@ def nuspec_copy(key, glob)
 end
 
 def copy_files(from_dir, file_pattern, out_dir)
-	FileUtils.mkdir_p out_dir unless FileTest.exists?(out_dir)
-	Dir.glob(File.join(from_dir, file_pattern)){|file|
-		copy(file, out_dir) if File.file?(file)
-	}
+  puts "copying from #{out_dir}"
+  FileUtils.mkdir_p out_dir unless FileTest.exists?(out_dir)
+  Dir.glob(File.join(from_dir, file_pattern)){|file|
+    copy(file, out_dir) if File.file?(file)
+  }
 end
 
 def versions(str)

@@ -67,7 +67,7 @@ module Logirel
         msbuild_task
         build_dep.push "msbuild" if build_sln
 
-        outputs = { :depends => @metas.collect { |m| "#{m[:ruby_key]}_output" } }
+        outputs = { :depends => @metas.collect { |m| :"#{m[:ruby_key]}_output" } }
         @metas.each { |p| output_task p, {:depends=>[:msbuild]} }
         append_file BUILD_FILE, "task :output#{ inject_dependency outputs }\n"
 
