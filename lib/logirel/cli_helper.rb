@@ -73,19 +73,24 @@ module Logirel
 
       puts "META DATA FOR DIRECTORY: '#{src_dir}/#{base}'"
       title = StrQ.new("Title", base).exec
+      create_package = BoolQ.new("Package with package manager?").exec
+      has_unit_tests = BoolQ.new("Has unit-tests?").exec
+
 
       {
           :title => title,
           :id => base,
           :dir => File.join(src_dir, base),
-          :test_dir => StrQ.new("Test Directory", title + ".Tests").exec,
+          :test_dir => if has_unit_tests then StrQ.new("Test Directory", title + ".Tests").exec else "" end,
           :description => StrQ.new("Description", "Missing description for #{base}").exec,
           :copyright => StrQ.new("Copyright").exec,
           :authors => StrQ.new("Authors").exec,
           :company => StrQ.new("Company").exec,
-          :nuget_key => StrQ.new("NuGet key", base).exec,
+          :nuget_key => if create_package then StrQ.new("NuGet key", base).exec else "" end,
           :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
-          :guid => UUID.new.generate
+          :guid => UUID.new.generate,
+          :depdendencies => [],
+          :create_package => create_package
       }
     end
   end

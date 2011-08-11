@@ -12,6 +12,14 @@ def commit_data
   [commit, commit_date]
 end
 
+def add_files what_dlls, nuspec
+  [['net35', 'net-3.5'], ['net40', 'net-4.0']].each{|fw|
+    takeFrom = File.join(FOLDERS[:build], fw[1], what_dlls)
+    Dir.glob(takeFrom).each do |f|
+      nuspec.file(f.gsub("/", "\\"), "lib\\#{fw[0]}")
+    end
+  }
+end
 
 def copy_files(from_dir, file_pattern, out_dir)
 	FileUtils.mkdir_p out_dir unless FileTest.exists?(out_dir)

@@ -61,6 +61,12 @@ module Logirel
       build_sln = BoolQ.new("add msbuild task for sln file?", true).exec
       msbuild_task BoolQ.new("Set this task up as rake default task?", true).exec if build_sln
 
+      to_package = @metas.find_all{|p| p.create_package }
+      unless to_package.empty? do
+        to_package.each{ |p| nuspec_task p}
+        to_package.each{ |p| nuget_task p }
+      end
+
       helper.say_goodbye
     end
 
