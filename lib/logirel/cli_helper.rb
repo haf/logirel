@@ -54,7 +54,7 @@ module Logirel
     # folders: hash (as defined above), of folder paths
     def files_selection folders
       puts "Looking at src folder: '#{folders[:src]}'."
-      first_sln = Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first
+      first_sln = Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first || ""
       {
           :sln => StrQ.new("sln file", File.join(folders[:src], File.basename(first_sln))).exec
       }
@@ -72,7 +72,8 @@ module Logirel
     def say_goodbye
       puts ""
       puts "SCAFFOLDING DONE! Now run 'bundle install' to install any dependencies for your albacore rakefile,"
-      puts " and git commit to commit changes!"
+      puts " and git commit to commit changes! *** REMEMBER THAT YOU NEED NuGet at: '[tools]/nuget.exe' ***"
+      puts " to build nugets."
       puts ""
       puts "Footnote:"
       puts "If you hack a nice task or deployment script - feel free to send a pull request to https://github.com/haf/logirel,"

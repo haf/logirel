@@ -79,7 +79,7 @@ module Logirel
         append_to_file BUILD_FILE, "task :nuspecs#{ inject_dependency nuspecs }\n"
         to_package.each{ |p| nuspec_task p }
 
-        nugets = { :depends => [:nuspecs].concat(to_package.collect{|p| :"#{p[:ruby_key]}_nuget" }) }
+        nugets = { :depends => [:"env:release", :nuspecs].concat(to_package.collect{|p| :"#{p[:ruby_key]}_nuget" }) }
         append_to_file BUILD_FILE, "task :nugets#{inject_dependency nugets}\n"
         to_package.each{ |p| nuget_task p }
 

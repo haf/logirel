@@ -4,3 +4,4 @@ obj/
 _ReSharper*
 *.resharper
 *.suo
+build/

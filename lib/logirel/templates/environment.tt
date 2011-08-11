@@ -9,7 +9,7 @@ namespace :env do
     fv = version SemVer.find.to_s
     revision = (!fv[3] || fv[3] == 0) ? (ENV['BUILD_NUMBER'] || Time.now.strftime('%j%H')) : fv[3] #  (day of year 0-265)(hour 00-24)
 
-    ENV['BUILD_VERSION'] = BUILD_VERSION = "#{SemVer.new(fv[0], fv[1], fv[2]).to_s}.#{revision}"
+    ENV['BUILD_VERSION'] = BUILD_VERSION = "#{ SemVer.new(fv[0], fv[1], fv[2]).format "%M.%m.%p" }.#{revision}"
     puts "Assembly Version: #{BUILD_VERSION}."
     puts "##teamcity[buildNumber '#{BUILD_VERSION}']" # tell teamcity our decision
 
