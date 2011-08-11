@@ -16,7 +16,7 @@ nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nu
   nuspec.requireLicenseAcceptance = "false"
   #{proj_meta[:dependencies].
     collect{|dep| "  nuspec.dependency '#{dep[:nuget_key]}', '#{dep[:version]}'" }.
-    join("\n") unless proj_meta.dependencies.empty?
+    join("\n") unless proj_meta[:dependencies].empty?
   }
 
   nuspec.output_file = FILES[#{k}][:nuspec]
