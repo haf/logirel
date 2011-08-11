@@ -20,10 +20,8 @@ nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nu
     collect{|dep| "  nuspec.dependency '#{dep[:nuget_key]}', '#{dep[:version]}'" }.
     join("\n") unless proj_meta[:dependencies].empty?
   }
-
   nuspec.output_file = FILES[:#{k}][:nuspec]
-
-  add_files "\#{PROJECTS[:#{k}][:id]}.{dll,pdb,xml}", nuspec
+  nuspec_copy(:#{k}, "\#{PROJECTS[:#{k}][:id]}.{dll,pdb,xml}")
 end
 
 EOF

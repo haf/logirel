@@ -66,15 +66,21 @@ module Logirel
       if build_sln then
         msbuild_task
         build_dep.push "msbuild" if build_sln
+
+        outputs = { :depends => @metas.collect { |m| "#{m[:ruby_key]}_output" } }
+        @metas.each { |p| output_task p, {:depends=>[:msbuild]} }
+        append_file BUILD_FILE, "task :output#{ inject_dependency outputs }\n"
+
+        build_dep.push "output"
       end
 
       if not to_package.empty? then
         nuspecs = { :depends => to_package.collect{|p| :"#{p[:ruby_key]}_nuspec" } }
-        append_to_file BUILD_FILE, "task :nuspecs #{ inject_dependency nuspecs }\n"
+        append_to_file BUILD_FILE, "task :nuspecs#{ inject_dependency nuspecs }\n"
         to_package.each{ |p| nuspec_task p }
 
-        nugets = { :depends => [:nuspec].concat(to_package.collect{|p| :"#{p[:ruby_key]}_nuget" }) }
-        append_to_file BUILD_FILE, "task :nugets #{inject_dependency nugets}\n"
+        nugets = { :depends => [:nuspecs].concat(to_package.collect{|p| :"#{p[:ruby_key]}_nuget" }) }
+        append_to_file BUILD_FILE, "task :nugets#{inject_dependency nugets}\n"
         to_package.each{ |p| nuget_task p }
 
         build_dep.push "nugets"

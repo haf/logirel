@@ -12,12 +12,15 @@ def commit_data
   [commit, commit_date]
 end
 
-def add_files what_dlls, nuspec
-  [['net35', 'net-3.5'], ['net40', 'net-4.0']].each{|fw|
-    takeFrom = File.join(FOLDERS[:build], fw[1], what_dlls)
-    Dir.glob(takeFrom).each do |f|
-      nuspec.file(f.gsub("/", "\\"), "lib\\#{fw[0]}")
-    end
+  # copy from the key's data using the glob pattern
+def nuspec_copy(key, glob)
+  puts "key: #{key}, glob: #{glob}, proj dir: #{PROJECTS[key][:dir]}"
+  FileList[File.join(FOLDERS[:binaries], PROJECTS[key][:dir], glob)].collect{ |f|
+    to = File.join( FOLDERS[:"#{key}"][:nuspec], "lib", FRAMEWORK )
+    FileUtils.mkdir_p to
+    cp f, to
+    # return the file name and its extension:
+    File.join(FRAMEWORK, File.basename(f))
   }
 end
 

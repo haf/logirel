@@ -99,7 +99,7 @@ module Logirel
           :company => StrQ.new("Company").exec,
           :copyright => StrQ.new("Copyright", "Copyright (c)").exec,
           :nuget_key => if create_package then StrQ.new("NuGet key", base).exec else "" end,
-          :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
+          :ruby_key => StrQ.new("Ruby key (compulsory: e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
           :guid => UUIDTools::UUID.random_create.to_s,
           :dependencies => [],
           :create_package => create_package

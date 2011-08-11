@@ -39,14 +39,22 @@ namespace :env do
   end
 
   task :dir_tasks do
+    all_dirs = []
+
     [:build, :tools, :tests, :nuget, :nuspec].each do |dir|
-      directory dir
+      directory FOLDERS[dir]
+      all_dirs <<  FOLDERS[dir]
     end
 
     [:out, :nuspec, :test_out].each do |dir|
       <%= metas.collect{ |m| :"#{m[:ruby_key]}" }.inspect.to_s %>.each{ |k|
         directory FOLDERS[k][dir]
+        all_dirs << FOLDERS[k][dir]
       }
+    end
+
+    all_dirs.each do |d|
+      Rake::Task[d].invoke
     end
   end
 

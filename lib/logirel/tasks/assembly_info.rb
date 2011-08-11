@@ -10,7 +10,7 @@ assemblyinfo #{inject_task_name opts, 'assemblyinfo' }#{ inject_dependency opts 
   data = commit_data() #hash + date
   asm.product_name = asm.title = PROJECTS[:#{k}][:title]
   asm.description = PROJECTS[:#{k}][:description] + " \#{data[0]} - \#{data[1]}"
-  asm.company_name = PROJECTS[#{k}][:company]
+  asm.company_name = PROJECTS[:#{k}][:company]
   # This is the version number used by framework during build and at runtime to locate, link and load the assemblies. When you add reference to any assembly in your project, it is this version number which gets embedded.
   asm.version = BUILD_VERSION
   # Assembly File Version : This is the version number given to file as in file system. It is displayed by Windows Explorer. Its never used by .NET framework or runtime for referencing.
