@@ -38,18 +38,32 @@ namespace :env do
 <% end %>
   end
 
+  task :dir_tasks do
+    [:build, :tools, :tests, :nuget, :nuspec].each do |dir|
+      directory dir
+    end
+
+    [:out, :nuspec, :test_out].each do |dir|
+      <%= metas.collect{ |m| :"#{m[:ruby_key]}" }.inspect.to_s %>.each{ |k|
+        directory FOLDERS[k][dir]
+      }
+    end
+  end
+
   # DEBUG/RELEASE
 
   desc "set debug environment variables"
   task :debug => [:common] do
     Rake::Task["env:configure"].invoke('Debug')
     Rake::Task["env:set_dirs"].invoke
+    Rake::Task["env:dir_tasks"].invoke
   end
 
   desc "set release environment variables"
   task :release => [:common] do
     Rake::Task["env:configure"].invoke('Release')
     Rake::Task["env:set_dirs"].invoke
+    Rake::Task["env:dir_tasks"].invoke
   end
 
   # FRAMEWORKS

@@ -25,6 +25,7 @@ nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nu
 
   add_files "\#{PROJECTS[:#{k}][:id]}.{dll,pdb,xml}", nuspec
 end
+
 EOF
   end
 end

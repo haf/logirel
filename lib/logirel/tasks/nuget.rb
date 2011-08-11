@@ -12,6 +12,7 @@ nugetpack #{ inject_task_name opts, k + "_nuget" }#{ inject_dependency opts } do
    # nuget.base_folder = "."
    nuget.output      = "\#{FOLDERS[:nuget]}"
 end
+
     EOF
   end
 end

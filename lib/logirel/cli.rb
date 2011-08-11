@@ -53,8 +53,15 @@ module Logirel
       run 'git init'
       run 'git add .'
 
-      build_dep = ["env:release"]
+      generate_asm_info = BoolQ.new("Create common assembly info file?").exec
       build_sln = BoolQ.new("Add msbuild task for sln file?").exec
+
+      build_dep = ["env:release"]
+
+      if generate_asm_info then
+        assembly_info_task @metas.first(), { :depends => build_dep }
+        build_dep.push 'assemblyinfo'
+      end
 
       if build_sln then
         msbuild_task
@@ -63,11 +70,11 @@ module Logirel
 
       if not to_package.empty? then
         nuspecs = { :depends => to_package.collect{|p| :"#{p[:ruby_key]}_nuspec" } }
-        append_to_file BUILD_FILE, "task :nuspecs #{ inject_dependency nuspecs }"
+        append_to_file BUILD_FILE, "task :nuspecs #{ inject_dependency nuspecs }\n"
         to_package.each{ |p| nuspec_task p }
 
-        nugets = { :depends => to_package.collect{|p| :"#{p[:ruby_key]}_nuget" } }
-        append_to_file BUILD_FILE, "task :nugets #{inject_dependency nugets}"
+        nugets = { :depends => [:nuspec].concat(to_package.collect{|p| :"#{p[:ruby_key]}_nuget" }) }
+        append_to_file BUILD_FILE, "task :nugets #{inject_dependency nugets}\n"
         to_package.each{ |p| nuget_task p }
 
         build_dep.push "nugets"
