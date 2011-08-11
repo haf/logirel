@@ -22,7 +22,7 @@ module Logirel::Tasks
 
   private
   def inject_dependency(params, further_deps=[])
-    ' => ' + params[:depends].join(further_deps).inspect.to_s if params[:depends]
+    ' => ' + params[:depends].concat(further_deps).inspect.to_s if params[:depends]
   end
 
   def inject_task_name(opts, default_name)

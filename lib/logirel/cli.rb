@@ -58,7 +58,7 @@ module Logirel
       build_dep = ["env:release"]
       if not to_package.empty? then
         nuspecs = { :depends => to_package.collect{|p| :"#{p[:ruby_key]}_nuspec" } }
-        append_to_file BUILD_FILE, "task :nuspecs #{inject_dependency nuspecs }"
+        append_to_file BUILD_FILE, "task :nuspecs #{ inject_dependency nuspecs }"
         to_package.each{ |p| nuspec_task p }
 
         nugets = { :depends => to_package.collect{|p| :"#{p[:ruby_key]}_nuget" } }
