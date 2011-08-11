@@ -4,10 +4,11 @@ Getting started
 ===============
  1. `gem install logirel`
  1. Go to the project of your choice
- 1. `logirel init`
+ 1. `logirel`
  1. You should now answer the questions that logirel poses.
  1. after it's done, run `rake`.
 
+**[Apache 2 Licensed](http://www.apache.org/licenses/LICENSE-2.0.html)**
  
 Hacking it
 ==========

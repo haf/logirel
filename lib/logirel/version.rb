@@ -1,5 +1,5 @@
 module Logirel
-  VERSION = "0.0.x"
+  VERSION = "0.1.x"
   begin
     require 'semver'
     class Version < SemVer
