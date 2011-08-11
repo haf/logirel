@@ -53,9 +53,14 @@ module Logirel
       run 'git init'
       run 'git add .'
 
-      # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
-
       build_dep = ["env:release"]
+      build_sln = BoolQ.new("Add msbuild task for sln file?").exec
+
+      if build_sln then
+        msbuild_task
+        build_dep.push "msbuild" if build_sln
+      end
+
       if not to_package.empty? then
         nuspecs = { :depends => to_package.collect{|p| :"#{p[:ruby_key]}_nuspec" } }
         append_to_file BUILD_FILE, "task :nuspecs #{ inject_dependency nuspecs }"
@@ -68,8 +73,12 @@ module Logirel
         build_dep.push "nugets"
       end
 
-      build_sln = BoolQ.new("add msbuild task for sln file?", true).exec
-      msbuild_task BoolQ.new("Set this task up as rake default task?", true).exec if build_sln
+      if BoolQ.new("Setup default task?") then
+        opts = { :depends => build_dep }
+        append_to_file File.join(@root, BUILD_FILE), "task :default #{ inject_dependency opts }"
+      end
+
+      # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
 
       helper.say_goodbye
     end

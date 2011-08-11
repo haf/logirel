@@ -14,7 +14,7 @@ module Logirel
       puts ""
       puts "Projects Selection"
       puts "---------------------"
-      puts "Choose what projects to include:"
+      puts "Choose what projects to include (don't include test-projects):"
       parse_folders_inner src
     end
 
