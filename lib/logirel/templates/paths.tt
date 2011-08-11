@@ -18,7 +18,7 @@ FOLDERS = folders.merge({
 <% metas.each do |m| %>
   :<%=m[:ruby_key]%> => {
       :test_dir => '<%= m[:test_dir] %>',
-      :nuspec => "#{FOLDERS[:nuspec]}/#{PROJECTS[<%= m[:ruby_key] %>][:nuget_key]}",
+      :nuspec => "#{folders[:nuspec]}/#{PROJECTS[<%= m[:ruby_key] %>][:nuget_key]}",
       :out => 'placeholder - environment.rb will sets this',
       :test_out => 'placeholder - environment.rb sets this'
   },
