@@ -7,6 +7,7 @@ require 'logirel/tasks/core'
   ncover
   nuget
   nuspec
+  nugetpush
   nunit
   output
   xunit
