@@ -84,6 +84,13 @@ module Logirel
         to_package.each{ |p| nuget_task p }
 
         build_dep.push "nugets"
+
+        if BoolQ.new("Create 'push to nuget server'-task?").execthen
+          pushes = { :depends => to_package.collect { |p| :"#{p[:ruby_key]}_nuget_push" } }
+          append_to_file BUILD_FILE, "task :publish#{ inject_dependency pushes }\n"
+          to_package.each { |p| nugetpush_task p }
+        end
+
       end
 
       if BoolQ.new("Setup default task?") then
