@@ -1,11 +1,11 @@
 module Logirel::Tasks
   def nuget_task(proj_meta, opts={})
 
-    k = proj_meta.ruby_key
+    k = proj_meta[:ruby_key]
 
     append_to_file BUILD_FILE, <<-EOF, :verbose => false
 
-desc "create a nuget package"
+desc "nuget pack '#{proj_meta[:title]}'"
 nugetpack #{ inject_task_name opts, 'nuget' }#{ inject_dependency opts } do |nuget|
    nuget.command     = "\#{COMMANDS[:nuget]}"
    nuget.nuspec      = "\#{FILES[:#{k}][:nuspec]}"

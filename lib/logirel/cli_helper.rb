@@ -75,8 +75,9 @@ module Logirel
       puts " and git commit to commit changes!"
       puts ""
       puts "Footnote:"
-      puts "If you hack a nice task or deployment script - feel free to send some code to henrik@haf.se to"
-      puts "make it available for everyone and get support on it through the community for free!"
+      puts "If you hack a nice task or deployment script - feel free to send a pull request to https://github.com/haf/logirel,"
+      puts "to make it available for everyone and get support on it through the community for free!"
+      puts ""
     end
 
     private

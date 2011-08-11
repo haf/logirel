@@ -4,6 +4,7 @@ module Logirel::Tasks
     k = proj_meta[:ruby_key]
 
     append_to_file BUILD_FILE, <<-EOF, :verbose => false
+desc "Create a nuspec for '#{proj_meta[:title]}'"
 nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nuspec|
   nuspec.id = "\#{PROJECTS[:#{k}][:nuget_key]}"
   nuspec.version = BUILD_VERSION
@@ -19,7 +20,7 @@ nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nu
     join("\n") unless proj_meta[:dependencies].empty?
   }
 
-  nuspec.output_file = FILES[#{k}][:nuspec]
+  nuspec.output_file = FILES[:#{k}][:nuspec]
 
   add_files "\#{PROJECTS[:#{k}][:id]}.{dll,pdb,xml}", nuspec
 end
