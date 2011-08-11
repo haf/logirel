@@ -1,3 +1,3 @@
 require 'thor'
-require 'uuid'
+require 'uuidtools'
 require 'logirel/cli'

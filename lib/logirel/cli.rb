@@ -43,6 +43,8 @@ module Logirel
       puts ""
       @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs, @folders)
 
+      to_package = @metas.find_all{|p| p[:create_package] }
+
       puts "initing main environment"
       run 'semver init'
 
@@ -60,7 +62,6 @@ module Logirel
       build_sln = BoolQ.new("add msbuild task for sln file?", true).exec
       msbuild_task BoolQ.new("Set this task up as rake default task?", true).exec if build_sln
 
-      to_package = @metas.find_all{|p| p.create_package }
       if not to_package.empty? then
         to_package.each{ |p| nuspec_task p }
         to_package.each{ |p| nuget_task p }
