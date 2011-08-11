@@ -14,8 +14,7 @@ nuspec #{inject_task_name opts, k + "_nuspec"}#{ inject_dependency opts } do |nu
   nuspec.language = "en-US"
   nuspec.licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0" # TODO: set this for nuget generation
   nuspec.requireLicenseAcceptance = "false"
-  #{proj_meta.
-    dependencies.
+  #{proj_meta[:dependencies].
     collect{|dep| "  nuspec.dependency '#{dep[:nuget_key]}', '#{dep[:version]}'" }.
     join("\n") unless proj_meta.dependencies.empty?
   }

@@ -12,6 +12,7 @@ module Logirel
     # src: relative path!
     def parse_folders src
 
+      puts ""
       puts "Projects Selection"
       puts "---------------------"
       puts "Choose what projects to include:"
@@ -26,6 +27,7 @@ module Logirel
     end
 
     def folders_selection
+      puts ""
       puts "Directories Selection"
       puts "---------------------"
       puts "Current dir: #{@root_dir}, #{Dir.entries(@root_dir).keep_if{|x|
@@ -57,6 +59,7 @@ module Logirel
     end
 
     def metadata_interactive selected_projs, selected_folders
+      puts ""
       puts "Project Meta-Data Definitions"
       puts "-----------------------------"
       puts "Let's set up some meta-data!"

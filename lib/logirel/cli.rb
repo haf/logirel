@@ -33,15 +33,11 @@ module Logirel
       @root = root
 
       puts "logirel v#{Logirel::VERSION}"
-      puts ""
+
       @folders = helper.folders_selection
       @files = helper.files_selection folders
-
       selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
-
-      puts ""
       @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs, @folders)
-
       to_package = @metas.find_all{|p| p[:create_package] }
 
       puts "initing main environment"
