@@ -11,12 +11,14 @@ module Logirel
 
     # src: relative path!
     def parse_folders src
-
       puts ""
       puts "Projects Selection"
       puts "---------------------"
       puts "Choose what projects to include:"
+      parse_folders_inner src
+    end
 
+    def parse_folders_inner src
       src = File.join(@root_dir, src, '*')
       Dir.
           glob(src).
@@ -39,7 +41,7 @@ module Logirel
       build_dir =   StrQ.new("Build Output Directory", "build").exec
 
       {
-          :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders('src').inspect})", 'src').exec,
+          :src => StrQ.new("Source Directory. Default (src) contains (#{parse_folders_inner('src').inspect})", 'src').exec,
           :buildscripts => StrQ.new("Buildscripts Directory", "buildscripts").exec,
           :build => build_dir,
           :tools => StrQ.new("Tools Directory", "tools").exec,
@@ -98,7 +100,7 @@ module Logirel
           :nuget_key => if create_package then StrQ.new("NuGet key", base).exec else "" end,
           :ruby_key => StrQ.new("Ruby key (e.g. 'autotx')", nil, STDIN, lambda { |s| s != nil && s.length > 0 }).exec,
           :guid => UUIDTools::UUID.random_create.to_s,
-          :depdendencies => [],
+          :dependencies => [],
           :create_package => create_package
       }
     end
