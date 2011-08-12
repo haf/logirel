@@ -41,5 +41,6 @@ COMMANDS = {
 }
 
 URIS = {
-  :nuget_offical => "http://packages.nuget.org/v1/"
+  :nuget_offical => "http://packages.nuget.org/v1/",
+  :nuget_symbolsource => "http://nuget.gw.symbolsource.org/Public/Nuget"
 }
