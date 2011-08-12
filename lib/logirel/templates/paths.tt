@@ -29,8 +29,7 @@ FILES = {
   :sln => "<%= files[:sln] %>",
   <% metas.each do |m| %>
   :<%= m[:ruby_key] %> => {
-    :nuspec => File.join(FOLDERS[:<%= m[:ruby_key] %>][:nuspec], "#{PROJECTS[:<%= m[:ruby_key] %>][:nuget_key]}.nuspec"),
-	:nupkg => File.join(FOLDERS[:nuget], "#{PROJECTS[:<%= m[:ruby_key] %>][:nuget_key]}.#{BUILD_VERSION}.nupkg")
+    :nuspec => File.join(FOLDERS[:<%= m[:ruby_key] %>][:nuspec], "#{PROJECTS[:<%= m[:ruby_key] %>][:nuget_key]}.nuspec")
   },
   <% end %>
 }

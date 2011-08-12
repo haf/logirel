@@ -86,7 +86,7 @@ module Logirel
         build_dep.push "nugets"
 
         if BoolQ.new("Create 'push to nuget server'-task?").exec then
-          pushes = { :depends => to_package.collect { |p| :"#{p[:ruby_key]}_nuget_push" } }
+          pushes = { :depends => [:"env:release"].concat(to_package.collect { |p| :"#{p[:ruby_key]}_nuget_push" }) }
           append_to_file BUILD_FILE, "task :publish#{ inject_dependency pushes }\n"
           to_package.each { |p| nugetpush_task p }
         end
