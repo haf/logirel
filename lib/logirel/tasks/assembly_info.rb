@@ -22,6 +22,7 @@ assemblyinfo #{inject_task_name opts, 'assemblyinfo' }#{ inject_dependency opts 
   asm.com_visible = false
   asm.copyright = PROJECTS[:#{k}][:copyright]
   asm.output_file = File.join(FOLDERS[:src], 'SharedAssemblyInfo.cs')
+  asm.namespaces = "System", "System.Reflection", "System.Runtime.InteropServices", "System.Security"
 end
 
     EOF
