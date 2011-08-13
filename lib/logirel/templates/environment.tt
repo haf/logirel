@@ -28,12 +28,13 @@ namespace :env do
   task :set_dirs do
 <% metas.each do |m| %>
 <%  k = m[:ruby_key] %>
+    # <%= m[:title] %>
     FOLDERS[:<%=k%>][:out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:dir], 'bin', CONFIGURATION)
     CLEAN.include(FOLDERS[:<%=k%>][:out])
-
-    # for tests
+    <% unless m.test_dir.empty? then %>
     FOLDERS[:<%=k%>][:test_out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
     FILES[:<%=k%>][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{PROJECTS[:<%=k%>][:test_dir]}.dll")
+    <% end %>
     CLEAN.include(FOLDERS[:test_out])
 <% end %>
   end

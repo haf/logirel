@@ -14,7 +14,7 @@ Hacking it
 ==========
  1. `git clone https://haf@github.com/haf/logirel.git`
  1. `bundle install`
- 1. `bundle exec rspec spec`
+ 1. hack it.
 
 My thinking
 ===========
@@ -34,11 +34,19 @@ Some problems I want to solve with this project;
 TODO list
 =========
 
- 1. make the core functionality solid
  1. sample configuration settings for team city to build from github
- 1. build rake tasks invoking semver with ruby that integrate with teamcity
  1. try the gem out on the transactions, auto tx and nhibernate facility projects
- 1. create some guidance - links mostly on how to set up a gemserver locally
+ 1. for those projects where we don't want to gen nupkg, don't ask for nuget key
+ 1. ask for current version when initing semver
+ 1. don't gen test_out for projects with no tests
+ 1. use a loop for setting output directories in :set_dirs in environment.tt, like it is :dir_tasks
+ 1. generating nugets:
+   2. icon
+   2. project url
+   2. summary
+   2. asking for framework dependencies
+   2. asking for ordinary dependencies
+   2. require license acceptance
 
 A note about aims
 =================
