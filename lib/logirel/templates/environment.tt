@@ -97,41 +97,8 @@ namespace :env do
     ENV['FRAMEWORK'] = 'mono28'
   end
 
-  desc "set mono30 framework"
-  task :net30 do
-    ENV['FRAMEWORK'] = 'mono30'
-  end
-
-  # ENVIRONMENT VARS FOR PRODUCT RELEASES
-
-  desc "set GA envionment variables"
-  task :ga do
-    puts "##teamcity[progressMessage 'Setting environment variables for GA']"
-    ENV['OFFICIAL_RELEASE'] = OFFICIAL_RELEASE = "4000"
-  end
-
-  desc "set release candidate environment variables"
-  task :rc, [:number] do |t, args|
-    puts "##teamcity[progressMessage 'Setting environment variables for Release Candidate']"
-    arg_num = args[:number].to_i
-    num = arg_num != 0 ? arg_num : 1
-    ENV['OFFICIAL_RELEASE'] = OFFICIAL_RELEASE = "#{3000 + num}"
-  end
-
-  desc "set beta-environment variables"
-  task :beta, [:number] do |t, args|
-    puts "##teamcity[progressMessage 'Setting environment variables for Beta']"
-    arg_num = args[:number].to_i
-    num = arg_num != 0 ? arg_num : 1
-    ENV['OFFICIAL_RELEASE'] = OFFICIAL_RELEASE = "#{2000 + num}"
-  end
-
-  desc "set alpha environment variables"
-  task :alpha, [:number] do |t, args|
-    puts "##teamcity[progressMessage 'Setting environment variables for Alpha']"
-    arg_num = args[:number].to_i
-    num = arg_num != 0 ? arg_num : 1
-
-    ENV['OFFICIAL_RELEASE'] = OFFICIAL_RELEASE = "#{1000 + num}"
+  desc "set mono-2.10 framework"
+  task :mono210 do
+    ENV['FRAMEWORK'] = 'mono210'
   end
 end

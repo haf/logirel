@@ -1,4 +1,8 @@
 .bundle
-Gemfile.lock
 pkg/*
 .idea/*
+_ReSharper*
+*.resharper
+*.suo
+bin/
+obj/
