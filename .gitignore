@@ -4,5 +4,6 @@ pkg/*
 _ReSharper*
 *.resharper
 *.suo
+*.user
 bin/
 obj/
