@@ -1,3 +1,4 @@
+require 'logirel'
 describe Logirel::Version, "in general" do
   before(:each) do
     @v = Logirel::Version.new

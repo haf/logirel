@@ -1,4 +1,4 @@
-require 'logirel/vs/solution'
+require 'logirel/vs'
 
 module Logirel
   module VS
@@ -7,14 +7,19 @@ module Logirel
         @path = 'sample-data/src/Logirel.sln'
         puts File.expand_path @path
       }
-      it "should exist" do
-        File.exists?(@path).should be_true
-      end
+      
       subject { Solution.new @path }
 
       specify {
-        subject.test_projects.should
+        File.exists?(@path).should be_true
       }
+      
+      specify {
+        subject.test_projects.collect{|p|p.name}.should =~ ["Logirel.ConsoleApp.Tests"] and
+          subject.test_projects.length.should eql(1)
+      }
+      
+      specify { subject.projects.collect{|p|p.name}.should =~ ["Logirel.ClassLib", "Logirel.ConsoleApp", "Logirel.ConsoleApp.Tests", "Logirel.FubuMVCApp", "Logirel.Mvc2App"] }
     end
   end
 end
