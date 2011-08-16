@@ -15,6 +15,8 @@ Hacking it
  1. `git clone https://haf@github.com/haf/logirel.git`
  1. `bundle install`
  1. hack it.
+ 
+(I'm having some trouble with the latest 'puppet' gem and 'semver2' gem... puppet seems to be registering one of its files on the load path, so if you run into that when doing 'bundle install', just uninstall puppet)
 
 My thinking
 ===========
@@ -30,23 +32,6 @@ Some problems I want to solve with this project;
  * (nuget/owrap/symbolserver.org)	ensuring correct versions of source code dependencies
  * (gitflow)						nicely tagging your source trees corresponding to semver
  * `nuget :nuget do |n|; 'git ls-files'.split("\n").each{ |f| n.file f }; end` create a nuget item with just files
-
-TODO list
-=========
-
- 1. sample configuration settings for team city to build from github
- 1. try the gem out on the transactions, auto tx and nhibernate facility projects
- 1. for those projects where we don't want to gen nupkg, don't ask for nuget key
- 1. ask for current version when initing semver
- 1. don't gen test_out for projects with no tests
- 1. use a loop for setting output directories in :set_dirs in environment.tt, like it is :dir_tasks
- 1. generating nugets:
-   2. icon
-   2. project url
-   2. summary
-   2. asking for framework dependencies
-   2. asking for ordinary dependencies
-   2. require license acceptance
 
 A note about aims
 =================
@@ -64,6 +49,23 @@ be able to set up a build environment for those projects and make sure I can ver
 properly. Right now, hacking build scripts, is taking too much time. For example, it should be very
 easy to create .Sample projects for nuget, so that people can learn about my frameworks, but the overhead
 of managing another build is too large.
+
+TODO list
+=========
+
+ 1. sample configuration settings for team city to build from github
+ 1. try the gem out on the transactions, auto tx and nhibernate facility projects
+ 1. for those projects where we don't want to gen nupkg, don't ask for nuget key
+ 1. ask for current version when initing semver
+ 1. don't gen test_out for projects with no tests
+ 1. use a loop for setting output directories in :set_dirs in environment.tt, like it is :dir_tasks
+ 1. generating nugets:
+   2. icon
+   2. project url
+   2. summary
+   2. asking for framework dependencies
+   2. asking for ordinary dependencies
+   2. require license acceptance
 
 Shoulders of Giants
 ===================

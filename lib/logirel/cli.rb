@@ -90,15 +90,17 @@ module Logirel
           append_to_file BUILD_FILE, "task :publish#{ inject_dependency pushes }\n"
           to_package.each { |p| nugetpush_task p }
         end
-
       end
 
-      if BoolQ.new("Setup default task?") then
+      if BoolQ.new("Setup default task?").exec then
         opts = { :depends => build_dep }
         append_to_file File.join(@root, BUILD_FILE), "task :default #{ inject_dependency opts }"
       end
 
-      # TODO: add a few nuget, nuspec, owrap, fpm, puppet etc tasks here!
+      if BoolQ.new("Setup more than the default framework target?").exec then
+
+      end
+
 
       helper.say_goodbye
     end
