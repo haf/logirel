@@ -56,6 +56,7 @@ module Logirel
 
       generate_asm_info = BoolQ.new("Create common assembly info file?").exec
       build_sln = BoolQ.new("Add msbuild task for sln file?").exec
+      framework_targets = BoolQ.new("Setup more than the default framework target?").exec
 
       build_dep = ["env:release"]
 
@@ -64,10 +65,8 @@ module Logirel
         build_dep.push 'assemblyinfo'
       end
 
-      targets = []
-      if BoolQ.new("Setup more than the default framework target?").exec then
-        targets = ['net40', 'net35', 'net20', 'mono26', 'mono28', 'mono210'].collect { |t| return t, BoolQ.new(t, false).exec }
-      end
+      targets = ['net40', 'net35', 'net20', 'mono26', 'mono28', 'mono210'].collect { |t| return t, BoolQ.new(t, false).exec } \
+        if framework_targets
 
       if build_sln then
         msbuild_task
