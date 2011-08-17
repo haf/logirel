@@ -55,9 +55,7 @@ module Logirel
     def find_sln folders
       puts "Looking at src folder: '#{folders[:src]}'."
       first_sln = Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first || ""
-      {
-          :sln => StrQ.new("sln file", File.join(folders[:src], File.basename(first_sln))).exec
-      }
+      StrQ.new("sln file", File.join(folders[:src], File.basename(first_sln))).exec
     end
 
     def metadata_interactive selected_projs, selected_folders
