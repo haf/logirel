@@ -37,7 +37,7 @@ module Logirel
       @folders = helper.folders_selection
       sln_path = helper.find_sln folders
       sln = Solution.new sln_path
-      selected_projs = sln.projects.find_all { |f| BoolQ.new(f.name).exec }
+      selected_projs = sln.projects.find_all { |f| BoolQ.new(f.name, !f.test?).exec }  # don't include test projs by default
       @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs)
       to_package = @metas.find_all{|p| p[:create_package] }
 
@@ -62,6 +62,11 @@ module Logirel
       if generate_asm_info then
         assembly_info_task @metas.first(), { :depends => build_dep }
         build_dep.push 'assemblyinfo'
+      end
+
+      targets = []
+      if BoolQ.new("Setup more than the default framework target?").exec then
+        targets = ['net40', 'net35', 'net20', 'mono26', 'mono28', 'mono210'].collect { |t| return t, BoolQ.new(t, false).exec }
       end
 
       if build_sln then
@@ -96,10 +101,6 @@ module Logirel
       if BoolQ.new("Setup default task?").exec then
         opts = { :depends => build_dep }
         append_to_file File.join(@root, BUILD_FILE), "task :default #{ inject_dependency opts }"
-      end
-
-      if BoolQ.new("Setup more than the default framework target?").exec then
-        puts "not done"
       end
 
       helper.say_goodbye

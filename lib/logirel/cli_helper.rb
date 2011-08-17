@@ -84,7 +84,7 @@ module Logirel
 
     private
     def meta_for p
-      puts "META DATA FOR PROJECT: '#{p.file}'"
+      puts "META DATA FOR PROJECT: '#{p.name}'"
       title = StrQ.new("Title", p.name).exec
       create_package = BoolQ.new("Package with package manager?").exec
       has_unit_tests = BoolQ.new("Has unit-tests?", false).exec
