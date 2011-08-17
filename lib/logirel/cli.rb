@@ -36,8 +36,9 @@ module Logirel
 
       @folders = helper.folders_selection
       sln_path = helper.find_sln folders
-      selected_projs = Solution.new(sln_path).projects.find_all { |f| BoolQ.new(f).exec }
-      @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs, @folders)
+      sln = Solution.new sln_path
+      selected_projs = sln.projects.find_all { |f| BoolQ.new(f.name).exec }
+      @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs)
       to_package = @metas.find_all{|p| p[:create_package] }
 
       puts "initing main environment"
