@@ -1,7 +1,6 @@
 require 'logirel/version'
 require 'logirel/queries'
-require 'logirel/vs/solution'
-require 'logirel/vs/environment'
+require 'logirel/vs'
 require 'logirel/tasks/albacore_tasks'
 require 'logirel/cli_helper'
 require 'thor'
@@ -35,8 +34,8 @@ module Logirel
       puts "logirel v#{Logirel::VERSION}"
 
       @folders = helper.folders_selection
-      @files = helper.files_selection folders
-      selected_projs = helper.parse_folders(folders[:src]).find_all { |f| BoolQ.new(f).exec }
+      sln_path = helper.find_sln folders
+      selected_projs = Solution.new(sln_path).projects.find_all { |f| BoolQ.new(f).exec }
       @metas = selected_projs.empty? ? [] : helper.metadata_interactive(selected_projs, @folders)
       to_package = @metas.find_all{|p| p[:create_package] }
 
@@ -98,9 +97,8 @@ module Logirel
       end
 
       if BoolQ.new("Setup more than the default framework target?").exec then
-
+        puts "not done"
       end
-
 
       helper.say_goodbye
     end
@@ -112,10 +110,6 @@ module Logirel
 
     def folders
       @folders ||= {}
-    end
-
-    def files
-      @files ||= {}
     end
   end
 end

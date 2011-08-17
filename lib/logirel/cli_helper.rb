@@ -52,7 +52,7 @@ module Logirel
     end
 
     # folders: hash (as defined above), of folder paths
-    def files_selection folders
+    def find_sln folders
       puts "Looking at src folder: '#{folders[:src]}'."
       first_sln = Dir.glob(File.join(@root_dir, folders[:src],"*.sln")).first || ""
       {
