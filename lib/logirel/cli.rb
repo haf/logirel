@@ -26,7 +26,7 @@ module Logirel
       existing infrastructure, should such infrastructure exist.
     D
     method_option "root", :type => :string, :banner => "Perform the initialization in the given root directory"
-    method_option "raketempl", :type => :string, :banner => "Specify the initialization template to use"
+    method_option "raketempl", :type => :string, :banner => "Specify the rakefile template to use"
     def init(root = Dir.pwd, raketempl = 'Rakefile.tt')
       #opts = options.dup
       helper = CliHelper.new root
@@ -51,12 +51,12 @@ module Logirel
       template 'environment.tt',      File.join(root, folders[:buildscripts], 'environment.rb')
       template 'utils.tt',            File.join(root, folders[:buildscripts], 'utils.rb')
       template raketempl,             File.join(root, BUILD_FILE)
-      run 'git init'
-      run 'git add .'
 
       generate_asm_info = BoolQ.new("Create common assembly info file?").exec
       build_sln = BoolQ.new("Add msbuild task for sln file?").exec
       framework_targets = BoolQ.new("Setup more than the default framework target?").exec
+      initialize_owrap = BoolQ.new("Initialize projects with openwrap?", false).exec
+      setup_default_task = BoolQ.new("Setup default task?").exec
 
       build_dep = ["env:release"]
 
@@ -65,8 +65,12 @@ module Logirel
         build_dep.push 'assemblyinfo'
       end
 
-      targets = ['net40', 'net35', 'net20', 'mono26', 'mono28', 'mono210'].collect { |t| return t, BoolQ.new(t, false).exec } \
-        if framework_targets
+      targets = []
+      while targets.empty? do
+        targets = ['net40', 'net35', 'net20', 'mono26', 'mono28', 'mono210'].
+                  collect { |t| return t, BoolQ.new(t, false).exec } if framework_targets
+        puts "you need to build for something, silly you! try again!" if targets.empty?
+      end
 
       if build_sln then
         msbuild_task
@@ -97,10 +101,13 @@ module Logirel
         end
       end
 
-      if BoolQ.new("Setup default task?").exec then
+      if setup_default_task then
         opts = { :depends => build_dep }
         append_to_file File.join(@root, BUILD_FILE), "task :default #{ inject_dependency opts }"
       end
+
+      run 'git init'
+      run 'git add .'
 
       helper.say_goodbye
     end
