@@ -11,6 +11,7 @@ module Logirel
     include Thor::Actions
     include Logirel::Tasks
     include Logirel::Queries
+    include Logirel::VS
 
     source_paths << File.expand_path("../templates", __FILE__)
     source_paths << Dir.pwd

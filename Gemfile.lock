@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    logirel (0.1.6)
+    logirel (0.2.0)
       albacore (~> 0.2.7)
       bundler (~> 1.0.14)
       nokogiri (~> 1.4.4)
