@@ -19,7 +19,9 @@ module Logirel
           subject.test_projects.length.should eql(1)
       }
       
-      specify { subject.projects.collect{|p|p.name}.should =~ ["Logirel.ClassLib", "Logirel.ConsoleApp", "Logirel.ConsoleApp.Tests", "Logirel.FubuMVCApp", "Logirel.Mvc2App"] }
+      specify { subject.projects.collect{|p|p.name}.should =~
+          ["Logirel.ClassLib", "Logirel.ConsoleApp", "Logirel.ConsoleApp.Tests", "Logirel.FubuMVCApp", "Logirel.Mvc2App"]
+      }
     end
   end
 end

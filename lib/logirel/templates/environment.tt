@@ -1,6 +1,7 @@
 require "<%=folders[:buildscripts]%>/paths"
 require "<%=folders[:buildscripts]%>/project_details"
 require 'semver'
+require 'yaml'
 
 namespace :env do
 
@@ -23,20 +24,6 @@ namespace :env do
     ENV['CONFIGURATION'] = CONFIGURATION = args[:str]
     FOLDERS[:binaries] = File.join(FOLDERS[:build], FRAMEWORK, args[:str].downcase)
     CLEAN.include(File.join(FOLDERS[:binaries], "*"))
-  end
-
-  task :set_dirs do
-<% metas.each do |m| %>
-<%  k = m[:ruby_key] %>
-    # <%= m[:title] %>
-    FOLDERS[:<%=k%>][:out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:dir], 'bin', CONFIGURATION)
-    CLEAN.include(FOLDERS[:<%=k%>][:out])
-    <% unless m.test_dir.empty? then %>
-    FOLDERS[:<%=k%>][:test_out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
-    FILES[:<%=k%>][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{PROJECTS[:<%=k%>][:test_dir]}.dll")
-    <% end %>
-    CLEAN.include(FOLDERS[:test_out])
-<% end %>
   end
 
   task :dir_tasks do
@@ -101,4 +88,19 @@ namespace :env do
   task :mono210 do
     ENV['FRAMEWORK'] = 'mono210'
   end
+
+  task :set_dirs do
+  <% metas.each do |m| %>
+  <%  k = m[:ruby_key] %>
+      # <%= m[:title] %>
+      FOLDERS[:<%=k%>][:out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:dir], 'bin', CONFIGURATION)
+      CLEAN.include(FOLDERS[:<%=k%>][:out])
+      <% unless m.test_dir.empty? then %>
+      FOLDERS[:<%=k%>][:test_out] = File.join(FOLDERS[:src], PROJECTS[:<%=k%>][:test_dir], 'bin', CONFIGURATION)
+      FILES[:<%=k%>][:test] = File.join(FOLDERS[:<%=k%>][:test_out], "#{PROJECTS[:<%=k%>][:test_dir]}.dll")
+      <% end %>
+      CLEAN.include(FOLDERS[:test_out])
+  <% end %>
+  end
+
 end
