@@ -9,18 +9,18 @@ module Logirel
         @dep.default = []
       end
 
-      def add outputs, inputs, task
+      def add outputs, inputs=[], task
         triple = [outputs, inputs, task]
         outputs.each { |o| @dep[o] = [triple] }
         @dep[triple] = inputs
       end
 
-      def tsort_each_child(node, &block)
-        @dep[node].each(&block)
+      def tsort_each_node &block
+        @dep.each_key(&block)
       end
 
-      def tsort_each_node &block
-        @dep.each(&block)
+      def tsort_each_child(node, &block)
+        @dep[node].each(&block)
       end
 
       include TSort
