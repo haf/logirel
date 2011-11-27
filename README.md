@@ -13,6 +13,7 @@ Getting started
 Hacking it
 ==========
  1. `git clone https://haf@github.com/haf/logirel.git`
+ 1. `gem install semver2` (required to read version in gemfile)
  1. `bundle install`
  1. hack it.
  

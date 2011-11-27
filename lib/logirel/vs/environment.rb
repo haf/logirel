@@ -1,5 +1,3 @@
-require 'win32/registry'
-
 module Logirel
   module VS
     class Environment
@@ -13,9 +11,16 @@ module Logirel
     
       private
       def registry_get(path, key)
-        Win32::Registry::HKEY_LOCAL_MACHINE.open(path) do |reg|
-          reg_typ, reg_val = reg.read(key)
-          reg_val
+	begin
+	  require 'win32/registry'
+          Win32::Registry::HKEY_LOCAL_MACHINE.open(path) do |reg|
+            reg_typ, reg_val = reg.read(key)
+            reg_val
+	  end
+	rescue LoadError
+	  h = Hash.new "Not Available"
+	  h['RegisteredOwner'] = `$OWNER`
+	  h[key]	
         end
       end
     end
