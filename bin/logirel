@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-require 'logirel/cli'
-Logirel::CLI.start
