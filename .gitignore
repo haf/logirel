@@ -8,3 +8,4 @@ _ReSharper*
 bin/
 obj/
 *.swp
+Gemfile.lock
